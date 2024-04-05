@@ -12,6 +12,6 @@ Ce projet est un site de rencontres conçu pour permettre aux utilisateurs de se
 
 ## Auteur
 
-KHELIL Yacine et HUYNH Duc Duy
+KHELIL Yacine, HUYNH Duc Duy, SAIDJ Abdelah et AISSAOUI Ahmed 
 
 ---
