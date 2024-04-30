@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Rencontre</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Fichier CSS pour le style -->
+</head>
+<body>
+    <!-- En-tête -->
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo du site">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Profil</a></li>
+                <li><a href="#">Recherche</a></li>
+                <li><a href="#">Messagerie</a></li>
+                <li><a href="#">Paramètres</a></li>
+            </ul>
+        </nav>
+        <div class="connexion">
+            <a href="#">Se connecter</a> <!-- Lien vers la page de connexion -->
+            <a href="#">S'inscrire</a> <!-- Lien vers la page d'inscription -->
+        </div>
+    </header>
+
+    <!-- Page d'accueil -->
+    <section id="accueil">
+        <h1>Trouvez l'amour de votre vie !</h1>
+        <form action="#" method="GET">
+            <input type="text" name="critere" placeholder="Rechercher...">
+            <button type="submit">Rechercher</button>
+        </form>
+        <!-- Section des témoignages -->
+        <div class="temoignages">
+            <!-- Contenu des témoignages ici -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Site de Rencontre. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
+<style>
+
+/* Reset des styles par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #f8f8f8;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.connexion a {
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+section {
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Styles spécifiques à la page d'accueil */
+#accueil {
+    text-align: center;
+}
+
+#accueil h1 {
+    margin-bottom: 20px;
+}
+
+#accueil form {
+    margin-bottom: 20px;
+}
+
+#accueil input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+}
+
+#accueil button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#accueil button:hover {
+    background-color: #555;
+}
+
+</style>
