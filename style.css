@@ -1,0 +1,89 @@
+/* Reset des styles par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Configuration du header */
+header {
+    display: flex; /* Utilisez un conteneur flex */
+    justify-content: space-between; /* Répartit l'espace entre les éléments */
+    align-items: center; /* Aligne les éléments verticalement */
+    padding: 20px; /* Marge intérieure du header */
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Ajoutez un espace de 20px entre chaque élément enfant dans le header */
+header > div {
+    margin: 0 300px;
+}
+
+
+/* Styles pour les éléments du header */
+.categorie {
+    margin-left: auto;
+}
+
+.categorie ul {
+    list-style: none;
+}
+
+.categorie ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.categorie ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.logo img {
+    width: 300px;
+    height: auto;
+    position: absolute;
+    left: 50%; /* Positionne le logo au milieu de l'en-tête */
+    transform: translateX(-50%); /* Décale le logo pour le centrer */
+    top: -40px;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+}
+
+
+.connexion {
+    margin-right: auto;
+}
+
+.connexion a {
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+/* Configuration du background */
+body {
+    background-image: url('Backgroundraw.png');
+    background-size: cover;
+}
+
+/* Configuration du footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.8;
+}
