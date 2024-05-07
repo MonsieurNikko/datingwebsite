@@ -12,13 +12,22 @@ body {
 }
 
 header {
-    display: flex; /* Utilisez un conteneur flex */
-    justify-content: space-between; /* Répartit l'espace entre les éléments */
-    align-items: center; /* Aligne les éléments verticalement */
-    padding: 2px; /* Marge intérieure du header */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px;
     background-color: rgba(255, 255, 255, 0.2);
-    flex-wrap: nowrap; /* Empêche le passage à la ligne */
+    flex-wrap: nowrap;
+    position: fixed;
+    width: 100%; /* Assure que le header prend toute la largeur de la fenêtre */
+    top: 0; /* Positionne le header en haut de la fenêtre */
 }
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
 
 /* Styles pour les éléments du header */
 .categorie,
@@ -70,12 +79,12 @@ header > div {
 
 .logo img {
     width: 100%; /* La largeur de l'image s'ajuste à la taille de l'écran */
-    max-width: 200px; /* Largeur maximale de l'image */
+    max-width: 120px; /* Largeur maximale de l'image */
     height: auto; /* Maintient les proportions de l'image */
     position: absolute;
     left: 50%; /* Positionne le logo au milieu de l'en-tête */
     transform: translateX(-50%); /* Décale le logo pour le centrer */
-    top: -25px;
+    top: -15px;
     filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
 }
 
@@ -103,11 +112,12 @@ header > div {
 }
 
 
-/* Configuration du background */
-body {
+.backgr {
     background-image: url('Backgroundraw.png');
-    background-size: cover;
+    background-size: cover; /* Ajuste l'image pour couvrir l'ensemble de l'écran */
+    margin: 0; /* Retire les marges par défaut */
 }
+
 
   
 
@@ -117,7 +127,7 @@ body {
     justify-content: center; /* Centre horizontalement le contenu */
     align-items: center; /* Centre verticalement le contenu */
     text-align: center; /* Centre le texte */
-    height: 80vh; /* Utilise toute la hauteur de la fenêtre pour l'accueil */
+    height: 100vh; /* Utilise toute la hauteur de la fenêtre pour l'accueil */
 }
 
 #accueil h1 {
@@ -146,7 +156,26 @@ body {
     background-color: #e74c3c;
 }
 
+#container {
+    scroll-snap-type: y mandatory;
+}
 
+section{
+    height: 100vh;
+    scroll-snap-align: start;
+}
+
+#intro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(123, 144, 144);
+    height: 100vh;
+    background-image: url('section2.png');
+    background-size: cover;
+    margin: 0;
+
+}
 
 
 /* Configuration du footer */
@@ -155,11 +184,7 @@ footer {
     color: #fff;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    margin-top: auto; /* Pousse le footer vers le bas */
     width: 100%;
     opacity: 0.8;
 }
-
