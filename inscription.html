@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription sur Cyan Love</title>
+  <link rel="stylesheet" href="inscription.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form">
+      <form action="inscription2.html" method="post">
+        <h1>Informations personnelles</h1>
+        <div class="partie">
+          <label for="pseudonyme">Pseudonyme :</label>
+          <input type="text" id="pseudonyme" name="pseudonyme" required>
+        </div>
+        <div class="partie">
+            <label for="age">Âge :</label>
+            <input type="number" id="age" name="age" min="18" max="100" required>
+          </div>
+        <div class="partie">
+          <label for="sexe">Sexe :</label>
+          <select id="sexe" name="sexe" required>
+            <option value="homme">Homme</option>
+            <option value="femme">Femme</option>
+          </select>
+        </div>
+        <div class="partie">
+          <label for="date_naissance">Date de naissance :</label>
+          <input type="date" id="date_naissance" name="date_naissance" required>
+        </div>
+        <div class="partie">
+          <label for="profession">Profession :</label>
+          <input type="text" id="profession" name="profession" required>
+        </div>
+        <button type="submit">Suivant</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,176 @@
+/* Reset des styles par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    display: flex; /* Utilisez un conteneur flex */
+    justify-content: space-between; /* Répartit l'espace entre les éléments */
+    align-items: center; /* Aligne les éléments verticalement */
+    padding: 2px; /* Marge intérieure du header */
+    background-color: rgba(255, 255, 255, 0.2);
+    flex-wrap: nowrap; /* Empêche le passage à la ligne */
+}
+
+/* Styles pour les éléments du header */
+.categorie,
+.connexion {
+    display: flex; /* Utilisez flexbox pour les éléments */
+    align-items: center; /* Aligne les éléments verticalement */
+}
+
+header > div {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto; /* Permet aux éléments de s'adapter en fonction de leur contenu */
+    align-items: center;
+}
+
+/* Configuration de la section catégorie */
+.categorie {
+    display: flex; /* Utilise Flexbox pour aligner les éléments */
+    align-items: center; /* Aligne les éléments verticalement */
+    flex: 1; /* Permet à la section de s'étendre si nécessaire */
+}
+
+.categorie ul {
+    list-style: none;
+    display: flex;
+    gap: 0px;
+}
+
+.categorie ul li {
+    margin-right: 5px;
+}
+
+.categorie ul li a {
+    border: 3px solid transparent; 
+    text-decoration: none;
+    color: #333;
+    height: 50px; /* Hauteur de l'élément égale à 100% de la hauteur du parent (header) */
+    display: flex; /* Utilisez flex pour aligner le texte et la bordure */
+    align-items: center; /* Aligne le texte verticalement au centre */
+    padding: 0 10px; /* Ajustez les marges intérieures */
+}
+
+.categorie ul li a:hover {
+    background-color: #e5d8f0; /* Changez la couleur de fond du rectangle sur hover */
+    color: #333; /* Couleur de texte sur hover */
+    border: none; /* Vous pouvez changer la couleur de la bordure sur hover */
+}
+
+
+.logo img {
+    width: 100%; /* La largeur de l'image s'ajuste à la taille de l'écran */
+    max-width: 200px; /* Largeur maximale de l'image */
+    height: auto; /* Maintient les proportions de l'image */
+    position: absolute;
+    left: 50%; /* Positionne le logo au milieu de l'en-tête */
+    transform: translateX(-50%); /* Décale le logo pour le centrer */
+    top: -25px;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+}
+
+
+.connexion {
+    display: flex; /* Utilise Flexbox pour aligner les éléments */
+    align-items: center; /* Aligne les éléments verticalement */
+    flex: 1; /* Permet à la section de s'étendre si nécessaire */
+    justify-content: flex-end; /* Place les éléments à droite */
+}
+
+
+.connexion a {
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+.connexion a:hover {
+    background-color: #e5d8f0; /* Changez la couleur de fond sur hover */
+    color: #333; /* Changez la couleur du texte sur hover */
+    border-color: #666; /* Changez la couleur de la bordure sur hover */
+}
+
+
+/* Configuration du background */
+body {
+    background-image: url('Backgroundraw.png');
+    background-size: cover;
+}
+
+  
+
+/* Configuration de la section d'accueil */
+#accueil {
+    display: flex; /* Active flexbox pour la section */
+    justify-content: center; /* Centre horizontalement le contenu */
+    align-items: center; /* Centre verticalement le contenu */
+    text-align: center; /* Centre le texte */
+    height: 80vh; /* Utilise toute la hauteur de la fenêtre pour l'accueil */
+}
+
+#accueil h1 {
+    font-family: "Pacifico", cursive;
+    font-size: 50px;
+    margin-bottom: 5px;
+    font-weight: 250;
+}
+
+#accueil p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #e74c3c;
+}
+
+
+
+
+/* Configuration du footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.8;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .form {
+    width: auto; /* Ajustez la largeur selon vos besoins */
+  }
+  
