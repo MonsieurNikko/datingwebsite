@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription sur Cyan Love</title>
+  <link rel="stylesheet" href="inscription.css">
+</head>
+<body>
+  <header>
+    <div class="categorie">
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Profil</a></li>
+            <li><a href="#">Recherche</a></li>
+            <li><a href="#">Produit</a></li>
+        </ul>
+    </div>
+    
+    <div class="logo">
+        <a href="page_d'accueil.html"><img src="logobao.png" alt="Logo du site"></a>
+    </div>
+
+    <div class="connexion">
+        <a href="connexion.html">Se connecter</a>
+        <a href="inscription.html">S'inscrire</a>
+    </div>
+</header>
+    <div class="container">
+      <div class="form">
+        <form action="inscription4.html" method="post">
+          <h1>Description physique</h1>
+          <div class="partie">
+            <label for="taille">Taille (en cm) :</label>
+            <input type="number" id="taille" name="taille" min="100" max="250" required>
+          </div>
+          <div class="partie">
+            <label for="poids">Poids (en kg) :</label>
+            <input type="number" id="poids" name="poids" required>
+          </div>
+          <div class="partie">
+            <label for="couleur_cheveux">Couleur des cheveux :</label>
+            <select id="couleur_cheveux" name="couleur_cheveux" required>
+              <option value="noir">Noir</option>
+              <option value="brun">Brun</option>
+              <option value="auburn">Auburn</option>
+              <option value="châtain">Châtain</option>
+              <option value="roux">Roux</option>
+              <option value="blond_vénitien">Blond vénitien</option>
+              <option value="blond">Blond</option>
+              <option value="blanc">Blanc</option>
+            </select>
+          </div>
+          <div class="partie">
+            <label for="couleur_yeux">Couleur des yeux :</label>
+            <select id="couleur_yeux" name="couleur_yeux" required>
+              <option value="albinos">Albinos</option>
+              <option value="bleue">Bleue</option>
+              <option value="bleu-gris">Bleu-gris</option>
+              <option value="bleu-vert">Bleu-vert</option>
+              <option value="grise">Grise</option>
+              <option value="gris-vert">Gris-vert</option>
+              <option value="marron">Marron</option>
+              <option value="marron-vert">Marron-vert</option>
+              <option value="noire">Noire</option>
+              <option value="noisette">Noisette</option>
+              <option value="pers">Pers</option>
+              <option value="vairon">Vairon</option>
+              <option value="verte">Verte</option>
+            </select>
+          </div>          
+          <button type="submit">Suivant</button>
+        </form>
+      </div>
+</body>
+</html>
