@@ -25,7 +25,7 @@ header {
 
 .hidden {
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.7s ease-in-out;
 }
 
 
@@ -79,15 +79,24 @@ header > div {
 
 .logo img {
     width: 100%; /* La largeur de l'image s'ajuste à la taille de l'écran */
-    max-width: 120px; /* Largeur maximale de l'image */
+    max-width: 130px; /* Largeur maximale de l'image */
     height: auto; /* Maintient les proportions de l'image */
     position: absolute;
-    left: 50%; /* Positionne le logo au milieu de l'en-tête */
+    left: 47%; /* Positionne le logo au milieu de l'en-tête */
     transform: translateX(-50%); /* Décale le logo pour le centrer */
     top: -15px;
     filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
 }
-
+.logo img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.logo :hover img {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
 
 .connexion {
     display: flex; /* Utilise Flexbox pour aligner les éléments */
@@ -112,70 +121,7 @@ header > div {
 }
 
 
-.backgr {
-    background-image: url('Backgroundraw.png');
-    background-size: cover; /* Ajuste l'image pour couvrir l'ensemble de l'écran */
-    margin: 0; /* Retire les marges par défaut */
-}
 
-
-  
-
-/* Configuration de la section d'accueil */
-#accueil {
-    display: flex; /* Active flexbox pour la section */
-    justify-content: center; /* Centre horizontalement le contenu */
-    align-items: center; /* Centre verticalement le contenu */
-    text-align: center; /* Centre le texte */
-    height: 100vh; /* Utilise toute la hauteur de la fenêtre pour l'accueil */
-}
-
-#accueil h1 {
-    font-family: "Pacifico", cursive;
-    font-size: 50px;
-    margin-bottom: 5px;
-    font-weight: 250;
-}
-
-#accueil p {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #ff6b6b;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.cta-button:hover {
-    background-color: #e74c3c;
-}
-
-#container {
-    scroll-snap-type: y mandatory;
-}
-
-section{
-    height: 100vh;
-    scroll-snap-align: start;
-}
-
-#intro{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(123, 144, 144);
-    height: 100vh;
-    background-image: url('section2.png');
-    background-size: cover;
-    margin: 0;
-
-}
 
 
 /* Configuration du footer */
@@ -184,7 +130,28 @@ footer {
     color: #fff;
     text-align: center;
     padding: 10px 0;
-    margin-top: auto; /* Pousse le footer vers le bas */
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
     width: 100%;
     opacity: 0.8;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+.form {
+    width: auto; /* Ajustez la largeur selon vos besoins */
+}
+  
+
+.container {
+    background-image: url('Backgroundraw.png');
+    background-size: cover; /* Ajuste l'image pour couvrir l'ensemble de l'écran */
+    margin: 0; /* Retire les marges par défaut */
 }
