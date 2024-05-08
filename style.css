@@ -121,6 +121,153 @@ header > div {
 }
 
 
+.backgr {
+    background-image: url('Backgroundraw.png');
+    background-size: cover; /* Ajuste l'image pour couvrir l'ensemble de l'écran */
+    margin: 0; /* Retire les marges par défaut */
+}
+
+
+  
+
+/* Configuration de la section d'accueil */
+#accueil {
+    display: flex; /* Active flexbox pour la section */
+    justify-content: center; /* Centre horizontalement le contenu */
+    align-items: center; /* Centre verticalement le contenu */
+    text-align: center; /* Centre le texte */
+    height: 100vh; /* Utilise toute la hauteur de la fenêtre pour l'accueil */
+}
+
+
+.title-word {
+    animation: color-animation 4s linear infinite;
+  }
+  
+  .title-word-1 {
+    --color-1: #DF8453;
+    --color-2: #3D8DAE;
+    --color-3: #E4A9A8;
+  }
+  
+  .title-word-2 {
+    --color-1: #DBAD4A;
+    --color-2: #ACCFCB;
+    --color-3: #17494D;
+  }
+  
+  .title-word-3 {
+    --color-1: #ACCFCB;
+    --color-2: #E4A9A8;
+    --color-3: #ACCFCB;
+  }
+  
+  .title-word-4 {
+    --color-1: #3D8DAE;
+    --color-2: #DF8453;
+    --color-3: #E4A9A8;
+  }
+  
+  @keyframes color-animation {
+    0%    {color: var(--color-1)}
+    32%   {color: var(--color-1)}
+    33%   {color: var(--color-2)}
+    65%   {color: var(--color-2)}
+    66%   {color: var(--color-3)}
+    99%   {color: var(--color-3)}
+    100%  {color: var(--color-1)}
+  }
+  
+  /* Here are just some visual styles. 🖌 */
+  
+  .container {
+    display: grid;
+    place-items: center;  
+    text-align: center;
+  }
+  
+  .title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    text-transform: uppercase;
+  }
+
+
+#accueil h2{
+    text-shadow: 0.1em 0.1em 0.2em rgb(71, 68, 68);
+}
+
+#accueil p {
+    font-family: "Pacifico", cursive;
+    font-size: 25px;
+    margin-bottom: 20px;
+    font-weight: 250;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+
+}
+
+.cta-button:hover {
+    background-color: #e74c3c;
+}
+
+#container {
+    scroll-snap-type: y mandatory;
+}
+
+section{
+    height: 100vh;
+    scroll-snap-align: start;
+}
+
+#intro {
+    background-color: rgb(123, 144, 144);
+    height: 100vh;
+    background-image: url('section2.png');
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Pour aligner le contenu verticalement */
+    align-items: center; /* Pour centrer le contenu horizontalement */
+    justify-content: center; /* Pour centrer le contenu verticalement */
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 150px;
+}
+
+.features, .images {
+    flex: 1; /* Assure que les deux parties prennent de l'espace égal */
+    padding: 20px;
+    margin: 120px;
+    font-size: 22px;
+}
+
+#userImage {
+    transition: opacity 0.5s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+
+#boutons {
+    display: inline-flex;
+    gap: 3px;
+}
+
 
 
 
@@ -130,28 +277,7 @@ footer {
     color: #fff;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    margin-top: auto; /* Pousse le footer vers le bas */
     width: 100%;
     opacity: 0.8;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-.form {
-    width: auto; /* Ajustez la largeur selon vos besoins */
-}
-  
-
-.container {
-    background-image: url('Backgroundraw.png');
-    background-size: cover; /* Ajuste l'image pour couvrir l'ensemble de l'écran */
-    margin: 0; /* Retire les marges par défaut */
 }
