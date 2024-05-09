@@ -53,6 +53,40 @@
       <footer>
         <p>&copy; 2024 Site de Rencontre. Tous droits réservés.</p>
     </footer>
-    
+
+      <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer les données du formulaire
+    $message_accueil = $_POST['message_accueil'];
+    $citation = $_POST['citation'];
+    $traits_caractere = $_POST['traits_caractere'];
+    $centres_interet = $_POST['centres_interet'];
+
+    // Spécifier le chemin relatif du fichier CSV
+    $chemin_fichier_csv = 'csv/user.csv';
+
+    // Ouvrir le fichier CSV en mode écriture
+    $file = fopen($chemin_fichier_csv, 'a');
+
+    // Vérifier si le fichier a pu être ouvert
+    if ($file) {
+        // Construire la ligne à écrire dans le fichier CSV
+        $nouvelle_ligne = "$message_accueil,$citation,$traits_caractere,$centres_interet\n";
+
+        // Écrire la ligne dans le fichier CSV
+        fwrite($file, $nouvelle_ligne);
+
+        // Fermer le fichier
+        fclose($file);
+
+        // Afficher un message de succès
+        echo "Les données ont été enregistrées avec succès.";
+    } else {
+        // Afficher un message d'erreur si le fichier n'a pas pu être ouvert
+        echo "Erreur : Impossible d'ouvrir le fichier.";
+    }
+}
+?>
+
 </body>
 </html>
