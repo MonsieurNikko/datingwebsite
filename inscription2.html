@@ -277,5 +277,41 @@
   <footer>
     <p>&copy; 2024 Site de Rencontre. Tous droits réservés.</p>
   </footer>
+  <?p
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer les données du formulaire
+    $pays = $_POST['pays'];
+    $situation_amoureuse = $_POST['situation_amoureuse'];
+
+    // Ouvrir le fichier CSV en mode lecture et écriture à la fin du fichier
+    $fichier_csv = 'user.csv';
+    $file = fopen($fichier_csv, 'a+');
+
+    // Vérifier si le fichier a pu être ouvert
+    if ($file) {
+        // Lire les données existantes dans le fichier CSV
+        $donnees_existants = [];
+        while (($ligne = fgetcsv($file)) !== false) {
+            $donnees_existants[] = $ligne;
+        }
+
+        // Construire la nouvelle ligne à ajouter dans le fichier CSV
+        $nouvelle_ligne = [$pays, $situation_amoureuse];
+
+        // Ajouter la nouvelle ligne à la suite des données existantes
+        fputcsv($file, $nouvelle_ligne);
+
+        // Fermer le fichier
+        fclose($file);
+
+        // Afficher un message de succès
+        echo "Les données ont été enregistrées avec succès.";
+    } else {
+        // Afficher un message d'erreur si le fichier n'a pas pu être ouvert
+        echo "Erreur : Impossible d'ouvrir le fichier.";
+    }
+}
+  ?>
+
 </body>
 </html>
