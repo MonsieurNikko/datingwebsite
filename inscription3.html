@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $couleur_yeux = $_POST['couleur_yeux'];
 
     // Ouvrir le fichier CSV en mode écriture
-    $fichier_csv = 'user.csv';
+    $fichier_csv = 'csv/user.csv';
     $file = fopen($fichier_csv, 'a');
 
     // Vérifier si le fichier a pu être ouvert
