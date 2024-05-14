@@ -28,7 +28,7 @@
 </header>
   <div class="container">
     <div class="form">
-      <form action="inscription2.html" method="post">
+      <form action="inscription.php" method="post">
         <h1>Informations personnelles</h1>
         <div class="partie">
           <label for="pseudonyme">Pseudonyme :</label>
@@ -58,29 +58,13 @@
     </div>
   </div>
 
+  <?php if(isset($message)) { ?>
+    <p><?php echo $message; ?></p>
+  <?php } ?>
 
   <footer>
     <p>&copy; 2024 Site de Rencontre. Tous droits réservés.</p>
   </footer>
-
-  <?php
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      // Récupérer les données du formulaire
-      $pseudo = $_POST['pseudonyme'];
-      $age = $_POST['age'];
-      $sexe = $_POST['sexe'];
-      $date_naissance = $_POST['date_naissance'];
-      $profession = $_POST['profession'];
-
-      // Écrire les données dans le fichier CSV
-      $fichier_csv = 'csv/user.csv';
-      $nouvelle_ligne = "$pseudo,$age,$sexe,$date_naissance,$profession\n";
-      file_put_contents($fichier_csv, $nouvelle_ligne, FILE_APPEND);
-
-      // Afficher un message de succès
-      echo "<p>Utilisateur ajouté avec succès!</p>";
-  }
-  ?>
 
 </body>
 </html>
