@@ -227,3 +227,9 @@ button[type="submit"]:hover {
     max-height: 100px; /* Définir la hauteur maximale des images */
     margin-bottom: 10px; /* Ajouter un espacement entre les images */
 }
+
+.champ-texte {
+    width: 360px;
+    height: 30px;
+    padding-left: 7px;
+}
