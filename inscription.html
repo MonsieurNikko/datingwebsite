@@ -28,7 +28,7 @@
 </header>
   <div class="container">
     <div class="form">
-      <form action="inscription.php" method="post">
+      <form action="inscription2.html" method="post">
         <h1>Informations personnelles</h1>
         <div class="partie">
           <label for="pseudonyme">Pseudonyme :</label>
@@ -43,24 +43,23 @@
           <select id="sexe" name="sexe" required>
             <option value="homme">Homme</option>
             <option value="femme">Femme</option>
+            <option value="non-binaire femme">Non-binaire femme</option>
+            <option value="non-binaire homme">Non-binaire homme</option>
+            <option value="Trans femme">Trans femme</option>
+            <option value="Trans homme">Trans homme</option>
+            <option value="Intersexe femme">Intersexe femme</option>
+            <option value="Intersexe homme">Intersexe homme</option>
           </select>
         </div>
         <div class="partie">
           <label for="date_naissance">Date de naissance :</label>
           <input type="date" id="date_naissance" name="date_naissance" required>
         </div>
-        <div class="partie">
-          <label for="profession">Profession :</label>
-          <input type="text" id="profession" name="profession" required>
-        </div>
         <button type="submit">Suivant</button>
       </form>
     </div>
   </div>
 
-  <?php if(isset($message)) { ?>
-    <p><?php echo $message; ?></p>
-  <?php } ?>
 
   <footer>
     <p>&copy; 2024 Site de Rencontre. Tous droits réservés.</p>
