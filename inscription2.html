@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inscription sur Cyan Love</title>
   <link rel="stylesheet" href="inscription.css">
+  <script src="inscription.js"></script>
 </head>
 <body>
   <header>
@@ -28,11 +29,11 @@
 </header>
   <div class="container">
     <div class="form">
-      <form action="inscription3.html" method="post">
+      <form action="inscription3.html" method="post" onsubmit="return validateForm()">
         <h1>Situation personnelle</h1>
         <div class="partie">
           <label for="lieu_residence">Lieu de résidence :</label>
-          <select id ="pays" name="pays">select name="pays">
+          <select id ="pays" name="pays" select name="pays">
             <option value="France" selected="selected">France </option>
             <option value="Afghanistan">Afghanistan </option>
             <option value="Afrique_Centrale">Afrique_Centrale </option>
@@ -264,14 +265,15 @@
             <option value="Zimbabwe">Zimbabwe </option>
           </select>
         </div>
-        <div class="partie">
-          <label for="situation_amoureuse">Situation amoureuse et familiale :</label>
-          <textarea id="situation_amoureuse" name="situation_amoureuse" required></textarea>
-        </div>
-        <button type="submit">Suivant</button>
-      </form>
+            <div class="partie">
+              <label for="situation_amoureuse">Situation amoureuse :</label>
+              <textarea id="situation_amoureuse" name="situation_amoureuse" required placeholder="Décrivez votre situation amoureuse, cela apparaîtra sur votre profil suite à l'inscription" oninput="countCharacters(event)"></textarea>
+              <p class="caracteres"></p>
+            </div>
+              <button type="submit">Suivant</button>
+        </form>
+      </div>
     </div>
-  </div>
 
 
   <footer>
@@ -312,6 +314,5 @@
     }
 }
   ?>
-
 </body>
 </html>
