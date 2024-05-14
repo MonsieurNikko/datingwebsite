@@ -121,6 +121,11 @@ header > div {
 }
 
 
+.backgr {
+    background-image: url('Backgroundraw.png');
+    background-size: cover; /* Ajuste l'image pour couvrir l'ensemble de l'écran */
+    margin: 0; /* Retire les marges par défaut */
+}
 
 
 
@@ -132,26 +137,93 @@ footer {
     padding: 10px 0;
     position: fixed;
     bottom: 0;
-    right: 0;
-    left: 0;
     width: 100%;
-    opacity: 0.8;
+    opacity: 0.9; /* Augmentation de l'opacité */
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-  }
-  
-.form {
-    width: auto; /* Ajustez la largeur selon vos besoins */
-}
-  
-
-.container {
+    min-height: 100vh; /* Utilisation de min-height pour s'assurer que le conteneur s'étend sur toute la hauteur de la vue */
     background-image: url('Backgroundraw.png');
-    background-size: cover; /* Ajuste l'image pour couvrir l'ensemble de l'écran */
-    margin: 0; /* Retire les marges par défaut */
+    background-size: cover;
+    background-position: center;
+}
+
+.form {
+    width: 80%; /* Ajustement de la largeur */
+    max-width: 400px; /* Limitation de la largeur maximale */
+    padding: 20px; /* Espacement interne */
+    background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
+    border-radius: 10px; /* Ajout d'un peu de courbure aux coins */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Ombre légère */
+    text-align: center;
+}
+
+.partie {
+    margin-bottom: 20px; /* Ajout d'un espacement entre les parties */
+}
+
+label {
+    display: block; /* Affichage en bloc pour les labels */
+    margin-bottom: 5px; /* Espacement inférieur pour les labels */
+}
+
+input[type="text"],
+input[type="number"],
+select,
+input[type="date"] {
+    width: 100%; /* Remplissage complet du contenant */
+    padding: 8px; /* Espacement interne */
+    border-radius: 5px; /* Ajout de courbure aux coins */
+    border: 1px solid #ccc; /* Bordure légère */
+}
+
+button[type="submit"] {
+    width: 100%; /* Remplissage complet du contenant */
+    padding: 10px; /* Espacement interne */
+    background-color: #333; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    border: none; /* Suppression de la bordure */
+    border-radius: 5px; /* Ajout de courbure aux coins */
+    cursor: pointer; /* Curseur adapté */
+}
+
+button[type="submit"]:hover {
+    background-color: #555; /* Changement de couleur de fond au survol */
+}
+
+.partie {
+    position: relative;
+}
+
+.partie textarea {
+    height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    resize: vertical; /* Permet à l'utilisateur de redimensionner verticalement */
+}
+
+.partie textarea::placeholder {
+    color: #999; /* Couleur du texte de l'indication de saisie */
+}
+
+.caracteres {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #888;
+    font-size: 12px;
+}
+
+/* Dans votre fichier CSS (inscription.css) */
+
+.selected-photo {
+    max-width: 100%; /* Pour que les images ne dépassent pas la largeur du cadre */
+    max-height: 100px; /* Définir la hauteur maximale des images */
+    margin-bottom: 10px; /* Ajouter un espacement entre les images */
 }
