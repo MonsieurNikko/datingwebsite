@@ -1,92 +1,64 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inscription sur Cyan Love</title>
-  <link rel="stylesheet" href="inscription.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription sur Cyan Love</title>
+    <link rel="stylesheet" href="inscription.css">
+    <script src="inscription.js" defer></script>
 </head>
 <body>
-  <header>
-    <div class="categorie">
-        <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">Profil</a></li>
-            <li><a href="#">Recherche</a></li>
-            <li><a href="#">Produit</a></li>
-        </ul>
-    </div>
-    
-    <div class="logo">
-        <a href="page_d'accueil.html"><img src="logobao.png" alt="Logo du site"></a>
-    </div>
+    <header>
+        <div class="categorie">
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Profil</a></li>
+                <li><a href="#">Recherche</a></li>
+                <li><a href="#">Produit</a></li>
+            </ul>
+        </div>
+        
+        <div class="logo">
+            <a href="page_d'accueil.html"><img src="logobao.png" alt="Logo du site"></a>
+        </div>
 
-    <div class="connexion">
-        <a href="connexion.html">Se connecter</a>
-        <a href="inscription.html">S'inscrire</a>
-    </div>
-</header>
+        <div class="connexion">
+            <a href="connexion.html">Se connecter</a>
+            <a href="inscription.html">S'inscrire</a>
+        </div>
+    </header>
     <div class="container">
-      <div class="form">
-        <form action="inscription5.html" method="post">
-          <h1>Personnalité</h1>
-            <div class="partie">
-                <label for="message_accueil">Message d'accueil :</label>
-                <textarea id="message_accueil" name="message_accueil" required></textarea>
-              </div>
-              <div class="partie">
-                <label for="citation">Citation :</label>
-                <input type="text" id="citation" name="citation" required>
-              </div>
-              <div class="partie">
-                <label for="traits_caractere">Traits de caractère :</label>
-                <textarea id="traits_caractere" name="traits_caractere" required></textarea>
-              </div>
-              <div class="partie">
-                <label for="centres_interet">Centres d'intérêt :</label>
-                <textarea id="centres_interet" name="centres_interet" required></textarea>
-              </div>
-          <button type="submit">Suivant</button>
-        </form>
-      </div>
+        <div class="form">
+            <form action="#" method="post" onsubmit="return validateMdp()">
+                <h1>Sécurité</h1>
+                <div class="partie">
+                    <label for="photos">Photos :</label>
+                    <input type="file" id="photos" name="photos" multiple required onchange="displaySelectedPhotos()">
+                    <div id="selected-photos"></div>
+                </div>
+                <div class="partie">
+                    <label for="nom">Véritable nom :</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+                <div class="partie">
+                    <label for="adresse">Adresse complète :</label>
+                    <input type="text" id="adresse" name="adresse" required>
+                </div>
+                <div class="partie">
+                    <label for="mot_de_passe">Mot de passe :</label>
+                    <input type="password" id="mot_de_passe" name="mot_de_passe" required>
+                </div>
+                <div class="partie">
+                  <label for="confirm_mot_de_passe">Confirmer le mot de passe :</label>
+                  <input type="password" id="confirm_mot_de_passe" name="confirm_mot_de_passe" required>
+                </div>
+                <button type="submit">S'inscrire</button>
+            </form>
+        </div>
+    </div>
 
-      <footer>
+    <footer>
         <p>&copy; 2024 Site de Rencontre. Tous droits réservés.</p>
     </footer>
-
-      <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données du formulaire
-    $message_accueil = $_POST['message_accueil'];
-    $citation = $_POST['citation'];
-    $traits_caractere = $_POST['traits_caractere'];
-    $centres_interet = $_POST['centres_interet'];
-
-    // Spécifier le chemin relatif du fichier CSV
-    $chemin_fichier_csv = 'csv/user.csv';
-
-    // Ouvrir le fichier CSV en mode écriture
-    $file = fopen($chemin_fichier_csv, 'a');
-
-    // Vérifier si le fichier a pu être ouvert
-    if ($file) {
-        // Construire la ligne à écrire dans le fichier CSV
-        $nouvelle_ligne = "$message_accueil,$citation,$traits_caractere,$centres_interet\n";
-
-        // Écrire la ligne dans le fichier CSV
-        fwrite($file, $nouvelle_ligne);
-
-        // Fermer le fichier
-        fclose($file);
-
-        // Afficher un message de succès
-        echo "Les données ont été enregistrées avec succès.";
-    } else {
-        // Afficher un message d'erreur si le fichier n'a pas pu être ouvert
-        echo "Erreur : Impossible d'ouvrir le fichier.";
-    }
-}
-?>
-
 </body>
 </html>
