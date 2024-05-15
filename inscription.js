@@ -31,7 +31,7 @@ function displaySelectedPhotos() {
         var imageType = /^image\//;
 
         if (!imageType.test(file.type)) {
-            continue;
+            continue; // Skip non-image files
         }
 
         var img = document.createElement('img');
@@ -48,6 +48,7 @@ function displaySelectedPhotos() {
         reader.readAsDataURL(file);
     }
 }
+
 
 function validatePassword() {
     var password = document.getElementById("mot_de_passe").value;
