@@ -29,7 +29,7 @@
     </header>
     <div class="container">
         <div class="form">
-            <form action="#" method="post" onsubmit="return validateMdp()">
+            <form action="#" method="post" onsubmit="return validatePassword()">
                 <h1>Sécurité</h1>
                 <div class="partie">
                     <label for="photos">Photos :</label>
@@ -38,19 +38,19 @@
                 </div>
                 <div class="partie">
                     <label for="nom">Véritable nom :</label>
-                    <input type="text" id="nom" name="nom" required>
+                    <input type="text" id="nom" name="nom" required maxlength="50">
                 </div>
                 <div class="partie">
                     <label for="adresse">Adresse complète :</label>
-                    <input type="text" id="adresse" name="adresse" required>
+                    <input type="text" id="adresse" name="adresse" required maxlength="50">
                 </div>
                 <div class="partie">
                     <label for="mot_de_passe">Mot de passe :</label>
-                    <input type="password" id="mot_de_passe" name="mot_de_passe" required>
+                    <input type="password" id="mot_de_passe" name="mot_de_passe" class="champ-texte" required>
                 </div>
                 <div class="partie">
                   <label for="confirm_mot_de_passe">Confirmer le mot de passe :</label>
-                  <input type="password" id="confirm_mot_de_passe" name="confirm_mot_de_passe" required>
+                  <input type="password" id="confirm_mot_de_passe" name="confirm_mot_de_passe" class="champ-texte" required>
                 </div>
                 <button type="submit">S'inscrire</button>
             </form>
@@ -62,3 +62,4 @@
     </footer>
 </body>
 </html>
+
