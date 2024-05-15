@@ -6,7 +6,8 @@ function countCharacters(event) {
     
     if (currentLength > maxLength) {
         caracteresElement.style.color = 'red'; // Optionnel: changer la couleur du texte lorsque la limite est atteinte
-    } else {
+    } 
+    else {
         caracteresElement.style.color = '#888'; // Réinitialiser la couleur si le nombre de caractères est inférieur à la limite
     }
 }
@@ -51,8 +52,14 @@ function displaySelectedPhotos() {
 
 
 function validatePassword() {
-    var password = document.getElementById("mot_de_passe").value;
-    var confirmPassword = document.getElementById("confirm_mot_de_passe").value;
+    var password = document.getElementById("mot_de_passe").value.trim();
+    var confirmPassword = document.getElementById("confirm_mot_de_passe").value.trim();
+
+    // Vérifie si les champs du mot de passe et de sa confirmation sont vides
+    if (password === "" || confirmPassword === "") {
+        alert("Veuillez saisir votre mot de passe et le confirmer.");
+        return false;
+    }
 
     // Vérifier si les mots de passe correspondent
     if (password !== confirmPassword) {
