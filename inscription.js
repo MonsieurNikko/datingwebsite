@@ -1,18 +1,3 @@
-/*
-document.addEventListener("DOMContentLoaded", function() {
-    var loginForm = document.getElementById('login-form');
-    loginForm.addEventListener('submit', function(event) {
-        var password = document.getElementById('password').value;
-        var confirmPassword = document.getElementById('confirm-password').value;
-
-        if (password !== confirmPassword) {
-            event.preventDefault(); // Empêche l'envoi du formulaire
-            alert("Votre mot de passe n'est pas confirmé. Veuillez réessayer.");
-        }
-    });
-});
-*/
-
 function countCharacters(event) {
     var maxLength = 200;
     var currentLength = event.target.value.length;
@@ -64,13 +49,23 @@ function displaySelectedPhotos() {
     }
 }
 
-function validateMdp() {
+function validatePassword() {
     var password = document.getElementById("mot_de_passe").value;
     var confirmPassword = document.getElementById("confirm_mot_de_passe").value;
 
+    // Vérifier si les mots de passe correspondent
     if (password !== confirmPassword) {
         alert("Les mots de passe ne correspondent pas. Veuillez réessayer.");
         return false;
     }
+
+    // Vérifier la complexité du mot de passe
+    var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{12,27}$/;
+    
+    if (!passwordRegex.test(password)) {
+        alert("Le mot de passe doit contenir au moins un chiffre, une lettre minuscule, une lettre majuscule et un caractère spécial, et doit avoir une longueur entre 12 et 27 caractères.");
+        return false;
+    }
+
     return true;
 }
