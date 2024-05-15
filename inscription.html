@@ -56,7 +56,7 @@
               <h1>Informations personnelles</h1>
             
             <div class="partie">
-              <input type="text" id="pseudonyme" name="pseudonyme" required maxlength="26" placeholder="Pseudonyme">
+              <input type="text" id="pseudonyme" name="pseudonyme" required maxlength="26" placeholder="Pseudonyme" required>
             </div>
             
             <div class="partie">
@@ -73,7 +73,7 @@
             
             <div class="partie">
               <label for="date_naissance">Date de naissance :</label>
-              <input type="date" id="date_naissance" name="date_naissance" required min="1924-01-01" max="2006-12-31">
+              <input type="date" id="date_naissance" name="date_naissance" required>
             </div>
               <button type="button" onclick="nextSection()">Suivant</button>
             </div>
@@ -317,7 +317,6 @@
               </select>
             </div>
                 <div class="partie">
-                  <label for="situation_amoureuse">Situation amoureuse :</label>
                   <textarea id="situation_amoureuse" name="situation_amoureuse" required placeholder="Décrivez votre situation amoureuse, cela apparaîtra sur votre profil suite à l'inscription" oninput="countCharacters(event)"></textarea>
                   <p class="caracteres"></p>
                 </div>
@@ -330,12 +329,10 @@
               <h1>Description physique</h1>
               <!-- Vos champs pour la troisième étape ici -->
               <div class="partie">
-                <label for="taille">Taille (en cm) :</label>
-                <input type="number" id="taille" name="taille" min="100" max="250" required>
+                <input type="number" id="taille" name="taille" min="100" max="250" placeholder="Taille (en cm)" required>
               </div>
               <div class="partie">
-                <label for="poids">Poids (en kg) :</label>
-                <input type="number" id="poids" name="poids" min="20" max="300" required>
+                <input type="number" id="poids" name="poids" min="20" max="300" placeholder="Poids (en kg)" required>
               </div>
               <div class="partie">
                 <label for="couleur_cheveux">Couleur des cheveux :</label>
@@ -376,26 +373,23 @@
             <div class="section" id="section4" style="display: none;">
                     <h1>Sécurité</h1>
                     <div class="partie">
-                        <label for="photos">Photos :</label>
+                        <label for="photos">Photo :</label>
                         <input type="file" id="photos" name="photos" multiple required onchange="displaySelectedPhotos()">
                         <div id="selected-photos"></div>
                     </div>
                     <div class="partie">
-                        <label for="nom">Véritable nom :</label>
-                        <input type="text" id="nom" name="nom" required maxlength="50">
+                        <input type="text" id="nom" name="nom" required maxlength="50" placeholder="Véritable nom" required>
                     </div>
                     <div class="partie">
-                        <label for="adresse">Adresse complète :</label>
-                        <input type="text" id="adresse" name="adresse" required maxlength="50">
+                        <textarea id="adresse" name="adresse" required maxlength="50" placeholder="Adresse complète" required></textarea>
                     </div>
                     <div class="partie">
-                        <label for="mot_de_passe">Mot de passe :</label>
-                        <input type="password" id="mot_de_passe" name="mot_de_passe" class="champ-texte" required>
+                        <input type="password" id="mot_de_passe" name="mot_de_passe" class="champ-texte" placeholder="Mot de passe" required>
                     </div>
                     <div class="partie">
-                      <label for="confirm_mot_de_passe">Confirmer le mot de passe :</label>
-                      <input type="password" id="confirm_mot_de_passe" name="confirm_mot_de_passe" class="champ-texte" required>
+                      <input type="password" id="confirm_mot_de_passe" name="confirm_mot_de_passe" class="champ-texte" placeholder="Confirmer le mot de passe" required>
                     </div>
+                    <button type="button" onclick="prevSection()">Précédent</button>
                     <button type="submit">S'inscrire</button>
                 </form>
             </div>
@@ -413,46 +407,96 @@
     <p>&copy; 2024 Site de Rencontre. Tous droits réservés.</p>
   </footer>
 
-
-  <script>
-        const connexionLink = document.getElementById('connexionlink');
-        const connexionForm = document.getElementById('connexionform');
-        const body = document.querySelector('body');
-
-        // Lorsque le formulaire de connexion est affiché
-        connexionLink.addEventListener('click', function(event) {
-            event.preventDefault();
-            connexionForm.style.display = 'block'; // Affiche le formulaire de connexion
-            body.classList.add('overlay-active'); // Ajoute la classe pour assombrir l'arrière-plan
-            document.getElementById('inscriptionForm').style.display = 'none'; // Masque la zone d'inscription
-        });
-
-
-        // Initialisation de la première section
-        let currentSection = 1;
-            const sections = document.querySelectorAll('.section');
-
-            // Fonction pour afficher la section suivante
-            function nextSection() {
-                sections[currentSection - 1].style.display = 'none'; // Masque la section actuelle
-                currentSection++; // Passe à la section suivante
-                if (currentSection <= sections.length) {
-                    sections[currentSection - 1].style.display = 'block'; // Affiche la prochaine section
-                } else {
-                    // Si toutes les sections sont passées, affiche le bouton de soumission
-                    document.getElementById('submitBtn').style.display = 'block';
-                }
-            }
-
-            // Fonction pour revenir à la section précédente
-            function prevSection() {
-                if (currentSection === 1) return; // Arrête la fonction si nous sommes déjà à la première section
-                sections[currentSection - 1].style.display = 'none'; // Masque la section actuelle
-                currentSection--; // Revient à la section précédente
-                sections[currentSection - 1].style.display = 'block'; // Affiche la section précédente
-            }
-  </script>
-
-
 </body>
 </html>
+
+<script>
+// Initialisation de la première section
+let currentSection = 1;
+const sections = document.querySelectorAll('.section');
+
+function nextSection() {
+    // Valider le pseudonyme
+    var pseudonyme = document.getElementById("pseudonyme").value;
+    if (pseudonyme.trim() === "") {
+        alert("Veuillez saisir un pseudonyme.");
+        return; // Arrêter la fonction si le pseudonyme est vide
+    }
+
+    // Valider l'âge
+    var age = parseInt(document.getElementById("age").value);
+    if (isNaN(age) || age < 18 || age > 100) {
+        alert("Veuillez saisir un âge valide entre 18 et 100 ans.");
+        return; // Arrêter la fonction si l'âge n'est pas valide
+    }
+    
+    // Valider la date de naissance si elle est saisie
+    var dateNaissance = document.getElementById("date_naissance").value;
+    if (dateNaissance.trim() !== "") {
+        var selectedDate = new Date(dateNaissance);
+        var minDate = new Date("1924-01-01");
+        var maxDate = new Date("2006-12-31");
+
+        if (selectedDate < minDate || selectedDate > maxDate) {
+            alert("Veuillez sélectionner une date de naissance valide entre le 01/01/1924 et le 31/12/2006.");
+            return; // Arrêter la fonction si la date n'est pas valide
+        }
+    } 
+    else {
+        // Si la date de naissance n'est pas saisie, afficher un message et arrêter la fonction
+        alert("Veuillez saisir votre date de naissance.");
+        return;
+    }
+
+    // Valide le formulaire avant de passer à la section suivante
+    if (currentSection === 2 && !validateForm()) return; // Valide le formulaire de la première section
+    
+    if (currentSection === 3){
+    // Valider la taille
+      var taille = document.getElementById("taille").value.trim();
+      if (taille === "") {
+          alert("Veuillez saisir votre taille.");
+          return; // Arrêter la fonction si la taille n'est pas saisie
+      }
+      taille = parseInt(taille);
+      if (isNaN(taille) || taille < 100 || taille > 250) {
+          alert("Veuillez saisir une taille valide entre 100 et 250 cm.");
+          return; // Arrêter la fonction si la taille n'est pas valide
+      }
+
+      // Valider le poids
+      var poids = document.getElementById("poids").value.trim();
+      if (poids === "") {
+          alert("Veuillez saisir votre poids.");
+          return; // Arrêter la fonction si le poids n'est pas saisi
+      }
+      poids = parseInt(poids);
+      if (isNaN(poids) || poids < 20 || poids > 300) {
+          alert("Veuillez saisir un poids valide entre 20 et 300 kg.");
+          return; // Arrêter la fonction si le poids n'est pas valide
+      }
+    }
+    
+    if (currentSection === 4 && !validatePassword()) return; // Valide le mot de passe lors du passage à la quatrième section
+        currentSection++;
+
+    // Passe à la section suivante
+    var currentSectionElement = document.querySelector(".section:not([style='display: none;'])");
+    currentSectionElement.style.display = 'none'; // Masque la section actuelle
+    var nextSection = currentSectionElement.nextElementSibling;
+    if (nextSection) {
+        nextSection.style.display = 'block'; // Affiche la section suivante
+    } 
+    else {
+        document.getElementById('submitBtn').style.display = 'block'; // Affiche le bouton de soumission
+    }
+}
+
+function prevSection() {
+    if (currentSection === 1) return; // Arrête la fonction si nous sommes déjà à la première section
+    sections[currentSection - 1].style.display = 'none'; // Masque la section actuelle
+    currentSection--; // Revient à la section précédente
+    sections[currentSection - 1].style.display = 'block'; // Affiche la section précédente
+}
+
+</script>
