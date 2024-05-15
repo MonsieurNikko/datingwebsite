@@ -121,13 +121,6 @@ header > div {
 }
 
 
-.backgr {
-    background-image: url('Backgroundraw.png');
-    background-size: cover; /* Ajuste l'image pour couvrir l'ensemble de l'écran */
-    margin: 0; /* Retire les marges par défaut */
-}
-
-
 
 /* Configuration du footer */
 footer {
@@ -141,25 +134,39 @@ footer {
     opacity: 0.9; /* Augmentation de l'opacité */
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Utilisation de min-height pour s'assurer que le conteneur s'étend sur toute la hauteur de la vue */
+h1{
+    margin-bottom: 20px;
+}
+
+#backgr {
     background-image: url('Backgroundraw.png');
     background-size: cover;
     background-position: center;
+    min-height: 100vh;
+    display: flex; /* Ajoutez cette ligne */
+    justify-content: center; /* Ajoutez cette ligne */
+    align-items: center; /* Ajoutez cette ligne */
 }
 
-.form {
-    width: 80%; /* Ajustement de la largeur */
-    max-width: 400px; /* Limitation de la largeur maximale */
-    padding: 20px; /* Espacement interne */
-    background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
-    border-radius: 10px; /* Ajout d'un peu de courbure aux coins */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Ombre légère */
-    text-align: center;
+
+#inscriptionForm {
+    min-height: 40vh; /* Remplacez par une hauteur spécifique, par exemple 80vh */
+    min-width: 30vh;
 }
+
+
+
+
+.form {
+    padding: 20px; /* Internal padding */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Slight shadow */
+    text-align: center;
+    margin: auto; /* Center the form within the container */
+    
+}
+
 
 .partie {
     margin-bottom: 20px; /* Ajout d'un espacement entre les parties */
@@ -180,7 +187,7 @@ input[type="date"] {
     border: 1px solid #ccc; /* Bordure légère */
 }
 
-button[type="submit"] {
+button {
     width: 100%; /* Remplissage complet du contenant */
     padding: 10px; /* Espacement interne */
     background-color: #333; /* Couleur de fond */
@@ -190,7 +197,7 @@ button[type="submit"] {
     cursor: pointer; /* Curseur adapté */
 }
 
-button[type="submit"]:hover {
+button:hover {
     background-color: #555; /* Changement de couleur de fond au survol */
 }
 
@@ -228,12 +235,39 @@ button[type="submit"]:hover {
     margin-bottom: 10px; /* Ajouter un espacement entre les images */
 }
 
-.champ-texte {
-    width: 360px;
-    height: 30px;
-    padding-left: 7px;
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px; /* Espacement interne */
+    font-size: 16px; /* Taille de la police */
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 5px; /* Coins arrondis */
+    box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
+    width: 100%; /* Largeur de 100% du conteneur parent */
+    margin-bottom: 10px; /* Espacement entre les champs de saisie */
 }
 
-h1{
-    margin-bottom: 10px;
+
+.overlay-active {
+    overflow: hidden; /* Empêche le défilement de la page */
+}
+
+.overlay-active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur de l'overlay */ 
+}
+
+
+#connexionform {
+    position: fixed;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Assure que le formulaire est au-dessus de l'overlay */
 }
