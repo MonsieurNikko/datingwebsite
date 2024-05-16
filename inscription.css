@@ -149,7 +149,7 @@ h1{
 }
 
 
-#inscriptionForm {
+#inscription {
     min-height: 40vh; /* Remplacez par une hauteur spécifique, par exemple 80vh */
     min-width: 30vh;
 }
@@ -270,4 +270,22 @@ input[type="password"] {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000; /* Assure que le formulaire est au-dessus de l'overlay */
+}
+
+#section4 {
+    max-height: 60vh; /* Vous pouvez ajuster la hauteur maximale selon vos besoins */
+    overflow-y: auto; /* Active le défilement vertical si nécessaire */
+    width: 50vh;
+    max-width: 80vh;
+    scrollbar-width: none;
+}
+
+#section4:target {
+    scroll-behavior: smooth; /* Ajoute un défilement fluide si pris en charge */
+}
+
+/* Réinitialiser la position de défilement lorsque la section est ciblée */
+#section4:target {
+    scroll-behavior: auto; /* Désactive le défilement fluide pour cette opération */
+    scroll-margin-top: 0; /* Réinitialise la marge de défilement */
 }
