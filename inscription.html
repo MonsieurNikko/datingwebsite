@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="inscription.css">
   <script src="inscription.js"></script>
 </head>
+
+
 <body id="backgr">
   <header>
     <div class="categorie">
@@ -47,7 +49,7 @@
     </div>
 
 
-    <section id="inscriptionForm">
+    <section id="inscription">
       <div class="container">
         <div class="form">
           <form id="inscriptionForm" action="inscription.php" method="post">
@@ -79,7 +81,7 @@
             </div>
     
             <!-- Deuxième étape -->
-            <div class="section" id="section2" style="display: none;" onsubmit="return validateForm()">
+            <div class="section" id="section2" style="display: none;">
               <h1>Situation personnelle</h1>
             <div class="partie">
               <label for="lieu_residence">Lieu de résidence :</label>
@@ -317,7 +319,7 @@
               </select>
             </div>
                 <div class="partie">
-                  <textarea id="situation_amoureuse" name="situation_amoureuse" required placeholder="Décrivez votre situation amoureuse, cela apparaîtra sur votre profil suite à l'inscription" oninput="countCharacters(event)"></textarea>
+                  <textarea id="situation_amoureuse" name="situation_amoureuse" required placeholder="Décrivez votre situation amoureuse, cela apparaîtra sur votre profil suite à l'inscription" oninput="countCharacters(event) && validateForm()"></textarea>
                   <p class="caracteres"></p>
                 </div>
               <button type="button" onclick="prevSection()">Précédent</button>
@@ -369,33 +371,31 @@
               <button type="button" onclick="nextSection()">Suivant</button>
             </div>
     
-            <!-- Autres étapes ici --> 
+            <!-- Quatrième étape --> 
             <div class="section" id="section4" style="display: none;">
-                    <h1>Sécurité</h1>
-                    <div class="partie">
-                        <label for="photos">Photo :</label>
-                        <input type="file" id="photos" name="photos" multiple required onchange="displaySelectedPhotos()">
-                        <div id="selected-photos"></div>
-                    </div>
-                    <div class="partie">
-                        <input type="text" id="nom" name="nom" required maxlength="50" placeholder="Véritable nom" required>
-                    </div>
-                    <div class="partie">
-                        <textarea id="adresse" name="adresse" required maxlength="50" placeholder="Adresse complète" required></textarea>
-                    </div>
-                    <div class="partie">
-                        <input type="password" id="mot_de_passe" name="mot_de_passe" class="champ-texte" placeholder="Mot de passe" required>
-                    </div>
-                    <div class="partie">
-                      <input type="password" id="confirm_mot_de_passe" name="confirm_mot_de_passe" class="champ-texte" placeholder="Confirmer le mot de passe" required>
-                    </div>
-                    <button type="button" onclick="prevSection()">Précédent</button>
-                    <button type="submit">S'inscrire</button>
-                </form>
-            </div>
+              <h1>Sécurité</h1>
+              <div class="partie">
+                  <label for="photos">Photo :</label>
+                  <input type="file" id="photos" name="photos" multiple required onchange="displaySelectedPhotos()">
+                  <div id="selected-photos"></div>
+              </div>
+              <div class="partie">
+                  <input type="text" id="nom" name="nom" required maxlength="50" placeholder="Véritable nom">
+              </div>
+              <div class="partie">
+                  <textarea id="adresse" name="adresse" required maxlength="50" placeholder="Adresse complète"></textarea>
+              </div>
+              <div class="partie">
+                  <input type="password" id="mot_de_passe" name="mot_de_passe" class="champ-texte" placeholder="Mot de passe" required>
+              </div>
+              <div class="partie">
+                  <input type="password" id="confirm_mot_de_passe" name="confirm_mot_de_passe" class="champ-texte" placeholder="Confirmer le mot de passe" required oninput="validatePassword()"><br><br>
+                  <p id="password_error" style="color: red;"></p> <!-- Ajout du message d'erreur -->
+              </div>
+              <button type="button" onclick="prevSection()">Précédent</button>
+              <button type="submit" id="submitBtn">S'inscrire</button>
+          </div>
         </div>
-    
-            <button type="submit" id="submitBtn" style="display: none;">S'inscrire</button>
           </form>
         </div>
       </div>
@@ -409,94 +409,3 @@
 
 </body>
 </html>
-
-<script>
-// Initialisation de la première section
-let currentSection = 1;
-const sections = document.querySelectorAll('.section');
-
-function nextSection() {
-    // Valider le pseudonyme
-    var pseudonyme = document.getElementById("pseudonyme").value;
-    if (pseudonyme.trim() === "") {
-        alert("Veuillez saisir un pseudonyme.");
-        return; // Arrêter la fonction si le pseudonyme est vide
-    }
-
-    // Valider l'âge
-    var age = parseInt(document.getElementById("age").value);
-    if (isNaN(age) || age < 18 || age > 100) {
-        alert("Veuillez saisir un âge valide entre 18 et 100 ans.");
-        return; // Arrêter la fonction si l'âge n'est pas valide
-    }
-    
-    // Valider la date de naissance si elle est saisie
-    var dateNaissance = document.getElementById("date_naissance").value;
-    if (dateNaissance.trim() !== "") {
-        var selectedDate = new Date(dateNaissance);
-        var minDate = new Date("1924-01-01");
-        var maxDate = new Date("2006-12-31");
-
-        if (selectedDate < minDate || selectedDate > maxDate) {
-            alert("Veuillez sélectionner une date de naissance valide entre le 01/01/1924 et le 31/12/2006.");
-            return; // Arrêter la fonction si la date n'est pas valide
-        }
-    } 
-    else {
-        // Si la date de naissance n'est pas saisie, afficher un message et arrêter la fonction
-        alert("Veuillez saisir votre date de naissance.");
-        return;
-    }
-
-    // Valide le formulaire avant de passer à la section suivante
-    if (currentSection === 2 && !validateForm()) return; // Valide le formulaire de la première section
-    
-    if (currentSection === 3){
-    // Valider la taille
-      var taille = document.getElementById("taille").value.trim();
-      if (taille === "") {
-          alert("Veuillez saisir votre taille.");
-          return; // Arrêter la fonction si la taille n'est pas saisie
-      }
-      taille = parseInt(taille);
-      if (isNaN(taille) || taille < 100 || taille > 250) {
-          alert("Veuillez saisir une taille valide entre 100 et 250 cm.");
-          return; // Arrêter la fonction si la taille n'est pas valide
-      }
-
-      // Valider le poids
-      var poids = document.getElementById("poids").value.trim();
-      if (poids === "") {
-          alert("Veuillez saisir votre poids.");
-          return; // Arrêter la fonction si le poids n'est pas saisi
-      }
-      poids = parseInt(poids);
-      if (isNaN(poids) || poids < 20 || poids > 300) {
-          alert("Veuillez saisir un poids valide entre 20 et 300 kg.");
-          return; // Arrêter la fonction si le poids n'est pas valide
-      }
-    }
-    
-    if (currentSection === 4 && !validatePassword()) return; // Valide le mot de passe lors du passage à la quatrième section
-        currentSection++;
-
-    // Passe à la section suivante
-    var currentSectionElement = document.querySelector(".section:not([style='display: none;'])");
-    currentSectionElement.style.display = 'none'; // Masque la section actuelle
-    var nextSection = currentSectionElement.nextElementSibling;
-    if (nextSection) {
-        nextSection.style.display = 'block'; // Affiche la section suivante
-    } 
-    else {
-        document.getElementById('submitBtn').style.display = 'block'; // Affiche le bouton de soumission
-    }
-}
-
-function prevSection() {
-    if (currentSection === 1) return; // Arrête la fonction si nous sommes déjà à la première section
-    sections[currentSection - 1].style.display = 'none'; // Masque la section actuelle
-    currentSection--; // Revient à la section précédente
-    sections[currentSection - 1].style.display = 'block'; // Affiche la section précédente
-}
-
-</script>
