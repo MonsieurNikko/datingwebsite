@@ -30,24 +30,19 @@
     </div>
 </header>
 
-
     <div class="connexion" id="connexionform" style="display: none;">
       <div class="form">
-          <h1>Connexion</h1><br>
-          <form action="connexion.php" method="post">
+          <h1>Connexion</h1>
+          <form id="connexionForm"> <!-- Ajoutez l'identifiant ici -->
               <div class="partie">
                   <input type="text" id="username" name="username" placeholder="Identifiant" required><br>  
-              </div>
-
-              <div class="partie">
                   <input type="password" id="password" name="password" placeholder="Mot de passe" required><br>
               </div>
-
-              <button type="submit">Se connecter</button>
+              <p id="erreurMessage"></p>
+              <button type="submit" name="boutonconnect">Se connecter</button>
           </form>
       </div>
     </div>
-
 
     <section id="inscription">
       <div class="container">
@@ -322,7 +317,7 @@
                   <textarea id="situation_amoureuse" name="situation_amoureuse" required placeholder="Décrivez votre situation amoureuse, cela apparaîtra sur votre profil suite à l'inscription" oninput="countCharacters(event) && validateForm()"></textarea>
                   <p class="caracteres"></p>
                 </div>
-              <button type="button" onclick="prevSection()"class="button-spacing">Précédent</button>
+                <button type="button" onclick="prevSection()"class="button-spacing">Précédent</button>
               <button type="button" onclick="nextSection()">Suivant</button>
             </div>
     
@@ -383,16 +378,16 @@
                   <input type="text" id="nom" name="nom" required maxlength="50" placeholder="Véritable nom">
               </div>
               <div class="partie">
-                  <textarea id="adresse" name="adresse" required maxlength="200" placeholder="Adresse complète"></textarea>
+                <textarea id="adresse" name="adresse" required maxlength="200" placeholder="Adresse complète"></textarea>
               </div>
               <div class="partie">
-                  <input type="password" id="mot_de_passe" name="mot_de_passe" class="champ-texte" placeholder="Mot de passe" required oninput="validatePassword()">
+                <input type="password" id="mot_de_passe" name="mot_de_passe" class="champ-texte" placeholder="Mot de passe" required oninput="validatePassword()">
               </div>
               <div class="partie">
-                  <input type="password" id="confirm_mot_de_passe" name="confirm_mot_de_passe" class="champ-texte" placeholder="Confirmer le mot de passe" required oninput="validatePassword()"><br>
-                  <input type="checkbox" id="showConfirmPasswordCheckbox" onchange="toggleConfirmPasswordVisibility()">
-                  <label for="showConfirmPasswordCheckbox">Afficher le mot de passe</label>
-                  <p id="password_error" style="color: red;"></p> <!-- Ajout du message d'erreur -->
+                <input type="password" id="confirm_mot_de_passe" name="confirm_mot_de_passe" class="champ-texte" placeholder="Confirmer le mot de passe" required oninput="validatePassword()"><br>
+                <input type="checkbox" id="showConfirmPasswordCheckbox" onchange="toggleConfirmPasswordVisibility()">
+                <label for="showConfirmPasswordCheckbox">Afficher le mot de passe</label>
+                <p id="password_error" style="color: red;"></p> <!-- Ajout du message d'erreur -->
               </div>
               <button type="button" onclick="prevSection()" class="button-spacing">Précédent</button>
               <button type="submit" id="submitBtn">S'inscrire</button>
@@ -403,6 +398,8 @@
       </div>
     </section>
     
+
+
   <footer>
     <p>&copy; 2024 Site de Rencontre. Tous droits réservés.</p>
   </footer>
