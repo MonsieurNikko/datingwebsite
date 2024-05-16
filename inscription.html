@@ -13,7 +13,7 @@
   <header>
     <div class="categorie">
         <ul>
-            <li><a href="#">Accueil</a></li>
+            <li><a href="page_d'accueil.html">Accueil</a></li>
             <li><a href="#">Profil</a></li>
             <li><a href="#">Recherche</a></li>
             <li><a href="#">Produit</a></li>
@@ -322,7 +322,7 @@
                   <textarea id="situation_amoureuse" name="situation_amoureuse" required placeholder="Décrivez votre situation amoureuse, cela apparaîtra sur votre profil suite à l'inscription" oninput="countCharacters(event) && validateForm()"></textarea>
                   <p class="caracteres"></p>
                 </div>
-              <button type="button" onclick="prevSection()">Précédent</button>
+              <button type="button" onclick="prevSection()"class="button-spacing">Précédent</button>
               <button type="button" onclick="nextSection()">Suivant</button>
             </div>
     
@@ -367,7 +367,7 @@
                   <option value="verte">Verte</option>
                 </select>
               </div>          
-              <button type="button" onclick="prevSection()">Précédent</button>
+              <button type="button" onclick="prevSection()" class="button-spacing">Précédent</button>
               <button type="button" onclick="nextSection()">Suivant</button>
             </div>
     
@@ -383,16 +383,18 @@
                   <input type="text" id="nom" name="nom" required maxlength="50" placeholder="Véritable nom">
               </div>
               <div class="partie">
-                  <textarea id="adresse" name="adresse" required maxlength="50" placeholder="Adresse complète"></textarea>
+                  <textarea id="adresse" name="adresse" required maxlength="200" placeholder="Adresse complète"></textarea>
               </div>
               <div class="partie">
-                  <input type="password" id="mot_de_passe" name="mot_de_passe" class="champ-texte" placeholder="Mot de passe" required>
+                  <input type="password" id="mot_de_passe" name="mot_de_passe" class="champ-texte" placeholder="Mot de passe" required oninput="validatePassword()">
               </div>
               <div class="partie">
-                  <input type="password" id="confirm_mot_de_passe" name="confirm_mot_de_passe" class="champ-texte" placeholder="Confirmer le mot de passe" required oninput="validatePassword()"><br><br>
+                  <input type="password" id="confirm_mot_de_passe" name="confirm_mot_de_passe" class="champ-texte" placeholder="Confirmer le mot de passe" required oninput="validatePassword()"><br>
+                  <input type="checkbox" id="showConfirmPasswordCheckbox" onchange="toggleConfirmPasswordVisibility()">
+                  <label for="showConfirmPasswordCheckbox">Afficher le mot de passe</label>
                   <p id="password_error" style="color: red;"></p> <!-- Ajout du message d'erreur -->
               </div>
-              <button type="button" onclick="prevSection()">Précédent</button>
+              <button type="button" onclick="prevSection()" class="button-spacing">Précédent</button>
               <button type="submit" id="submitBtn">S'inscrire</button>
           </div>
         </div>
@@ -401,8 +403,6 @@
       </div>
     </section>
     
-
-
   <footer>
     <p>&copy; 2024 Site de Rencontre. Tous droits réservés.</p>
   </footer>
