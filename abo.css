@@ -1,0 +1,77 @@
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.categorie ul {
+    list-style: none;
+    display: flex;
+}
+
+.categorie ul li {
+    margin-right: 10px;
+}
+
+.categorie ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.categorie ul li a:hover {
+    background-color: #e5e5e5;
+}
+
+.formule {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px;
+    text-align: center;
+}
+
+.formule h2 {
+    margin-bottom: 10px;
+}
+
+.formule ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.cta-button {
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #e74c3c;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
