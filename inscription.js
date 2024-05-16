@@ -76,10 +76,24 @@ function validatePassword() {
         return false;
     }
     
-    
-
     passwordError.textContent = ""; // Efface le message d'erreur s'il n'y a pas d'erreur
     return true;
+}
+
+function toggleConfirmPasswordVisibility() {
+    var confirmPasswordInput1 = document.getElementById("mot_de_passe");
+    var confirmPasswordInput2 = document.getElementById("confirm_mot_de_passe");
+    var checkbox = document.getElementById("showConfirmPasswordCheckbox");
+
+    if (checkbox.checked) {
+        confirmPasswordInput1.type = "text";
+        confirmPasswordInput2.type = "text";
+    } 
+    else {
+        confirmPasswordInput1.type = "password";
+        confirmPasswordInput2.type = "password";
+    }
+    
 }
 
 // Initialisation de la première section
