@@ -72,7 +72,7 @@ function validatePassword() {
     var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{12,27}$/;
     
     if (!passwordRegex.test(password)) {
-        passwordError.innerHTML = `Le mot de passe doit contenir au moins :<br>- un chiffre,<br>- une lettre minuscule,<br>- une lettre majuscule,<br>- une longueur entre 12 et 27 caractères.`;
+        passwordError.innerHTML = `Le mot de passe doit contenir au moins :<br>- un chiffre,<br>- une lettre minuscule,<br>- une lettre majuscule,<br>- un caractère spécial,<br>- une longueur entre 12 et 27 caractères.`;
         return false;
     }
     passwordError.textContent = ""; // Efface le message d'erreur s'il n'y a pas d'erreur
