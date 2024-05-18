@@ -24,8 +24,8 @@ header {
 }
 
 .hidden {
-    opacity: 0;
-    transition: opacity 0.7s ease-in-out;
+    transform: translateY(-200%);
+    transition: transform 0.3s ease;
 }
 
 
@@ -82,7 +82,7 @@ header > div {
     max-width: 130px; /* Largeur maximale de l'image */
     height: auto; /* Maintient les proportions de l'image */
     position: absolute;
-    left: 47%; /* Positionne le logo au milieu de l'en-tête */
+    left: 46%; /* Positionne le logo au milieu de l'en-tête */
     transform: translateX(-50%); /* Décale le logo pour le centrer */
     top: -15px;
     filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
@@ -216,11 +216,12 @@ header > div {
 
 }
 
+
 .cta-button:hover {
     background-color: #e74c3c;
 }
 
-#container {
+.container {
     scroll-snap-type: y mandatory;
 }
 
@@ -280,4 +281,136 @@ footer {
     margin-top: auto; /* Pousse le footer vers le bas */
     width: 100%;
     opacity: 0.8;
+}
+
+.form {
+    padding: 20px; /* Internal padding */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Slight shadow */
+    text-align: center;
+    margin: auto; /* Center the form within the container */
+    
+}
+
+.partie {
+    margin-bottom: 20px; /* Ajout d'un espacement entre les parties */
+}
+
+label {
+    display: block; /* Affichage en bloc pour les labels */
+    margin-bottom: 5px; /* Espacement inférieur pour les labels */
+}
+
+input[type="text"],
+input[type="number"],
+select,
+input[type="date"] {
+    width: 100%; /* Remplissage complet du contenant */
+    padding: 8px; /* Espacement interne */
+    border-radius: 5px; /* Ajout de courbure aux coins */
+    border: 1px solid #ccc; /* Bordure légère */
+}
+
+button[type="submit"] {
+    width: 100%; /* Remplissage complet du contenant */
+    padding: 10px; /* Espacement interne */
+    background-color: #333; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    border: none; /* Suppression de la bordure */
+    border-radius: 5px; /* Ajout de courbure aux coins */
+    cursor: pointer; /* Curseur adapté */
+}
+
+button[type="submit"]:hover {
+    background-color: #555; /* Changement de couleur de fond au survol */
+}
+
+.partie {
+    position: relative;
+}
+
+.partie textarea {
+    height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    resize: vertical; /* Permet à l'utilisateur de redimensionner verticalement */
+}
+
+.partie textarea::placeholder {
+    color: #999; /* Couleur du texte de l'indication de saisie */
+}
+
+.caracteres {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #888;
+    font-size: 12px;
+}
+
+/* Dans votre fichier CSS (inscription.css) */
+
+.selected-photo {
+    max-width: 100%; /* Pour que les images ne dépassent pas la largeur du cadre */
+    max-height: 100px; /* Définir la hauteur maximale des images */
+    margin-bottom: 10px; /* Ajouter un espacement entre les images */
+}
+
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px; /* Espacement interne */
+    font-size: 16px; /* Taille de la police */
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 5px; /* Coins arrondis */
+    box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
+    width: 100%; /* Largeur de 100% du conteneur parent */
+    margin-bottom: 10px; /* Espacement entre les champs de saisie */
+}
+
+
+.overlay-active {
+    overflow: hidden; /* Empêche le défilement de la page */
+}
+
+.overlay-active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur de l'overlay */ 
+}
+
+.partie {
+    position: relative;
+}
+
+.partie textarea {
+    height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    resize: vertical; /* Permet à l'utilisateur de redimensionner verticalement */
+}
+
+.partie textarea::placeholder {
+    color: #999; /* Couleur du texte de l'indication de saisie */
+}
+
+
+#connexionform {
+    position: fixed;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Assure que le formulaire est au-dessus de l'overlay */
 }
