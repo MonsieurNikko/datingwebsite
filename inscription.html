@@ -323,7 +323,7 @@
     
             <!-- Troisième étape -->
             <div class="section" id="section3" style="display: none;">
-              <h1>Description physique</h1>
+              <h1>Description physique et personnalité</h1>
               <!-- Vos champs pour la troisième étape ici -->
               <div class="partie">
                 <input type="number" id="taille" name="taille" min="100" max="250" placeholder="Taille (en cm)" required>
@@ -361,7 +361,45 @@
                   <option value="vairon">Vairon</option>
                   <option value="verte">Verte</option>
                 </select>
-              </div>          
+              </div>
+              <div class="partie">
+                <label for="">Centres d'intérêt :</label>
+                <select id="centre_interets" name="centre_interets" required>
+                  <option value="activite-caritative">Activité caritative</option>
+                  <option value="animaux">Animaux</option>
+                  <option value="art">Art</option>
+                  <option value="automobiles">Automobiles</option>
+                  <option value="autres">Autres</option>
+                  <option value="balades">Balades</option>
+                  <option value="bricolage">Bricolage</option>
+                  <option value="chant-instrument-musical">Chant/Instrument musical</option>
+                  <option value="cinema">Cinéma</option>
+                  <option value="cuisine">Cuisine</option>
+                  <option value="decoration">Décoration</option>
+                  <option value="ecriture">Écriture</option>
+                  <option value="expositions-musees">Expositions/Musées</option>
+                  <option value="informatique-internet">Informatique/Internet</option>
+                  <option value="jardinage">Jardinage</option>
+                  <option value="jeux-de-cartes">Jeux de cartes</option>
+                  <option value="jeux-de-societe">Jeux de sociétés</option>
+                  <option value="jeux-videos">Jeux-vidéo</option>
+                  <option value="lecture">Lecture</option>
+                  <option value="loisirs-creatifs">Loisirs créatifs</option>
+                  <option value="musique">Musique</option>
+                  <option value="nature">Nature</option>
+                  <option value="oenologie">Œnologie</option>
+                  <option value="peche-chasse">Pêche/Chasse</option>
+                  <option value="peinture-dessin">Peinture/Dessin</option>
+                  <option value="photo">Photo</option>
+                  <option value="restaurant">Restaurant</option>
+                  <option value="shopping">Shopping</option>
+                  <option value="sport">Sport</option>
+                  <option value="television">Télévision</option>
+                  <option value="theatre">Théâtre</option>
+                  <option value="voir-des-amies">Voir des amis</option>
+                  <option value="voyage">Voyage</option>
+                </select>
+              </div>
               <button type="button" onclick="prevSection()" class="button-spacing">Précédent</button>
               <button type="button" onclick="nextSection()">Suivant</button>
             </div>
