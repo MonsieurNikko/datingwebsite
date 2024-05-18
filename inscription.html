@@ -332,8 +332,8 @@
                 <input type="number" id="poids" name="poids" min="20" max="300" placeholder="Poids (en kg)" required>
               </div>
               <div class="partie">
-                <label for="couleur_cheveux">Couleur des cheveux :</label>
-                <select id="couleur_cheveux" name="couleur_cheveux" required>
+                <select id="couleur_cheveux" name="couleur_cheveux">
+                  <option value="couleur_cheveux" selected disabled style="font-weight:bold;">> Sélectionnez la couleur de vos cheveux <</option>              
                   <option value="noir">Noir</option>
                   <option value="brun">Brun</option>
                   <option value="auburn">Auburn</option>
@@ -345,8 +345,8 @@
                 </select>
               </div>
               <div class="partie">
-                <label for="couleur_yeux">Couleur des yeux :</label>
-                <select id="couleur_yeux" name="couleur_yeux" required>
+                <select id="couleur_yeux" name="couleur_yeux">
+                  <option value="couleur_yeux" selected disabled style="font-weight:bold;">> Sélectionnez la couleur de vos yeux <</option>              
                   <option value="albinos">Albinos</option>
                   <option value="bleue">Bleue</option>
                   <option value="bleu-gris">Bleu-gris</option>
@@ -363,8 +363,8 @@
                 </select>
               </div>
               <div class="partie">
-                <label for="">Centres d'intérêt :</label>
-                <select id="centre_interets" name="centre_interets" required>
+                <select id="hobbies" name="hobbies">
+                  <option value="hobbies" selected disabled style="font-weight:bold;">> Sélectionnez un hobby <</option>              
                   <option value="activite-caritative">Activité caritative</option>
                   <option value="animaux">Animaux</option>
                   <option value="art">Art</option>
@@ -400,6 +400,49 @@
                   <option value="voyage">Voyage</option>
                 </select>
               </div>
+              <div class="partie">
+                <select id="sports" name="sports" >
+                  <option value="sports" selected disabled style="font-weight:bold;">> Sélectionnez un sport <</option>              
+                  <option value="athletisme">Athlétisme</option>
+                  <option value="automobile">Automobile</option>
+                  <option value="autres">Autres</option>
+                  <option value="badminton">Badminton</option>
+                  <option value="base_ball">Base-ball</option>
+                  <option value="basket_ball">Basket-ball</option>
+                  <option value="billard_billard_americain_flechettes">Billard/Billard Américain/Fléchettes</option>
+                  <option value="boxe">Boxe</option>
+                  <option value="bowling">Bowling</option>
+                  <option value="culturisme">Culturisme</option>
+                  <option value="cyclisme_vtt">Cyclisme/VTT</option>
+                  <option value="danse">Danse</option>
+                  <option value="equitation">Équitation</option>
+                  <option value="escalade">Escalade</option>
+                  <option value="fitness">Fitness</option>
+                  <option value="football">Football</option>
+                  <option value="football_americain">Football Américain</option>
+                  <option value="golf">Golf</option>
+                  <option value="gym">Gym</option>
+                  <option value="handball">Handball</option>
+                  <option value="jogging">Jogging</option>
+                  <option value="moto">Moto</option>
+                  <option value="natation">Natation</option>
+                  <option value="pilates">Pilates</option>
+                  <option value="randonnees_trekking">Randonnées/Trekking</option>
+                  <option value="rugby">Rugby</option>
+                  <option value="salle_de_musculation">Salle de Musculation</option>
+                  <option value="ski_snowboard">Ski/Snowboard</option>
+                  <option value="skate_roller">Skate/Roller</option>
+                  <option value="sports_de_combat">Sports de Combat</option>
+                  <option value="sports_de_glisse_aquatiques">Sports de Glisse Aquatiques</option>
+                  <option value="sports_extremes">Sports Extrêmes</option>
+                  <option value="squash">Squash</option>
+                  <option value="tennis">Tennis</option>
+                  <option value="tennis_de_table">Tennis de Table</option>
+                  <option value="voile">Voile</option>
+                  <option value="volley_ball">Volley-ball</option>
+                  <option value="yoga_meditation">Yoga/Méditation</option>
+                </select>
+              </div>           
               <button type="button" onclick="prevSection()" class="button-spacing">Précédent</button>
               <button type="button" onclick="nextSection()">Suivant</button>
             </div>
