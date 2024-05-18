@@ -5,23 +5,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $age = $_POST['age'];
     $sexe = $_POST['sexe'];
     $date_naissance = $_POST['date_naissance'];
-    $residence = $_POST['lieu de résidence'];
-	$situation = $_POST['situation amoureuse'];
-	$taille = $_POST['taille'];
-	$poids = $_POST['poids'];
-	$cheveux = $_POST['couleur des cheveux'];
-	$yeux = $_POST['couleur des yeux'];
-	$nom = $_POST['nom'];
-	$adresse = $_POST['adresse'];
-	$password = $_POST['mot de passe'];
-	
-	
+
+    $pays = $_POST['pays'];
+    $situation_amoureuse = $_POST['situation_amoureuse'];
+    $taille = $_POST['taille'];
+    $poids = $_POST['poids'];
+    $hobby = $_POST['hobbies'];
+    $sports = $_POST['sports'];
+    $couleur_cheveux = $_POST['couleur_cheveux'];
+    $couleur_yeux = $_POST['couleur_yeux'];
+
+    $uploadDir = 'photo_profile/'; // Répertoire où stocker les fichiers téléchargés
+    $extension = pathinfo($_FILES['photos']['name'], PATHINFO_EXTENSION);
+    $uploadFile = $uploadDir . $pseudo . '.' . $extension;
+
+
+    if (move_uploaded_file($_FILES['photos']['tmp_name'], $uploadFile)) {
+        echo "Le fichier est valide et a été téléchargé avec succès.\n";
+    } else {
+        echo "Une erreur s'est produite lors du téléchargement du fichier.\n";
+    }
+
+    $nom = $_POST['nom'];
+    $adresse = $_POST['adresse'];
+    $mot_de_passe = $_POST['mot_de_passe'];
+
+
     // Écrire les données dans le fichier CSV
     $fichier_csv = 'csv/user.csv';
-    $nouvelle_ligne = "$pseudo,$age,$sexe,$date_naissance,$residence,$situation,$taille,$poids,$cheveux,$yeux,$nom,$adresse,$password\n";
+    $nouvelle_ligne = "$pseudo,$age,$sexe,$date_naissance,$pays, $situation_amoureuse, $taille, $poids, $hobby, $sports, $couleur_cheveux, $couleur_yeux, $uploadFile, $nom, $adresse, $mot_de_passe\n";
     file_put_contents($fichier_csv, $nouvelle_ligne, FILE_APPEND);
 
     // Afficher un message de succès
     $message = "Utilisateur ajouté avec succès!";
+    echo $message;
+    exit; // Assurez-vous de terminer le script après la redirection
 }
 ?>
