@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inscription sur Cyan Love</title>
   <link rel="stylesheet" href="inscription.css">
-  <script src="inscription.js"></script>
+  
 </head>
 
 
@@ -47,18 +47,21 @@
     <section id="inscription">
       <div class="container">
         <div class="form">
-          <form id="inscriptionForm" action="inscription.php" method="post">
+          <form id="inscriptionForm" action="inscription.php" method="post" enctype="multipart/form-data">
             <!-- Première étape -->
             <div class="section" id="section1">
               <h1>Informations personnelles</h1>
             
             <div class="partie">
-              <input type="text" id="pseudonyme" name="pseudonyme" required maxlength="26" placeholder="Pseudonyme" required>
+              <input type="text" id="pseudonyme" name="pseudonyme" required maxlength="26" placeholder="Pseudonyme">
+              <div id="messagePseudonyme"></div>
             </div>
+            
+            
             
             <div class="partie">
               <input type="number" id="age" name="age" min="18" max="100" placeholder="Âge" required>
-              </div>
+            </div>
             
             <div class="partie">
               <select id="sexe" name="sexe" required>
@@ -323,7 +326,7 @@
     
             <!-- Troisième étape -->
             <div class="section" id="section3" style="display: none;">
-              <h1>Description physique et personnalité</h1>
+              <h1>Description physique</h1>
               <!-- Vos champs pour la troisième étape ici -->
               <div class="partie">
                 <input type="number" id="taille" name="taille" min="100" max="250" placeholder="Taille (en cm)" required>
@@ -361,7 +364,7 @@
                   <option value="vairon">Vairon</option>
                   <option value="verte">Verte</option>
                 </select>
-              </div>
+              </div>   
               <div class="partie">
                 <select id="hobbies" name="hobbies">
                   <option value="hobbies" selected disabled style="font-weight:bold;">> Sélectionnez un hobby <</option>              
@@ -442,7 +445,7 @@
                   <option value="volley_ball">Volley-ball</option>
                   <option value="yoga_meditation">Yoga/Méditation</option>
                 </select>
-              </div>           
+              </div>       
               <button type="button" onclick="prevSection()" class="button-spacing">Précédent</button>
               <button type="button" onclick="nextSection()">Suivant</button>
             </div>
@@ -484,6 +487,10 @@
   <footer>
     <p>&copy; 2024 Site de Rencontre. Tous droits réservés.</p>
   </footer>
+
+
+
+  <script src="inscription.js"></script>
 
 </body>
 </html>
