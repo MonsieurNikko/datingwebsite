@@ -36,9 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nouvelle_ligne = "$pseudo,$age,$sexe,$date_naissance,$pays, $situation_amoureuse, $taille, $poids, $hobby, $sports, $couleur_cheveux, $couleur_yeux, $uploadFile, $nom, $adresse, $mot_de_passe\n";
     file_put_contents($fichier_csv, $nouvelle_ligne, FILE_APPEND);
 
-    // Afficher un message de succès
-    $message = "Utilisateur ajouté avec succès!";
-    echo $message;
+    header("location: page_d'accueil.html");
+
     exit; // Assurez-vous de terminer le script après la redirection
 }
 ?>
