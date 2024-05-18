@@ -155,13 +155,14 @@ function nextSection() {
           alert("Veuillez saisir un poids valide entre 20 et 300 kg.");
           return; // Arrêter la fonction si le poids n'est pas valide
       }
-    // Valide les options de sélection avant de passer à la section suivante
-      if (!validateSection3()) {
-          alert('Veuillez sélectionner une option valide pour toutes les listes déroulantes.');
-          return;
-      }
-    }
 
+      // Valide les options de sélection avant de passer à la section suivante
+      if (!validateSection3()) {
+        alert('Veuillez sélectionner une option valide pour toutes les listes déroulantes.');
+        return;
+    }
+    }
+    
     if (currentSection === 4 && !validatePassword()) return; // Valide le mot de passe lors du passage à la quatrième section
         currentSection++;
 
@@ -203,6 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("connexionForm").addEventListener("submit", function(event) {
         event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+        console.log("Formulaire soumis"); // Message de débogage
 
         var formData = new FormData(this); // Récupère les données du formulaire
 
@@ -211,13 +213,27 @@ document.addEventListener("DOMContentLoaded", function() {
         xhr.open("POST", "connexion.php", true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
+                console.log("Réponse reçue du serveur"); // Message de débogage
+
                 // Vérifiez si le statut HTTP est 200 (OK)
                 if (xhr.status === 200) {
-                    // Affiche la réponse du serveur dans le div d'erreurMessage
-                    document.getElementById("erreurMessage").innerHTML = xhr.responseText;
-                } 
-                else {
+                    console.log("Statut HTTP 200"); // Message de débogage
+
+                    // Vérifie si la réponse du serveur contient une redirection
+                    if (xhr.responseText.trim() === "Mot de passe incorrect." || xhr.responseText.trim() === "Identifiant non trouvé.") {
+                        console.log("Affichage de la réponse du serveur dans le div erreurMessage"); // Message de débogage
+
+                        // Affiche la réponse du serveur dans le div d'erreurMessage
+                        document.getElementById("erreurMessage").innerHTML = xhr.responseText;
+                    } else {
+                        console.log("Redirection vers la page d'accueil"); // Message de débogage
+
+                        // Redirige vers la page d'accueil après connexion réussie
+                        window.location.href = "acceuilapresconnecte.html";
+                    }
+                } else {
                     // Affiche une erreur générique si le statut HTTP n'est pas 200
+                    console.log("Erreur HTTP: " + xhr.status); // Message de débogage
                     document.getElementById("erreurMessage").innerHTML = "Une erreur s'est produite.";
                 }
             }
@@ -225,6 +241,9 @@ document.addEventListener("DOMContentLoaded", function() {
         xhr.send(formData);
     });
 });
+
+
+
 
 
 function toggleConfirmPasswordVisibility() {
@@ -242,3 +261,34 @@ function toggleConfirmPasswordVisibility() {
     }
 
 }
+
+
+var pseudonymeInput = document.getElementById("pseudonyme");
+
+function verifierPseudonyme() {
+    var pseudonyme = pseudonymeInput.value;
+
+    fetch('csv/user.csv')
+        .then(response => response.text())
+        .then(data => {
+            const lignes = data.split('\n');
+            for (let i = 0; i < lignes.length; i++) {
+                const colonnes = lignes[i].split(',');
+                const pseudoExistant = colonnes[0].trim();
+
+                if (pseudoExistant === pseudonyme) {
+                    document.getElementById('messagePseudonyme').innerText = "Ce pseudonyme est déjà utilisé. Veuillez en choisir un autre.";
+                    return; // Arrêter la vérification
+                }
+            }
+            
+            // Si le pseudonyme n'existe pas encore, effacer le message d'erreur
+            document.getElementById('messagePseudonyme').innerText = "";
+        })
+        .catch(error => {
+            console.error('Une erreur s\'est produite lors de la récupération du fichier CSV :', error);
+            document.getElementById('messagePseudonyme').innerText = "Une erreur s'est produite lors de la vérification du pseudonyme. Veuillez réessayer.";
+        });
+}
+
+pseudonymeInput.addEventListener('blur', verifierPseudonyme);
