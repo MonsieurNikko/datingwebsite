@@ -37,9 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Vérifie si le mot de passe correspond
         if ($utilisateurs[$pseudo] === $mot_de_passe) {
             $_SESSION['pseudo'] = $pseudo;
+            echo "correct";
         } else {
             // Mot de passe incorrect
-            $erreur = "Mot de passe incorrect.";
+            $erreur = "Mot de passe incorrect.". $utilisateurs[$pseudo];
             echo $erreur;
         }
     } else {
@@ -58,5 +59,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 ?>
-
-
