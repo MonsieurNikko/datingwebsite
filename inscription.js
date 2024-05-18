@@ -79,6 +79,18 @@ function validatePassword() {
     return true;
 }
 
+function validateSection3() {
+    const couleurCheveux = document.getElementById('couleur_cheveux').value;
+    const couleurYeux = document.getElementById('couleur_yeux').value;
+    const hobbies = document.getElementById('hobbies').value;
+    const sports = document.getElementById('sports').value;
+
+    if (couleurCheveux === 'couleur_cheveux' || couleurYeux === 'couleur_yeux' || hobbies === 'hobbies' || sports === 'sports') {
+        return false; // Retourne false pour indiquer que la validation a échoué
+    }
+    return true; // Retourne true si tous les champs requis sont remplis
+}
+
 // Initialisation de la première section
 let currentSection = 1;
 const sections = document.getElementsByClassName('section');
@@ -143,8 +155,13 @@ function nextSection() {
           alert("Veuillez saisir un poids valide entre 20 et 300 kg.");
           return; // Arrêter la fonction si le poids n'est pas valide
       }
+    // Valide les options de sélection avant de passer à la section suivante
+      if (!validateSection3()) {
+          alert('Veuillez sélectionner une option valide pour toutes les listes déroulantes.');
+          return;
+      }
     }
-    
+
     if (currentSection === 4 && !validatePassword()) return; // Valide le mot de passe lors du passage à la quatrième section
         currentSection++;
 
@@ -198,7 +215,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (xhr.status === 200) {
                     // Affiche la réponse du serveur dans le div d'erreurMessage
                     document.getElementById("erreurMessage").innerHTML = xhr.responseText;
-                } else {
+                } 
+                else {
                     // Affiche une erreur générique si le statut HTTP n'est pas 200
                     document.getElementById("erreurMessage").innerHTML = "Une erreur s'est produite.";
                 }
