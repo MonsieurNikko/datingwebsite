@@ -26,11 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $utilisateur_trouve = true;
                 fclose($fichier);
                 exit; // Quittez la boucle une fois que l'utilisateur est trouvé
-            } else {
-                // Affichez un message de débogage pour chaque ligne d'utilisateur vérifiée
-                echo "Utilisateur vérifié: " . implode(", ", $ligne) . "<br>";
-                echo "Identifiant: " . $ligne[0] . ", Mot de passe: " . $ligne[15] . "<br>";
-                var_dump($pseudo, $mot_de_passe, $ligne[0], $ligne[15]); // Ajoutez cette ligne pour le débogage
             }
         }
         fclose($fichier);
@@ -44,11 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!$utilisateur_trouve) {
         http_response_code(401); // Définit le code de statut HTTP à 401 (non autorisé)
         echo "Identifiant ou mot de passe incorrect.";
-
-        // Débogage
-        echo "Identifiant saisi: " . $pseudo . "<br>";
-        echo "Mot de passe saisi: " . $mot_de_passe . "<br>";
-        echo "Utilisateur trouvé: " . ($utilisateur_trouve ? "Oui" : "Non") . "<br>";
     }
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Si une session est déjà en cours et que le pseudo est stocké, renvoie le pseudo
