@@ -71,6 +71,30 @@ body {
     color: #333;
 }
 
+.connexion {
+    display: flex; /* Utilise Flexbox pour aligner les éléments */
+    align-items: center; /* Aligne les éléments verticalement */
+    flex: 1; /* Permet à la section de s'étendre si nécessaire */
+    justify-content: flex-end; /* Place les éléments à droite */
+}
+
+
+.connexion a {
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+.connexion a:hover {
+    background-color: #e5d8f0; /* Changez la couleur de fond sur hover */
+    color: #333; /* Changez la couleur du texte sur hover */
+    border-color: #666; /* Changez la couleur de la bordure sur hover */
+}
+
+
+
 #main-content {
     margin-left: 200px; /* Adjust to the width of the sidebar */
     flex-grow: 1;
@@ -173,11 +197,21 @@ footer {
 .pixelify-sans-varil {
     font-family: "Pixelify Sans", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 400;
+    font-weight: 200;
     font-style: normal;
     filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3));
+    width: 250px;
+    animation: typing 4s steps(30) infinite;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
+@keyframes typing {
+    from {
+      width: 0;
+    }
+  }
+      
 
 
 #cupid{
