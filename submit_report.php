@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Vérifier si les champs ne sont pas vides
     if (!empty($username) && !empty($message)) {
         // Lire le fichier CSV des utilisateurs
-        $users = array_map('str_getcsv', file('user.csv'));
+        $users = array_map('str_getcsv', file('csv/user.csv'));
 
         // Vérifier si l'utilisateur existe dans la base de données
         $userExists = false;
