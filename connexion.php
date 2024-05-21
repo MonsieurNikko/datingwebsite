@@ -6,19 +6,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fichier_csv = 'csv/user.csv';
     $erreur = "";
     
-    // Lire le fichier CSV et stocker les données dans un tableau associatif
-    $utilisateurs = [];
+    // Récupérer les données du formulaire
+    $pseudo = trim($_POST["username"]);
+    $mot_de_passe = trim($_POST["password"]);
+    
+    // Variable pour vérifier si l'utilisateur est trouvé
+    $utilisateur_trouve = false;
+
+    // Lire le fichier CSV et vérifier l'identifiant et le mot de passe
     if (($fichier = fopen($fichier_csv, 'r')) !== false) {
+        // Parcourir chaque ligne du fichier CSV
         while (($ligne = fgetcsv($fichier)) !== false) {
-            // Vérifie si la ligne contient au moins 13 colonnes (identifiant et mot de passe)
-            if (count($ligne) >= 15) {
-                // Stocke l'identifiant comme clé et le mot de passe comme valeur dans le tableau $utilisateurs
-                $utilisateurs[trim($ligne[0])] = trim($ligne[15]); // 1ère colonne (index 0) pour l'identifiant, 13ème colonne (index 12) pour le mot de passe
+            // Vérifier si l'identifiant et le mot de passe correspondent
+            if ($pseudo == trim($ligne[0]) && password_verify($mot_de_passe, trim($ligne[15]))) {
+                // Identifiant et mot de passe corrects, stocker les informations de l'utilisateur dans la session
+                $_SESSION['pseudo'] = $pseudo;
+                $_SESSION['data'] = $ligne; // Stocke toute la ligne du CSV
+                echo "correct";
+                $utilisateur_trouve = true;
+                fclose($fichier);
+                exit; // Quittez la boucle une fois que l'utilisateur est trouvé
             } else {
-                // Gérer le cas où la ligne ne contient pas suffisamment de colonnes
-                $erreur = "Erreur: La ligne ne contient pas suffisamment de colonnes.";
-                echo $erreur;
-                exit;
+                // Affichez un message de débogage pour chaque ligne d'utilisateur vérifiée
+                echo "Utilisateur vérifié: " . implode(", ", $ligne) . "<br>";
+                echo "Identifiant: " . $ligne[0] . ", Mot de passe: " . $ligne[15] . "<br>";
+                var_dump($pseudo, $mot_de_passe, $ligne[0], $ligne[15]); // Ajoutez cette ligne pour le débogage
             }
         }
         fclose($fichier);
@@ -28,25 +40,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Récupérer les données du formulaire
-    $pseudo = trim($_POST["username"]);
-    $mot_de_passe = trim($_POST["password"]);
-    
-    // Vérifie si l'utilisateur existe dans le tableau des utilisateurs et si le mot de passe correspond
-    if (isset($utilisateurs[$pseudo])) {
-        // Vérifie si le mot de passe correspond
-        if ($utilisateurs[$pseudo] === $mot_de_passe) {
-            $_SESSION['pseudo'] = $pseudo;
-            echo "correct";
-        } else {
-            // Mot de passe incorrect
-            $erreur = "Mot de passe incorrect.". $utilisateurs[$pseudo];
-            echo $erreur;
-        }
-    } else {
-        // Identifiant non trouvé
-        $erreur = "Identifiant non trouvé.";
-        echo $erreur;
+    // Si l'utilisateur n'est pas trouvé, renvoyer une réponse HTTP avec le code de statut 401
+    if (!$utilisateur_trouve) {
+        http_response_code(401); // Définit le code de statut HTTP à 401 (non autorisé)
+        echo "Identifiant ou mot de passe incorrect.";
+
+        // Débogage
+        echo "Identifiant saisi: " . $pseudo . "<br>";
+        echo "Mot de passe saisi: " . $mot_de_passe . "<br>";
+        echo "Utilisateur trouvé: " . ($utilisateur_trouve ? "Oui" : "Non") . "<br>";
     }
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Si une session est déjà en cours et que le pseudo est stocké, renvoie le pseudo
@@ -56,6 +58,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Aucun pseudonyme trouvé.";
     }
 }
-
-
 ?>
