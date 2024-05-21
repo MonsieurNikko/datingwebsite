@@ -22,9 +22,15 @@
                 <li><a href="#">Recherche</a></li>
                 <li><a href="#">Produit</a></li>
                 <li><a href="#">Messagerie</a></li>
-                <li><a href="#">Profil</a></li>
+                <li><a href="#" id="profile-container" onclick="loadProfile();">Profil</a></li>
             </ul>
         </nav>
+
+
+        <div class="connexion">
+            <a href="logout.php">Déconnexion</a>
+        </div>
+        
     </div>
     <div id="main-content">
         <div id="publicite">
@@ -40,7 +46,7 @@
                 <div>
                     <img src="cupid.png" id="cupid">
                     <div class="speech-bubble">
-                        <p class="pixelify-sans-varil">Tentez une chance avec ces magnifiques personnes !</p>
+                        <p class="pixelify-sans-varil">Tentez une chance avec <br>ces magnifiques personnes !</p>
                     </div>
                 </div>
                 <section id="intro">
@@ -134,7 +140,18 @@
         // Appel de la fonction pour récupérer le pseudonyme au chargement de la page
         window.onload = getPseudonyme;
 
+        // Fonction pour charger le contenu de profil.html dans le conteneur
+        function loadProfile() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    window.location.href = "profil.html";
+                }
+            };
+            xhttp.open("GET", "profil.html", true);
+            xhttp.send();
+        }
 
-    </script>
+    </script>   
 </body>
 </html>
