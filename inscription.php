@@ -28,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nom = $_POST['nom'];
     $adresse = $_POST['adresse'];
-    $mot_de_passe = $_POST['mot_de_passe'];
+    $mot_de_passe = password_hash($_POST['mot_de_passe'], PASSWORD_BCRYPT); // Hacher le mot de passe
+
 
 
     // Écrire les données dans le fichier CSV
