@@ -272,17 +272,12 @@ section{
 
 
 
-/* footer de base
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: auto; /* Pousse le footer vers le bas */
-    width: 100%;
-    opacity: 0.8;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
-*/
+
 footer {
     background-color: #000;
     padding: 20px;
@@ -303,29 +298,37 @@ footer {
 
 .footer-section h4 {
     margin-bottom: 10px;
-    color: white; /* Couleur du texte en blanc */
+    color: white;
 }
 
 .footer-section p, .footer-section a {
     margin: 5px 0;
-    color: #ccc; /* Couleur de texte légère */
+    color: #ccc;
     text-decoration: none;
 }
 
 .footer-section a:hover {
-    color: white; /* Changement de couleur au survol */
+    color: white;
     text-decoration: underline;
 }
 
-.social-icons a, .app-icons a {
+.footer-section img {
+    border: none;
+}
+
+/* Ajuster la taille des icônes des réseaux sociaux */
+.social-icons img {
+    width: 24px;  /* Ajuste la largeur pour les icônes sociales */
+    height: 24px; /* Ajuste la hauteur pour les icônes sociales */
     margin-right: 10px;
 }
 
-.social-icons img, .app-icons img {
-    width: 30px;
-    height: 30px;
+/* Ajuster la taille des logos Google Play et App Store */
+.app-icons img {
+    width: 100px; /* Ajuste la largeur pour les logos des stores */
+    height: auto; /* Maintient le rapport hauteur/largeur */
+    margin-right: 10px;
 }
-
 
 
 .form {
