@@ -31,20 +31,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (xhr.status === 200) {
                     console.log("Statut HTTP 200"); // Message de débogage
 
-                    // Vérifie si la réponse du serveur contient une redirection
-                    if (xhr.responseText.trim() === "Mot de passe incorrect." || xhr.responseText.trim() === "Identifiant non trouvé.") {
-                        console.log("Affichage de la réponse du serveur dans le div erreurMessage"); // Message de débogage
+                    // Redirige vers la page d'accueil après connexion réussie
+                    window.location.href = "acceuilapresconnecte.html";
+                } else if (xhr.status === 401) {
+                    console.log("Statut HTTP 401"); // Message de débogage
 
-                        // Affiche la réponse du serveur dans le div d'erreurMessage
-                        document.getElementById("erreurMessage").innerHTML = xhr.responseText;
-                    } else {
-                        console.log("Redirection vers la page d'accueil"); // Message de débogage
-
-                        // Redirige vers la page d'accueil après connexion réussie
-                        window.location.href = "acceuilapresconnecte.html";
-                    }
+                    // Affiche la réponse du serveur dans le div d'erreurMessage
+                    document.getElementById("erreurMessage").innerHTML = xhr.responseText;
                 } else {
-                    // Affiche une erreur générique si le statut HTTP n'est pas 200
+                    // Le traitement pour les autres erreurs HTTP
                     console.log("Erreur HTTP: " + xhr.status); // Message de débogage
                     document.getElementById("erreurMessage").innerHTML = "Une erreur s'est produite.";
                 }
@@ -53,10 +48,4 @@ document.addEventListener("DOMContentLoaded", function() {
         xhr.send(formData);
     });
 });
-
-
-
-
-
-
 
