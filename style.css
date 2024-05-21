@@ -284,18 +284,21 @@ footer {
 }
 */
 footer {
-    background-color: #f1f1f1;
+    background-color: #000;
     padding: 20px;
+    color: white;
+}
+
+.footer-container {
     display: flex;
-    justify-content: space-around;
-    border-top: 1px solid #ccc;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .footer-section {
-    flex: 1 1 200px;
+    flex: 1;
+    min-width: 200px;
     padding: 10px;
-    margin: 10px;
 }
 
 .footer-section h4 {
@@ -304,7 +307,7 @@ footer {
 
 .footer-section p, .footer-section a {
     margin: 5px 0;
-    color: #000;
+    color: white;
     text-decoration: none;
 }
 
