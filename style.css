@@ -272,7 +272,7 @@ section{
 
 
 
-/* Configuration du footer */
+/* footer de base
 footer {
     background-color: #333;
     color: #fff;
@@ -282,6 +282,46 @@ footer {
     width: 100%;
     opacity: 0.8;
 }
+*/
+footer {
+    background-color: #f1f1f1;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #ccc;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    flex: 1 1 200px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.footer-section h4 {
+    margin-bottom: 10px;
+}
+
+.footer-section p, .footer-section a {
+    margin: 5px 0;
+    color: #000;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.social-icons a, .app-icons a {
+    margin-right: 10px;
+}
+
+.social-icons img, .app-icons img {
+    width: 30px;
+    height: 30px;
+}
+
+
 
 .form {
     padding: 20px; /* Internal padding */
