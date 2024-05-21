@@ -303,15 +303,17 @@ footer {
 
 .footer-section h4 {
     margin-bottom: 10px;
+    color: #fff; /* Ajout de la couleur du texte */
 }
 
 .footer-section p, .footer-section a {
     margin: 5px 0;
-    color: white;
+    color: #ccc; /* Couleur de texte légère */
     text-decoration: none;
 }
 
 .footer-section a:hover {
+    color: #fff; /* Changement de couleur au survol */
     text-decoration: underline;
 }
 
@@ -323,7 +325,6 @@ footer {
     width: 30px;
     height: 30px;
 }
-
 
 
 .form {
