@@ -317,15 +317,13 @@ footer {
     text-decoration: underline;
 }
 
-/* Supprimer les bordures par défaut des images */
-.footer-section img {
-    border: none;
+.social-icons a, .app-icons a {
+    margin-right: 10px;
 }
 
-/* Ajuster la taille des logos Google Play et App Store */
-.app-icons img {
-    width: 50px; /* Ajuste la largeur */
-    height: auto; /* Maintient le rapport hauteur/largeur */
+.social-icons img, .app-icons img {
+    width: 30px;
+    height: 30px;
 }
 
 
