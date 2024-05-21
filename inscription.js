@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     console.log("Statut HTTP 200"); // Message de débogage
 
                     // Vérifie si la réponse du serveur contient une redirection
-                    if (xhr.responseText.trim() === "Mot de passe incorrect." || xhr.responseText.trim() === "Identifiant non trouvé.") {
+                    if (xhr.responseText.trim() === "Mot de passe incorrect." || xhr.responseText.trim() === "Identifiant non trouvé." || xhr.responseText.trim() === "Erreur: La ligne ne contient pas suffisamment de colonnes." || xhr.responseText.trim() === "Erreur: Impossible d'ouvrir le fichier CSV.") {
                         console.log("Affichage de la réponse du serveur dans le div erreurMessage"); // Message de débogage
 
                         // Affiche la réponse du serveur dans le div d'erreurMessage
