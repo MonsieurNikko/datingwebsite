@@ -1,7 +1,7 @@
 // Fonction pour obtenir le type d'abonnement de l'utilisateur actuellement connecté
 function getTypeAbonnement(utilisateur) {
     return new Promise((resolve, reject) => {
-        fetch('user.csv')
+        fetch('csv/user.csv')
             .then(response => response.text())
             .then(data => {
                 const lignes = data.split('\n').map(ligne => ligne.split(','));
@@ -49,7 +49,7 @@ function afficherMessages(messages) {
 
 // Fonction pour charger la liste des amis depuis amis.csv
 function chargerAmis(currentUser) {
-    fetch('amis.csv')
+    fetch('csv/amis.csv')
         .then(response => response.text())
         .then(data => {
             const amis = data.split('\n').map(line => line.split(',').map(item => item.trim()));
@@ -65,7 +65,7 @@ function chargerAmis(currentUser) {
 // Fonction pour afficher les amis dans le champ de recherche du destinataire
 function afficherAmis(amis) {
     const recipientInput = document.getElementById('recipient');
-    recipientInput.addEventListener('input', function() {
+    recipientInput.addEventListener('input', debounce(function() {
         const input = this.value.toLowerCase();
         const suggestions = document.getElementById('suggestions');
         suggestions.innerHTML = '';
@@ -89,62 +89,105 @@ function afficherAmis(amis) {
                 })
                 .catch(error => console.error('Erreur lors de la recherche des utilisateurs :', error));
         }
+    }, 300)); // Délais de 300ms pour le debounce
+}
+
+// Fonction de debounce
+function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+function getCurrentUser() {
+    console.log("Début de la récupération de l'utilisateur actuel...");
+    return new Promise((resolve, reject) => {
+        fetch('messegerieprofilactuel.php')
+            .then(response => response.json())
+            .then(data => {
+                console.log("Données récupérées depuis le serveur:", data);
+                if (data.pseudo) { // Utilisation de data.pseudo au lieu de data.username
+                    console.log("Utilisateur actuel récupéré avec succès:", data.pseudo);
+                    resolve(data.pseudo);
+                } else {
+                    console.log("Erreur lors de la récupération de l'utilisateur actuel.");
+                    reject('Utilisateur non connecté');
+                }
+            })
+            .catch(error => {
+                console.error("Erreur lors de la récupération de l'utilisateur actuel:", error);
+                reject(error);
+            });
     });
 }
 
-// Définir l'utilisateur actuel (à remplacer par la manière dont vous stockez l'utilisateur actuellement connecté)
-const currentUser = "Alice"; // Par exemple, en dur pour les besoins de la démo
+// Récupérer l'utilisateur actuel et initialiser l'application
+getCurrentUser()
+    .then(currentUser => {
+        console.log("Utilisateur actuel:", currentUser);
+        // Vérifier le type d'abonnement de l'utilisateur connecté et ajuster l'interface
+        return getTypeAbonnement(currentUser).then(typeAbonnement => {
+            console.log("Type d'abonnement de l'utilisateur:", typeAbonnement);
+            if (typeAbonnement === "basic") {
+                console.log("L'utilisateur a un abonnement basique.");
+                document.getElementById('message').style.display = "none";
+                document.getElementById('sendMessageButton').style.display = "none";
+                document.getElementById('subscriptionMessage').style.display = "block";
+            } else {
+                console.log("L'utilisateur a un abonnement premium.");
+                document.getElementById('message').style.display = "block";
+                document.getElementById('sendMessageButton').style.display = "block";
+                document.getElementById('subscriptionMessage').style.display = "none";
+            }
+            return currentUser;
+        });
+    })
+    .then(currentUser => {
+        console.log("Chargement de la liste des amis pour l'utilisateur:", currentUser);
+        // Charger la liste des amis une fois que la page est chargée
+        document.addEventListener('DOMContentLoaded', () => chargerAmis(currentUser));
 
-// Vérifier le type d'abonnement de l'utilisateur connecté et ajuster l'interface
-getTypeAbonnement(currentUser)
-    .then(typeAbonnement => {
-        if (typeAbonnement === "basic") {
-            document.getElementById('message').style.display = "none";
-            document.getElementById('sendMessageButton').style.display = "none";
-            document.getElementById('subscriptionMessage').style.display = "block";
-        } else {
-            document.getElementById('message').style.display = "block";
-            document.getElementById('sendMessageButton').style.display = "block";
-            document.getElementById('subscriptionMessage').style.display = "none";
-        }
+        // Fonction pour gérer l'envoi de message
+        document.getElementById('newConversationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const recipient = document.getElementById('recipient').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (recipient === '' || message === '') {
+                alert('Tous les champs sont obligatoires.');
+                return;
+            }
+
+            fetch('send_message.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ sender: currentUser, recipient, message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Message envoyé avec succès');
+                    document.getElementById('recipient').value = '';
+                    document.getElementById('message').value = '';
+                    document.getElementById('message').disabled = true;
+                    document.getElementById('sendMessageButton').disabled = true;
+                } else {
+                    alert('Erreur lors de l\'envoi du message.');
+                }
+            })
+            .catch(error => console.error('Erreur lors de l\'envoi du message:', error));
+        });
     })
     .catch(error => {
-        console.error("Erreur lors de la récupération du type d'abonnement :", error);
+        console.error('Erreur lors de la récupération de l\'utilisateur actuel :', error);
     });
 
-// Charger la liste des amis une fois que la page est chargée
-document.addEventListener('DOMContentLoaded', () => chargerAmis(currentUser));
-
-// Fonction pour gérer l'envoi de message
-document.getElementById('newConversationForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const recipient = document.getElementById('recipient').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    if (recipient === '' || message === '') {
-        alert('Tous les champs sont obligatoires.');
-        return;
-    }
-
-    fetch('send_message.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ sender: currentUser, recipient, message })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Message envoyé avec succès');
-            document.getElementById('recipient').value = '';
-            document.getElementById('message').value = '';
-            document.getElementById('message').disabled = true;
-            document.getElementById('sendMessageButton').disabled = true;
-        } else {
-            alert('Erreur lors de l\'envoi du message.');
-        }
-    })
-    .catch(error => console.error('Erreur lors de l\'envoi du message:', error));
-});
