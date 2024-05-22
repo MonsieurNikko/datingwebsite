@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouvelle Conversation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Nouvelle Conversation</h1>
+        
+        <form id="newConversationForm">
+            <label for="recipient">Destinataire :</label>
+            <input type="text" id="recipient" name="recipient" placeholder="Rechercher un utilisateur...">
+            <div id="suggestions" class="suggestions"></div>
+            
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" placeholder="Entrez votre message ici..." disabled></textarea>
+            
+            <button type="submit" id="sendMessageButton" disabled>Envoyer le message</button>
+
+            <p id="subscriptionMessage" style="display: none;">Souscrivez à un abonnement pour pouvoir envoyer des messages.</p>
+        </form>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
