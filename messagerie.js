@@ -5,9 +5,9 @@ function getTypeAbonnement(utilisateur) {
             .then(response => response.text())
             .then(data => {
                 const lignes = data.split('\n').map(ligne => ligne.split(','));
-                const utilisateurTrouve = lignes.find(ligne => ligne[0] === utilisateur);
+                const utilisateurTrouve = lignes.find(ligne => ligne[0].trim() === utilisateur);
                 if (utilisateurTrouve) {
-                    resolve(utilisateurTrouve[16]); // L'index 16 correspond à la colonne du type d'abonnement dans user.csv
+                    resolve(utilisateurTrouve[16].trim()); // L'index 16 correspond à la colonne du type d'abonnement dans user.csv
                 } else {
                     reject("Utilisateur non trouvé");
                 }
@@ -18,27 +18,14 @@ function getTypeAbonnement(utilisateur) {
     });
 }
 
- getTypeAbonnement(utilisateurConnecte)
-        .then(typeAbonnement => {
-            if (typeAbonnement === "basic") {
-                document.getElementById('message').style.display = "none";
-                document.getElementById('sendMessageButton').style.display = "none";
-                document.getElementById('subscriptionMessage').style.display = "block";
-            }
-        })
-        .catch(error => {
-            console.error("Erreur lors de la récupération du type d'abonnement :", error);
-        });
-
-function chargerAmis() {
+// Fonction pour charger la liste des amis depuis amis.csv
+function chargerAmis(currentUser) {
     fetch('amis.csv')
         .then(response => response.text())
         .then(data => {
-            const amis = data.split('\n').map(line => line.split(','));
+            const amis = data.split('\n').map(line => line.split(',').map(item => item.trim()));
             const userAmis = amis.filter(relation => relation.includes(currentUser));
-            const userFriends = userAmis.map(relation => {
-                return relation[0] === currentUser ? relation[1] : relation[0];
-            });
+            const userFriends = userAmis.map(relation => (relation[0] === currentUser ? relation[1] : relation[0]));
             afficherAmis(userFriends);
         })
         .catch(error => {
@@ -55,16 +42,23 @@ function afficherAmis(amis) {
         suggestions.innerHTML = '';
 
         if (input) {
-            const filteredFriends = amis.filter(friend => friend.toLowerCase().includes(input));
-            filteredFriends.forEach(friend => {
-                const div = document.createElement('div');
-                div.textContent = friend;
-                div.addEventListener('click', function() {
-                    document.getElementById('recipient').value = friend;
+            fetch(`search_users.php?query=${encodeURIComponent(input)}`)
+                .then(response => response.json())
+                .then(filteredFriends => {
                     suggestions.innerHTML = '';
-                });
-                suggestions.appendChild(div);
-            });
+                    filteredFriends.forEach(friend => {
+                        const div = document.createElement('div');
+                        div.textContent = friend;
+                        div.classList.add('suggestion-item');
+                        div.addEventListener('click', function() {
+                            recipientInput.value = friend;
+                            suggestions.innerHTML = '';
+                            document.getElementById('message').disabled = false;
+                        });
+                        suggestions.appendChild(div);
+                    });
+                })
+                .catch(error => console.error('Erreur lors de la recherche des utilisateurs :', error));
         }
     });
 }
@@ -72,5 +66,56 @@ function afficherAmis(amis) {
 // Définir l'utilisateur actuel (à remplacer par la manière dont vous stockez l'utilisateur actuellement connecté)
 const currentUser = "Alice"; // Par exemple, en dur pour les besoins de la démo
 
+// Vérifier le type d'abonnement de l'utilisateur connecté et ajuster l'interface
+getTypeAbonnement(currentUser)
+    .then(typeAbonnement => {
+        if (typeAbonnement === "basic") {
+            document.getElementById('message').style.display = "none";
+            document.getElementById('sendMessageButton').style.display = "none";
+            document.getElementById('subscriptionMessage').style.display = "block";
+        } else {
+            document.getElementById('message').style.display = "block";
+            document.getElementById('sendMessageButton').style.display = "block";
+            document.getElementById('subscriptionMessage').style.display = "none";
+        }
+    })
+    .catch(error => {
+        console.error("Erreur lors de la récupération du type d'abonnement :", error);
+    });
+
 // Charger la liste des amis une fois que la page est chargée
-document.addEventListener('DOMContentLoaded', chargerAmis);
+document.addEventListener('DOMContentLoaded', () => chargerAmis(currentUser));
+
+// Fonction pour gérer l'envoi de message
+document.getElementById('newConversationForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const recipient = document.getElementById('recipient').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (recipient === '' || message === '') {
+        alert('Tous les champs sont obligatoires.');
+        return;
+    }
+
+    fetch('send_message.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ sender: currentUser, recipient, message })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Message envoyé avec succès');
+            document.getElementById('recipient').value = '';
+            document.getElementById('message').value = '';
+            document.getElementById('message').disabled = true;
+            document.getElementById('sendMessageButton').disabled = true;
+        } else {
+            alert('Erreur lors de l\'envoi du message.');
+        }
+    })
+    .catch(error => console.error('Erreur lors de l\'envoi du message:', error));
+});
