@@ -12,16 +12,19 @@
         
         <form id="newConversationForm">
             <label for="recipient">Destinataire :</label>
-            <input type="text" id="recipient" name="recipient" placeholder="Rechercher un utilisateur...">
-            <div id="suggestions" class="suggestions"></div>
+            <input type="text" id="recipient" name="recipient" placeholder="Rechercher un utilisateur..." aria-required="true">
+            <div id="suggestions" class="suggestions" aria-live="polite"></div>
             
             <label for="message">Message :</label>
-            <textarea id="message" name="message" placeholder="Entrez votre message ici..." disabled></textarea>
+            <textarea id="message" name="message" placeholder="Entrez votre message ici..." disabled aria-required="true"></textarea>
             
             <button type="submit" id="sendMessageButton" disabled>Envoyer le message</button>
 
             <p id="subscriptionMessage" style="display: none;">Souscrivez à un abonnement pour pouvoir envoyer des messages.</p>
         </form>
+
+        <!-- Section pour afficher les messages -->
+        <div id="messageContainer" class="message-container"></div>
     </div>
 
     <script src="scripts.js"></script>
