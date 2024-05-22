@@ -18,6 +18,35 @@ function getTypeAbonnement(utilisateur) {
     });
 }
 
+// Fonction pour charger les messages existants
+function chargerMessages(sender, recipient) {
+    fetch(`get_messages.php?sender=${encodeURIComponent(sender)}&recipient=${encodeURIComponent(recipient)}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                afficherMessages(data.messages);
+            } else {
+                console.error('Erreur lors du chargement des messages:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors du chargement des messages:', error);
+        });
+}
+
+// Fonction pour afficher les messages dans l'interface utilisateur
+function afficherMessages(messages) {
+    const messageContainer = document.getElementById('messageContainer');
+    messageContainer.innerHTML = '';
+
+    messages.forEach(msg => {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.textContent = msg;
+        messageContainer.appendChild(messageElement);
+    });
+}
+
 // Fonction pour charger la liste des amis depuis amis.csv
 function chargerAmis(currentUser) {
     fetch('amis.csv')
