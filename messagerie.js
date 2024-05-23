@@ -1,97 +1,3 @@
-// Fonction pour obtenir le type d'abonnement de l'utilisateur actuellement connecté
-function getTypeAbonnement(utilisateur) {
-    return new Promise((resolve, reject) => {
-        fetch('csv/user.csv')
-            .then(response => response.text())
-            .then(data => {
-                const lignes = data.split('\n').map(ligne => ligne.split(','));
-                const utilisateurTrouve = lignes.find(ligne => ligne[0].trim() === utilisateur);
-                if (utilisateurTrouve) {
-                    resolve(utilisateurTrouve[16].trim()); // L'index 16 correspond à la colonne du type d'abonnement dans user.csv
-                } else {
-                    reject("Utilisateur non trouvé");
-                }
-            })
-            .catch(error => {
-                reject(error);
-            });
-    });
-}
-
-// Fonction pour charger les messages existants
-function chargerMessages(sender, recipient) {
-    fetch(`get_messages.php?sender=${encodeURIComponent(sender)}&recipient=${encodeURIComponent(recipient)}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                afficherMessages(data.messages);
-            } else {
-                console.error('Erreur lors du chargement des messages:', data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Erreur lors du chargement des messages:', error);
-        });
-}
-
-// Fonction pour afficher les messages dans l'interface utilisateur
-function afficherMessages(messages) {
-    const messageContainer = document.getElementById('messageContainer');
-    messageContainer.innerHTML = '';
-
-    messages.forEach(msg => {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('message');
-        messageElement.textContent = msg;
-        messageContainer.appendChild(messageElement);
-    });
-}
-
-// Fonction pour charger la liste des amis depuis amis.csv
-function chargerAmis(currentUser) {
-    fetch('csv/amis.csv')
-        .then(response => response.text())
-        .then(data => {
-            const amis = data.split('\n').map(line => line.split(',').map(item => item.trim()));
-            const userAmis = amis.filter(relation => relation.includes(currentUser));
-            const userFriends = userAmis.map(relation => (relation[0] === currentUser ? relation[1] : relation[0]));
-            afficherAmis(userFriends);
-        })
-        .catch(error => {
-            console.error('Erreur lors du chargement des amis :', error);
-        });
-}
-
-// Fonction pour afficher les amis dans le champ de recherche du destinataire
-function afficherAmis(amis) {
-    const recipientInput = document.getElementById('recipient');
-    recipientInput.addEventListener('input', debounce(function() {
-        const input = this.value.toLowerCase();
-        const suggestions = document.getElementById('suggestions');
-        suggestions.innerHTML = '';
-
-        if (input) {
-            fetch(`search_users.php?query=${encodeURIComponent(input)}`)
-                .then(response => response.json())
-                .then(filteredFriends => {
-                    suggestions.innerHTML = '';
-                    filteredFriends.forEach(friend => {
-                        const div = document.createElement('div');
-                        div.textContent = friend;
-                        div.classList.add('suggestion-item');
-                        div.addEventListener('click', function() {
-                            recipientInput.value = friend;
-                            suggestions.innerHTML = '';
-                            document.getElementById('message').disabled = false;
-                        });
-                        suggestions.appendChild(div);
-                    });
-                })
-                .catch(error => console.error('Erreur lors de la recherche des utilisateurs :', error));
-        }
-    }, 300)); // Délais de 300ms pour le debounce
-}
-
 // Fonction de debounce
 function debounce(func, wait) {
     let timeout;
@@ -105,89 +11,104 @@ function debounce(func, wait) {
     };
 }
 
-function getCurrentUser() {
-    console.log("Début de la récupération de l'utilisateur actuel...");
-    return new Promise((resolve, reject) => {
-        fetch('messegerieprofilactuel.php')
-            .then(response => response.json())
-            .then(data => {
-                console.log("Données récupérées depuis le serveur:", data);
-                if (data.pseudo) { // Utilisation de data.pseudo au lieu de data.username
-                    console.log("Utilisateur actuel récupéré avec succès:", data.pseudo);
-                    resolve(data.pseudo);
-                } else {
-                    console.log("Erreur lors de la récupération de l'utilisateur actuel.");
-                    reject('Utilisateur non connecté');
-                }
-            })
-            .catch(error => {
-                console.error("Erreur lors de la récupération de l'utilisateur actuel:", error);
-                reject(error);
-            });
+// Fonction pour charger la liste des utilisateurs inscrits
+async function chargerUtilisateursInscrits() {
+    console.log("Chargement des utilisateurs inscrits");
+
+    try {
+        const response = await fetch('csv/user.csv');
+        const data = await response.text();
+        const lignes = data.split('\n').map(ligne => ligne.split(',').map(item => item.trim()));
+        const utilisateurs = lignes.map(ligne => ligne[0]); // Récupère les utilisateurs dans la première colonne
+        return utilisateurs;
+    } catch (error) {
+        console.error('Erreur lors du chargement des utilisateurs inscrits :', error);
+        return [];
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log("Affichage des utilisateurs inscrits");
+
+    const utilisateurs = await chargerUtilisateursInscrits();
+
+    const recipientInput = document.getElementById('recipient');
+    const suggestions = document.getElementById('suggestions');
+
+    recipientInput.addEventListener('input', debounce(function() {
+        const searchTerm = recipientInput.value.trim().toLowerCase();
+        const filteredUtilisateurs = utilisateurs.filter(utilisateur =>
+            utilisateur.toLowerCase().includes(searchTerm)
+        );
+
+        if (filteredUtilisateurs.length === 0) {
+            suggestions.innerHTML = '<div>Aucun résultat trouvé</div>';
+        } else {
+            afficherSuggestionsUtilisateurs(filteredUtilisateurs);
+        }
+    }, 300)); // Délai de debounce de 300ms
+});
+
+// Fonction pour afficher les suggestions d'utilisateurs lors de la recherche
+function afficherSuggestionsUtilisateurs(utilisateurs) {
+    console.log("Affichage des suggestions d'utilisateurs :", utilisateurs);
+    const recipientInput = document.getElementById('recipient');
+    const suggestions = document.getElementById('suggestions');
+    suggestions.innerHTML = '';
+
+    utilisateurs.forEach(utilisateur => {
+        const div = document.createElement('div');
+        div.textContent = utilisateur;
+        div.classList.add('suggestion-item');
+        div.addEventListener('click', function() {
+            recipientInput.value = utilisateur;
+            suggestions.innerHTML = '';
+            document.getElementById('message').disabled = false;
+        });
+        suggestions.appendChild(div);
     });
 }
 
-// Récupérer l'utilisateur actuel et initialiser l'application
-getCurrentUser()
-    .then(currentUser => {
-        console.log("Utilisateur actuel:", currentUser);
-        // Vérifier le type d'abonnement de l'utilisateur connecté et ajuster l'interface
-        return getTypeAbonnement(currentUser).then(typeAbonnement => {
-            console.log("Type d'abonnement de l'utilisateur:", typeAbonnement);
-            if (typeAbonnement === "basic") {
-                console.log("L'utilisateur a un abonnement basique.");
-                document.getElementById('message').style.display = "none";
-                document.getElementById('sendMessageButton').style.display = "none";
-                document.getElementById('subscriptionMessage').style.display = "block";
+// Fonction pour vérifier le destinataire lors de la soumission du formulaire
+document.getElementById('newConversationForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const recipient = document.getElementById('recipient').value.trim();
+    if (recipient !== '') {
+        checkRecipient(recipient);
+    } else {
+        alert('Veuillez sélectionner un destinataire.');
+    }
+});
+
+// Fonction pour vérifier si le destinataire existe
+function checkRecipient(recipient) {
+    chargerUtilisateursInscrits()
+        .then(utilisateurs => {
+            if (utilisateurs.includes(recipient)) {
+                window.location.href = `messagerie_privee.php?recipient=${encodeURIComponent(recipient)}`;
             } else {
-                console.log("L'utilisateur a un abonnement premium.");
-                document.getElementById('message').style.display = "block";
-                document.getElementById('sendMessageButton').style.display = "block";
-                document.getElementById('subscriptionMessage').style.display = "none";
+                alert('Utilisateur introuvable.');
             }
-            return currentUser;
+        })
+        .catch(error => {
+            console.error('Erreur lors de la vérification du destinataire :', error);
+            alert('Une erreur est survenue. Veuillez réessayer.');
         });
-    })
-    .then(currentUser => {
-        console.log("Chargement de la liste des amis pour l'utilisateur:", currentUser);
-        // Charger la liste des amis une fois que la page est chargée
-        document.addEventListener('DOMContentLoaded', () => chargerAmis(currentUser));
+}
 
-        // Fonction pour gérer l'envoi de message
-        document.getElementById('newConversationForm').addEventListener('submit', (e) => {
-            e.preventDefault();
+// Fonction pour gérer l'événement lorsque l'utilisateur appuie sur la touche "Entrée"
+document.getElementById('recipient').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Empêche le comportement par défaut de la touche "Entrée" dans le formulaire
 
-            const recipient = document.getElementById('recipient').value.trim();
-            const message = document.getElementById('message').value.trim();
-
-            if (recipient === '' || message === '') {
-                alert('Tous les champs sont obligatoires.');
-                return;
-            }
-
-            fetch('send_message.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ sender: currentUser, recipient, message })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Message envoyé avec succès');
-                    document.getElementById('recipient').value = '';
-                    document.getElementById('message').value = '';
-                    document.getElementById('message').disabled = true;
-                    document.getElementById('sendMessageButton').disabled = true;
-                } else {
-                    alert('Erreur lors de l\'envoi du message.');
-                }
-            })
-            .catch(error => console.error('Erreur lors de l\'envoi du message:', error));
-        });
-    })
-    .catch(error => {
-        console.error('Erreur lors de la récupération de l\'utilisateur actuel :', error);
-    });
-
+        const recipient = this.value.trim(); // Récupère la valeur du destinataire
+        if (recipient !== '') {
+            // Redirige vers l'interface de messagerie privée avec le destinataire spécifié
+            window.location.href = `messagerie_privee.html?recipient=${encodeURIComponent(recipient)}`;
+        } else {
+            // Affiche un message d'erreur si aucun destinataire n'est spécifié
+            alert('Veuillez saisir un destinataire.');
+        }
+    }
+});
