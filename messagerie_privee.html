@@ -11,9 +11,12 @@
     <h1 id="recipientHeader"></h1>
     <div id="messageContainer"></div>
     <form id="messageForm">
+        <input type="hidden" id="senderInput" name="sender" value="expediteur">
         <textarea id="messageInput" placeholder="Entrez votre message ici..."></textarea>
         <button type="submit">Envoyer</button>
     </form>
+    
+    <p id="loggedInUser"></p>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="messagerie_privee.js"></script>
