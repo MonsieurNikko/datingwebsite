@@ -1,15 +1,15 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nouvelle Conversation</title>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="acceuilapresconnecte.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="acceuilapresconnecte.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="sidebar">
@@ -25,38 +25,29 @@
                 <li><a href="#" id="profile-container" onclick="loadProfile();">Profil</a></li>
             </ul>
         </nav>
-
-
         <div class="connexion">
             <a href="logout.php">Déconnexion</a>
         </div>
-        
     </div>
     <div id="main-content">
         <div id="publicite">
             <p>Publicité pour produit</p>
         </div>
-    <div class="container">
-        <h1>Nouvelle Conversation</h1>
-        
-        <form id="newConversationForm">
-            <label for="recipient">Destinataire :</label>
-            <input type="text" id="recipient" name="recipient" placeholder="Rechercher un utilisateur...">
-            <div id="suggestions" class="suggestions"></div>
-            
-            <!-- Champ de message masqué par défaut -->
-            <label for="message" id="messageLabel" style="display: none;">Message :</label>
-            <textarea id="message" name="message" placeholder="Entrez votre message ici..." style="display: none;"></textarea>
-            
-            <button type="submit" id="sendMessageButton" style="display: none;" disabled>Envoyer le message</button>
-
-            <p id="subscriptionMessage" style="display: none;">Souscrivez à un abonnement pour pouvoir envoyer des messages.</p>
-        </form>
+        <div class="container">
+            <h1>Nouvelle Conversation</h1>
+            <form id="newConversationForm">
+                <label for="recipient">Destinataire :</label>
+                <input type="text" id="recipient" name="recipient" placeholder="Rechercher un utilisateur...">
+                <div id="suggestions" class="suggestions"></div>
+                <!-- Champ de message masqué par défaut -->
+                <label for="message" id="messageLabel" class="hidden">Message :</label>
+                <textarea id="message" name="message" placeholder="Entrez votre message ici..." class="hidden"></textarea>
+                <button type="submit" id="sendMessageButton" class="hidden" disabled>Envoyer le message</button>
+                <p id="subscriptionMessage" class="hidden">Souscrivez à un abonnement pour pouvoir envoyer des messages.</p>
+            </form>
+        </div>
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="messagerie.js"></script>
-
-
 </body>
 </html>
