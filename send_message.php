@@ -1,35 +1,41 @@
 <?php
-// send_message.php
-header('Content-Type: application/json');
+// Démarrer la session pour récupérer le nom de l'utilisateur
+session_start();
 
-$data = json_decode(file_get_contents('php://input'), true);
-$sender = $data['sender'] ?? '';
-$recipient = $data['recipient'] ?? '';
-$message = $data['message'] ?? '';
+// Récupérer le nom de l'expéditeur à partir de la session PHP
+$sender = $_SESSION['username'] ?? '';
 
-if ($sender === '' || $recipient === '' || $message === '') {
-    echo json_encode(['success' => false, 'error' => 'Tous les champs sont obligatoires.']);
-    exit;
+// Vérifier si le nom de l'expéditeur est vide
+if (empty($sender)) {
+    // Répondre avec erreur si le nom de l'expéditeur est vide
+    echo json_encode(['success' => false, 'error' => 'Nom d\'expéditeur introuvable dans la session.']);
+    exit; // Terminer le script
 }
 
-// Déterminer le nom du fichier de conversation basé sur les utilisateurs
-$conversationFile = 'conversations/' . (strcmp($sender, $recipient) < 0 ? "$sender-$recipient.txt" : "$recipient-$sender.txt");
+// Vérifier si les données sont correctement reçues
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Récupérer les données du formulaire
+    $recipient = $_POST['recipient'] ?? '';
+    $message = $_POST['message'] ?? '';
 
-// Format du message : expediteur - destinataire - heure - date - message
-$date = new DateTime();
-$formattedMessage = sprintf(
-    "%s - %s - %s - %s - %s\n",
-    $sender,
-    $recipient,
-    $date->format('H:i:s'),
-    $date->format('Y-m-d'),
-    $message
-);
+    // Vérifier si les données sont valides
+    if ($recipient && $message) {
+        // Créer le nom du fichier de conversation
+        $conversationFile = "messages/" . $recipient . ".txt";
+        
+        // Enregistrer le message dans le fichier de conversation
+        $messageData = date('Y-m-d H:i:s') . " - " . $sender . " - " . $recipient . " - " . $message . "\n";
+        file_put_contents($conversationFile, $messageData, FILE_APPEND);
 
-// Ajouter le message au fichier de conversation
-if (file_put_contents($conversationFile, $formattedMessage, FILE_APPEND)) {
-    echo json_encode(['success' => true]);
+        // Répondre avec succès
+        echo json_encode(['success' => true]);
+    } else {
+        // Répondre avec erreur si des données sont manquantes
+        echo json_encode(['success' => false, 'error' => 'Tous les champs sont obligatoires.']);
+    }
 } else {
-    echo json_encode(['success' => false, 'error' => 'Erreur lors de l\'envoi du message.']);
+    // Répondre avec erreur si la méthode de requête est incorrecte
+    echo json_encode(['success' => false, 'error' => 'Méthode de requête non autorisée.']);
 }
 ?>
+
