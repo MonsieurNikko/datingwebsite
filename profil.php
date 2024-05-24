@@ -3,13 +3,13 @@ session_start();
 
 header('Content-Type: application/json');
 
-if (isset($_SESSION['pseudo']) && isset($_SESSION['data'])) {
+if (isset($_SESSION['pseudo']) && isset($_SESSION['data']) && isset($_SESSION['role'])) {
     // Récupérez les données de l'utilisateur
     $pseudo = $_SESSION['pseudo'];
     $data = $_SESSION['data'];
-    echo json_encode(array('pseudo' => $pseudo, 'data' => $data));
+    $role = $_SESSION['role']; // Ajout du rôle de l'utilisateur
+    echo json_encode(array('pseudo' => $pseudo, 'data' => $data, 'role' => $role));
 } else {
-    // Si l'utilisateur n'est pas connecté, retournez une réponse JSON avec un message d'erreur
     echo json_encode(array('error' => 'Utilisateur non connecté'));
 }
 ?>
