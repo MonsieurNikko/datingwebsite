@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Identifiant et mot de passe corrects, stocker les informations de l'utilisateur dans la session
                 $_SESSION['pseudo'] = $pseudo;
                 $_SESSION['data'] = $ligne; // Stocke toute la ligne du CSV
+                $_SESSION['role'] = $ligne[16];
                 echo "correct";
                 $utilisateur_trouve = true;
                 fclose($fichier);
