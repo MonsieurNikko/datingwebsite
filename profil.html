@@ -23,12 +23,13 @@
         </nav>
 
         <div class="connexion">
-          <a href="logout.php">Déconnexion</a>
-      </div>
+            <a href="admin/admin.html" id="admin">Admin</a>
+            <a href="logout.php">Déconnexion</a>
+        </div>
     </div>
 
 
-    <div id="erreurMessage"></div>
+    
     <div id="profil">
         <h1>Profil de <span id="pseudo"></span></h1>
         <img id="image" alt="Photo de profil">
@@ -55,12 +56,12 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Modifier Profil</h2>
-            <form id="modifierProfilForm">
+            <form id="modifierProfilForm" enctype="multipart/form-data>
                 <div class="section" id="section1">
                     <h1>Informations personnelles</h1>
                   
                   <div class="partie">
-                    <input type="text" id="pseudonyme" name="pseudonyme" required maxlength="26" placeholder="Pseudonyme">
+                    <input type="text" id="pseudonymeID" name="pseudonyme" required maxlength="26" placeholder="Pseudonyme">
                     <div id="messagePseudonyme"></div>
                   </div>
                   
@@ -331,15 +332,12 @@
                     <h1>Description physique</h1>
                     <div class="partie">
                         <input type="number" id="tailleInput" name="taille" min="100" max="250" placeholder="Taille (en cm)" required>
-                        <span id="tailleDebug"></span>
                     </div>
                     <div class="partie">
                         <input type="number" id="poidsInput" name="poids" min="20" max="300" placeholder="Poids (en kg)" required>
-                        <span id="poidsDebug"></span>
                     </div>
                     <div class="partie">
                         <select id="couleurCheveuxInput" name="couleur_cheveux" required>
-                            <option value="couleur_cheveux" selected disabled style="font-weight:bold;">> Sélectionnez la couleur de vos cheveux <</option>
                             <option value="noir">Noir</option>
                             <option value="brun">Brun</option>
                             <option value="auburn">Auburn</option>
@@ -349,11 +347,9 @@
                             <option value="blond">Blond</option>
                             <option value="blanc">Blanc</option>
                         </select>
-                        <span id="cheveuxDebug"></span>
                     </div>
                     <div class="partie">
                         <select id="couleurYeuxInput" name="couleur_yeux" required>
-                            <option value="couleur_yeux" selected disabled style="font-weight:bold;">> Sélectionnez la couleur de vos yeux <</option>
                             <option value="albinos">Albinos</option>
                             <option value="bleue">Bleue</option>
                             <option value="bleu-gris">Bleu-gris</option>
@@ -368,11 +364,9 @@
                             <option value="vairon">Vairon</option>
                             <option value="verte">Verte</option>
                         </select>
-                        <span id="yeuxDebug"></span>
                     </div>
                     <div class="partie">
                         <select id="interet1Input" name="hobbies">
-                            <option value="hobbies" selected disabled style="font-weight:bold;">> Sélectionnez un hobby <</option>
                             <option value="activite-caritative">Activité caritative</option>
                             <option value="animaux">Animaux</option>
                             <option value="art">Art</option>
@@ -407,11 +401,9 @@
                             <option value="voir-des-amies">Voir des amis</option>
                             <option value="voyage">Voyage</option>
                         </select>
-                        <span id="hobbiesDebug"></span>
                     </div>
                     <div class="partie">
                         <select id="sportInput" name="sports">
-                            <option value="sports" selected disabled style="font-weight:bold;">> Sélectionnez un sport <</option>
                             <option value="athletisme">Athlétisme</option>
                             <option value="automobile">Automobile</option>
                             <option value="autres">Autres</option>
@@ -451,7 +443,6 @@
                             <option value="volley_ball">Volley-ball</option>
                             <option value="yoga_meditation">Yoga/Méditation</option>
                         </select>
-                        <span id="sportDebug"></span>
                     </div>
                 </div>
                 
@@ -469,14 +460,19 @@
                         <input type="text" id="nomCompletInput" name="nom" required maxlength="50" placeholder="Véritable nom">
                     </div>
                     <div class="partie">
-                      <textarea id="adresseInput" name="adresse" required maxlength="200" placeholder="Adresse complète"></textarea>
+                        <textarea id="adresseInput" name="adresse" required maxlength="200" placeholder="Adresse complète"></textarea>
                     </div>
                     <div class="partie">
-                      <input type="password" id="motDePasseInput" name="mot_de_passe" class="champ-texte" placeholder="Mot de passe" required oninput="validatePassword()">
+                        <input type="password" id="motDePasseInput" name="mot_de_passe" class="champ-texte" placeholder="Mot de passe" required oninput="validatePassword()">
                     </div>
                     <div class="partie">
-                      <p id="password_error" style="color: red;"></p> <!-- Ajout du message d'erreur -->
+                        <input type="password" id="confirmmotdepasseInput" name="confirm_mot_de_passe" class="champ-texte" placeholder="Confirmer le mot de passe" required oninput="validatePassword()"><br>
+                        <input type="checkbox" id="showConfirmPasswordCheckbox" onchange="toggleConfirmPasswordVisibility()">
+                        <label for="showConfirmPasswordCheckbox">Afficher le mot de passe</label>
+                        <p id="password_error" style="color: red;"></p>
+                
                     </div>
+                    <div id="erreurMessage"></div>
                 <button type="submit">Enregistrer les modifications</button>
             </form>
         </div>
@@ -486,8 +482,20 @@
     <footer>
         &copy; 2024 Site de Rencontre. Tous droits réservés.
     </footer>
-
+    <script src="profil.js"></script>
     <script>
+        fetch('profil.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.role === 'admin') {
+                    document.getElementById('admin').style.display = 'block';
+                } else {
+                    document.getElementById('admin').style.display = 'none';
+                }
+            })
+            .catch(error => console.error('Erreur:', error));
+
+
     document.addEventListener("DOMContentLoaded", function() {
         function loadProfileData() {
             var xhr = new XMLHttpRequest();
@@ -520,51 +528,20 @@
                                 document.getElementById("motDePasse").innerText = data[15];
 
                                 // Peupler le formulaire de modification avec les données actuelles
+                                document.getElementById("pseudonymeID").value = data[0];
                                 document.getElementById("ageInput").value = data[1];
                                 document.getElementById("sexeInput").value = data[2];
                                 document.getElementById("dateNaissanceInput").value = data[3];
                                 document.getElementById("paysInput").value = data[4];
                                 document.getElementById("descriptionInput").value = data[5];
-const tailleInput = document.getElementById("tailleInput");
-    const poidsInput = document.getElementById("poidsInput");
-    const couleurCheveuxInput = document.getElementById("couleurCheveuxInput");
-    const couleurYeuxInput = document.getElementById("couleurYeuxInput");
-    const interet1Input = document.getElementById("interet1Input");
-    const sportInput = document.getElementById("sportInput");
-
-    if (tailleInput) {
-        tailleInput.value = data[6];
-        document.getElementById("tailleDebug").textContent = `Taille: ${data[6]}`;
-        console.log("Taille:", data[6]);
-    }
-    if (poidsInput) {
-        poidsInput.value = data[7];
-        document.getElementById("poidsDebug").textContent = `Poids: ${data[7]}`;
-        console.log("Poids:", data[7]);
-    }
-    if (couleurCheveuxInput) {
-        couleurCheveuxInput.value = data[10];
-        document.getElementById("cheveuxDebug").textContent = `Couleur Cheveux: ${data[10]}`;
-        console.log("Couleur Cheveux:", data[10]);
-    }
-    if (couleurYeuxInput) {
-        couleurYeuxInput.value = data[11];
-        document.getElementById("yeuxDebug").textContent = `Couleur Yeux: ${data[11]}`;
-        console.log("Couleur Yeux:", data[11]);
-    }
-    if (interet1Input) {
-        interet1Input.value = data[8];
-        document.getElementById("hobbiesDebug").textContent = `Hobbies: ${data[8]}`;
-        console.log("Hobbies:", data[8]);
-    }
-    if (sportInput) {
-        sportInput.value = data[9];
-        document.getElementById("sportDebug").textContent = `Sport: ${data[9]}`;
-        console.log("Sport:", data[9]);
-    }
+                                document.getElementById("tailleInput").value = data[6];
+                                document.getElementById("poidsInput").value = data[7];
+                                document.getElementById("interet1Input").value = data[8];
+                                document.getElementById("sportInput").value = data[9];
+                                document.getElementById("couleurCheveuxInput").value = data[10];
+                                document.getElementById("couleurYeuxInput").value = data[11];
                                 document.getElementById("nomCompletInput").value = data[13];
                                 document.getElementById("adresseInput").value = data[14];
-                                document.getElementById("motDePasseInput").value = data[15];
                             }
                         } catch (e) {
                             document.getElementById("erreurMessage").innerText = "Erreur de traitement des données.";
@@ -576,6 +553,7 @@ const tailleInput = document.getElementById("tailleInput");
             };
             xhr.send();
         }
+        
 
         var modal = document.getElementById("modifierProfilModal");
         var btn = document.getElementById("modifierProfilBtn");
@@ -594,29 +572,49 @@ const tailleInput = document.getElementById("tailleInput");
                 modal.style.display = "none";
             }
         };
-
         document.getElementById("modifierProfilForm").onsubmit = function(event) {
-            event.preventDefault();
-            var formData = new FormData(event.target);
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "modifier_profil.php", true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        document.getElementById("erreurMessage").innerText = xhr.responseText;
-                        modal.style.display = "none";
-                        loadProfileData(); // Recharger les données du profil après modification
-                    } else {
-                        document.getElementById("erreurMessage").innerText = "Erreur de modification du profil.";
+                event.preventDefault();
+                console.log("Formulaire de modification soumis"); // Message de débogage
+
+                var formData = new FormData(event.target);
+                console.log("Données du formulaire :", formData); // Message de débogage
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "modifprofil.php", true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        console.log("Réponse du serveur reçue"); // Message de débogage
+
+                        if (xhr.status === 200) {
+                            console.log("Statut de la requête : 200 OK"); // Message de débogage
+
+                            var response;
+                            try {
+                                response = JSON.parse(xhr.responseText);
+                            } catch (e) {
+                                console.error("Erreur lors de l'analyse de la réponse JSON :", e);
+                                return;
+                            }
+
+                            console.log("Réponse du serveur :", response); // Message de débogage
+
+                            document.getElementById("erreurMessage").innerText = response.success ? response.success : response.error;
+                            if (response.success) {
+                                console.log("Modification du profil réussie"); // Message de débogage
+
+                                modal.style.display = "none";
+                                loadProfileData(); // Recharger les données du profil après modification
+                            }
+                        } else {
+                            console.error("Erreur de modification du profil."); // Message d'erreur
+                            document.getElementById("erreurMessage").innerText = "Erreur de modification du profil.";
+                        }
                     }
-                }
+                };
+                xhr.send(formData);
             };
-            xhr.send(formData);
-        };
-
-        loadProfileData();
-    });
-
+            loadProfileData();
+});
 
     </script>
 </body>
