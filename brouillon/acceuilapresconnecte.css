@@ -7,7 +7,7 @@
 
 /* Styles généraux */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     line-height: 1.6;
     background-image: url('Backgroundraw.png');
     background-size: cover;
@@ -72,12 +72,10 @@ body {
 }
 
 .connexion {
-    display: flex; /* Utilise Flexbox pour aligner les éléments */
-    align-items: center; /* Aligne les éléments verticalement */
-    flex: 1; /* Permet à la section de s'étendre si nécessaire */
-    justify-content: flex-end; /* Place les éléments à droite */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
-
 
 .connexion a {
     text-decoration: none;
@@ -88,15 +86,13 @@ body {
 }
 
 .connexion a:hover {
-    background-color: #e5d8f0; /* Changez la couleur de fond sur hover */
-    color: #333; /* Changez la couleur du texte sur hover */
-    border-color: #666; /* Changez la couleur de la bordure sur hover */
+    background-color: #e5d8f0;
+    color: #333;
+    border-color: #666;
 }
 
-
-
 #main-content {
-    margin-left: 200px; /* Adjust to the width of the sidebar */
+    margin-left: 200px;
     flex-grow: 1;
     position: relative;
 }
@@ -104,11 +100,15 @@ body {
 #publicite {
     background-color: #f0f0f0;
     height: 50px;
-    display: flex; /* Ajout de la propriété pour utiliser flexbox */
-    align-items: center; /* Centrer verticalement le contenu */
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
+#abonner {
+    position: absolute;
+    z-index: 9999;
+}
 
 footer {
     background-color: #333;
@@ -118,7 +118,6 @@ footer {
     position: fixed;
     bottom: 0;
     text-align: center;
-
 }
 
 #tete{
@@ -137,21 +136,57 @@ footer {
     margin-left: 80px;
 }
 
-.swiper {
-    width: 55%;
+#swiper-wrapper {
+    border-radius: 60px;
+    text-align: center;
+    width: 250px; /* Largeur de la carte */
+    height: 420px; /* Hauteur de la carte */
 }
 
 .swiper-slide {
-    background-position: center;
-    background-size: cover;
+    background-color: #fff;
+    width: 250px;
+    height: 100%;
 }
 
 .swiper-slide img {
-    display: block;
-    width: 100%;
+    width: 250px;
+    height: 230px;
 }
 
-#fleche{
+.swiper-slide h2 {
+    margin: 10px 0;
+    color: #a34b97;
+    font-size: 24px;
+}
+
+.swiper-slide p {
+    color: #333;
+    padding: 0 20px;
+    font-size: 16px;
+}
+
+.card {
+    background-color: #c7d7ee;
+    padding: 10px;
+}
+
+.card button {
+    background-color: #fff5cc;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background-color: #fff0b3;
+}
+
+
+#fleche {
     display: flex;
     justify-content: space-between;
     gap: 100px;
@@ -160,19 +195,6 @@ footer {
 .swiper-button-next,
 .swiper-button-prev {
     color: #fff;
-}
-
-.interaction-buttons {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
-}
-
-.like-button,
-.dislike-button {
-    background-color: #333;
-    color: #fff;
-    border: none;
 }
 
 #container {
@@ -254,4 +276,10 @@ footer {
     border-left: 0;
     margin-left: -10px;
     margin-bottom: -20px;
+}
+
+
+#heart-icon{
+    width: 25px;
+    height: auto;
 }
