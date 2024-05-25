@@ -1,0 +1,257 @@
+/* Reset des styles par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-image: url('../images/Backgroundraw.png');
+    background-size: cover;
+    margin: 0;
+}
+
+#sidebar {
+    width: 200px;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#sidebar .logo {
+    margin-bottom: 20px;
+}
+
+#sidebar .logo img {
+    width: 100%;
+    max-width: 130px;
+    height: auto;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+    transition: transform .3s ease-in-out;
+}
+
+#sidebar .logo img:hover {
+    transform: scale(1.3);
+}
+
+#sidebar .categorie {
+    width: 100%;
+}
+
+#sidebar .categorie ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar .categorie ul li {
+    margin-bottom: 10px;
+}
+
+#sidebar .categorie ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#sidebar .categorie ul li a:hover {
+    background-color: #e5d8f0;
+    color: #333;
+}
+
+.connexion {
+    display: flex; /* Utilise Flexbox pour aligner les éléments */
+    align-items: center; /* Aligne les éléments verticalement */
+    flex: 1; /* Permet à la section de s'étendre si nécessaire */
+    justify-content: flex-end; /* Place les éléments à droite */
+}
+
+
+.connexion a {
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+.connexion a:hover {
+    background-color: #e5d8f0; /* Changez la couleur de fond sur hover */
+    color: #333; /* Changez la couleur du texte sur hover */
+    border-color: #666; /* Changez la couleur de la bordure sur hover */
+}
+
+
+
+#main-content {
+    margin-left: 200px; /* Adjust to the width of the sidebar */
+    flex-grow: 1;
+    position: relative;
+}
+
+#publicite {
+    background-color: #f0f0f0;
+    height: 50px;
+    display: flex; /* Ajout de la propriété pour utiliser flexbox */
+    align-items: center; /* Centrer verticalement le contenu */
+    justify-content: center;
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    opacity: 0.9;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+
+}
+
+#tete{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#intro {
+    height: calc(100vh - 60px); /* Adjusted for footer height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 80px;
+}
+
+.swiper {
+    width: 55%;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+}
+
+#fleche{
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff;
+}
+
+.interaction-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.like-button,
+.dislike-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+}
+
+#container {
+    display: flex;
+    align-items: center; /* Centre verticalement les enfants */
+    justify-content: center; /* Centre horizontalement les enfants */
+    height: 75vh; /* Utilise toute la hauteur de la fenêtre */
+}
+
+#container2 {
+    width: 800px;
+    height: 450px;
+    border: 5px solid white; /* Une bordure solide de 5px avec une couleur verte */
+    border-radius: 15px; /* Angles arrondis */
+    padding: 20px; /* Espacement intérieur */
+    box-shadow: 3px 3px 10px rgba(0.3, 0.3, 0.3, 0.3); /* Ombre pour un effet de profondeur */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pixelify-sans-varil {
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3));
+    width: 250px;
+    animation: typing 4s steps(30) infinite;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@keyframes typing {
+    from {
+      width: 0;
+    }
+  }
+      
+
+
+#cupid{
+    height: auto;
+    width: 300px;
+    position: relative;
+    right: 40px;
+    top: 130px;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3));
+}
+
+.speech-bubble {
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3));
+    border-color: #333;
+    position: relative;
+    background: white;
+    border-radius: .4em;
+    padding: 10px 20px;
+    max-width: 300px;
+    bottom: 150px;
+    left: 100px;
+    
+}
+
+.speech-bubble p{
+    text-align: center;
+    font-size: 18px;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top-color: white;
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -10px;
+    margin-bottom: -20px;
+}

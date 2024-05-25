@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messagerie privée</title>
+    <link rel="stylesheet" href="../CSS/style.css"> <!-- Ajoutez ici le lien vers votre feuille de style CSS -->
+</head>
+<body>
+    <h1 id="recipientHeader"></h1>
+    <div id="messageContainer"></div>
+    <form id="messageForm">
+        <input type="hidden" id="senderInput" name="sender" value="expediteur">
+        <textarea id="messageInput" placeholder="Entrez votre message ici..."></textarea>
+        <button type="submit">Envoyer</button>
+    </form>
+    
+    <p id="loggedInUser"></p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const recipient = params.get('recipient');
+
+            // Utiliser le nom d'utilisateur du destinataire pour configurer l'interface de messagerie
+            document.getElementById('recipientHeader').textContent = `Messagerie avec : ${recipient}`;
+            loadMessages(recipient);
+
+            // Écouter l'événement de soumission du formulaire
+            document.getElementById('messageForm').addEventListener('submit', sendMessage);
+        });
+
+        // Fonction pour charger les messages de la conversation avec le destinataire
+        function loadMessages(recipient) {
+            // Effectuer une requête AJAX pour récupérer les messages de la conversation
+            $.ajax({
+                url: '../PHP/messagerie_privee_recevoir.php',
+                method: 'POST',
+                dataType: 'json',
+                data: { recipient: recipient },
+                success: function(response) {
+                    displayMessages(response.messages);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Erreur lors du chargement des messages :', textStatus, errorThrown);
+                    alert('Erreur lors du chargement des messages. Veuillez réessayer.');
+                }
+            });
+        }
+
+        // Fonction pour afficher les messages dans le conteneur
+        function displayMessages(messages) {
+            const messageContainer = document.getElementById('messageContainer');
+            messageContainer.innerHTML = ''; // Efface le contenu précédent
+
+            messages.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.textContent = message.sender + ': ' + message.content;
+                messageContainer.appendChild(messageElement);
+            });
+        }
+
+        // Fonction pour envoyer un message
+        function sendMessage(event) {
+            event.preventDefault(); // Empêcher le formulaire de se soumettre normalement
+
+            const recipient = document.getElementById('recipientHeader').textContent.split(': ')[1].trim();
+            const sender = document.getElementById('senderInput').value;
+            const message = document.getElementById('messageInput').value.trim();
+
+            if (message === '') {
+                alert('Veuillez saisir un message.');
+                return;
+            }
+
+            // Effectuer une requête AJAX pour envoyer le message
+            $.ajax({
+                url: '../PHP/messagerie_privee_envoyer.php',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    sender: sender,
+                    recipient: recipient,
+                    message: message
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // Message envoyé avec succès, actualiser l'affichage des messages
+                        loadMessages(recipient);
+                        // Effacer le champ de saisie du message après l'envoi
+                        document.getElementById('messageInput').value = '';
+                    } else {
+                        alert('Erreur lors de l\'envoi du message. Veuillez réessayer.');
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Erreur lors de l\'envoi du message :', textStatus, errorThrown);
+                    alert('Erreur lors de l\'envoi du message. Veuillez réessayer.');
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
