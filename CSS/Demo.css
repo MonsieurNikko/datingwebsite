@@ -127,7 +127,7 @@ footer {
 
 /* Background */
 #backgr {
-    background-image: url('Backgroundraw.png');
+    background-image: url('../images/Backgroundraw.png');
     background-size: cover;
     background-position: center;
     min-height: 100vh;
