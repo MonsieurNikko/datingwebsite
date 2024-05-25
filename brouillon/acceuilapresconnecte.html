@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Rencontre</title>
+    <link rel="stylesheet" href="acceuilapresconnecte.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="sidebar">
+        <div class="logo">
+            <a href="acceuilapresconnecte.html"><img src="logobao.png" alt="Logo du site"></a>
+        </div>
+        <nav class="categorie">
+            <ul>
+                <li><a href="accueilapresconnecte.html">Accueil</a></li>
+                <li><a href="#">Recherche</a></li>
+                <li><a href="#">Produit</a></li>
+                <li><a href="interfacemessage.html">Messagerie</a></li>
+                <li><a href="#" id="profile-container" onclick="loadProfile();">Profil</a></li>
+            </ul>
+        </nav>
+
+
+        <div class="connexion">
+            <a href="logout.php">Déconnexion</a>
+        </div>
+        
+    </div>
+    <div id="main-content">
+        <div id="publicite">
+            <p>Publicité pour produit</p>
+        </div>
+
+        <div id="tete">
+            <h3 id="welcome-message">Bienvenue</h3>
+        </div>
+
+        <div id="container">
+            <div id="container2">
+                <div>
+                    <img src="cupid.png" id="cupid">
+                    <div class="speech-bubble">
+                        <p class="pixelify-sans-varil">Tentez une chance avec <br>ces magnifiques personnes !</p>
+                    </div>
+                </div>
+                <section id="intro">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="imagevisiteur.png" alt="Visiteur 1" />
+                                <div class="interaction-buttons">
+                                    <button class="like-button">Smash</button>
+                                    <button class="dislike-button">Pass</button>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="imagevisiteur2.png" alt="Visiteur 2" />
+                                <div class="interaction-buttons">
+                                    <button class="like-button">Smash</button>
+                                    <button class="dislike-button">Pass</button>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="imagevisiteur3.png" alt="Visiteur 3" />
+                                <div class="interaction-buttons">
+                                    <button class="like-button">Smash</button>
+                                    <button class="dislike-button">Pass</button>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="imagevisiteur4.png" alt="Visiteur 4" />
+                                <div class="interaction-buttons">
+                                    <button class="like-button">Smash</button>
+                                    <button class="dislike-button">Pass</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="fleche">
+                            <div class="swiper-button-next" role="button" aria-label="Next"></div>
+                            <div class="swiper-button-prev" role="button" aria-label="Previous"></div>
+                        </div>
+                        <div class="swiper-pagination" role="navigation" aria-label="Pagination"></div>
+                    </div>
+                </section>
+            </div>
+            
+        </div>
+        <footer>
+            &copy; 2024 Site de Rencontre. Tous droits réservés.
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            loop: true,
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 10,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        
+        // Fonction pour récupérer le pseudonyme depuis le serveur PHP via AJAX
+        function getPseudonyme() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                console.log("Ready state:", this.readyState); // Message de débogage
+                console.log("Status:", this.status); // Message de débogage
+                if (this.readyState == 4 && this.status == 200) {
+                    var pseudonyme = this.responseText;
+                    console.log("Pseudonyme reçu:", pseudonyme); // Message de débogage
+                    document.getElementById("welcome-message").innerText = 'Bienvenue ' + pseudonyme;
+                }
+            };
+            xhttp.open("GET", "connexion.php", true);
+            xhttp.send();
+        }
+
+        // Appel de la fonction pour récupérer le pseudonyme au chargement de la page
+        window.onload = getPseudonyme;
+
+        // Fonction pour charger le contenu de profil.html dans le conteneur
+        function loadProfile() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    window.location.href = "profil.html";
+                }
+            };
+            xhttp.open("GET", "profil.html", true);
+            xhttp.send();
+        }
+
+    </script>   
+</body>
+</html>

@@ -1,0 +1,83 @@
+<?php
+
+function checkPasswordStrength($password) {
+    // Vérifie si le mot de passe a une longueur minimale
+    $min_length = 8;
+    if (strlen($password) < $min_length) {
+        return "Le mot de passe est trop court. Il doit contenir au moins $min_length caractères.";
+    }
+
+    // Vérifie s'il contient des caractères spéciaux
+    if (!preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password)) {
+        return "Le mot de passe doit contenir au moins un caractère spécial.";
+    }
+
+    // Vérifie s'il contient des chiffres
+    if (!preg_match('/[0-9]/', $password)) {
+        return "Le mot de passe doit contenir au moins un chiffre.";
+    }
+
+    // Vérifie s'il contient des lettres majuscules et minuscules
+    if (!preg_match('/[A-Z]/', $password) || !preg_match('/[a-z]/', $password)) {
+        return "Le mot de passe doit contenir à la fois des lettres majuscules et minuscules.";
+    }
+
+    // Vérifie s'il ne figure pas dans une liste de mots de passe courants/faibles
+    $common_passwords = array("password", "123456", "qwerty", "abc123"); // Liste non exhaustive
+    if (in_array(strtolower($password), $common_passwords)) {
+        return "Le mot de passe est trop commun. Veuillez en choisir un autre.";
+    }
+
+    // Si toutes les conditions sont remplies, le mot de passe est considéré comme fort
+    return "Le mot de passe est fort.";
+}
+
+<?php
+
+// Fonction pour détecter et filtrer les mots injurieux
+function detectAndFilterProfanity($input) {
+    $profanity_list = array("insulte1", "insulte2", "insulte3"); // Liste de mots injurieux
+
+    $input_lower = strtolower($input);
+
+    foreach ($profanity_list as $profanity) {
+        if (strpos($input_lower, $profanity) !== false) {
+            return true; // Contient des mots injurieux
+        }
+    }
+
+    return false; // Ne contient pas de mots injurieux
+}
+
+// Exemple d'utilisation pour une conversation
+$message = "Salut, tu es un idiot!";
+if (detectAndFilterProfanity($message)) {
+    echo "Le message contient des mots injurieux. Veuillez le modifier.";
+} else {
+    echo "Le message est sûr.";
+}
+
+<?php
+
+// Fonction pour signaler un utilisateur
+function ReportUser($user_username) {
+    // Demander au signaleur la raison du signalement
+    $reason = AskReason();
+
+    // Enregistrer le signalement dans une base de données ou un système de journalisation
+    // Ici, nous allons simplement afficher un message indiquant que l'utilisateur a été signalé avec la raison
+    echo "L'utilisateur $user_username a été signalé pour la raison suivante : $reason.";
+}
+
+// Fonction pour demander la raison du signalement
+function AskReason() {
+    // Simuler une demande de raison en affichant un message
+    echo "Veuillez indiquer la raison du signalement : ";
+    // Dans une application réelle, tu pourrais implémenter une logique pour récupérer la raison du signalement depuis un formulaire ou tout autre moyen d'interaction avec l'utilisateur
+    // Pour cet exemple, nous allons simplement lire la raison à partir de l'entrée utilisateur
+    $reason = readline(); // Lecture de l'entrée utilisateur depuis la console
+    return $reason;
+}
+
+
+
