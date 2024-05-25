@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sports = $_POST['sports'];
     $couleur_cheveux = $_POST['couleur_cheveux'];
     $couleur_yeux = $_POST['couleur_yeux'];
-    $uploadDir = '../photo_profile/'; // Répertoire où stocker les fichiers téléchargés
+    $uploadDir = '../photos_profil/'; // Répertoire où stocker les fichiers téléchargés
     $extension = pathinfo($_FILES['photos']['name'], PATHINFO_EXTENSION);
     $uploadFile = $uploadDir . $pseudo . '.' . $extension;
 
