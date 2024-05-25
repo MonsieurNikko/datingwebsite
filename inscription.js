@@ -22,6 +22,23 @@ function validateForm() {
     return true; // Permettre l'envoi du formulaire si la limite n'est pas dépassée
 }
 
+// Fonction de validation de l'email
+function validateEmail(email) {
+    // Expression régulière pour vérifier la présence de "@" et "."
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+}
+
+// Ajout de l'écouteur d'événement pour la soumission du formulaire
+document.getElementById('email').addEventListener('input', function() {
+    const emailError = document.getElementById('emailError');
+    if (validateEmail(this.value)) {
+        emailError.style.display = 'none';
+    } else {
+        emailError.style.display = 'block';
+    }
+});
+
 function displaySelectedPhotos() {
     var selectedPhotosDiv = document.getElementById('selected-photos');
     selectedPhotosDiv.innerHTML = ''; // Clear previous selected photos
@@ -126,6 +143,13 @@ function nextSection() {
         // Si la date de naissance n'est pas saisie, afficher un message et arrêter la fonction
         alert("Veuillez saisir votre date de naissance.");
         return;
+    }
+
+    // Valider l'email
+    var email = document.getElementById("email").value;
+    if (!validateEmail(email)) {
+        alert("Veuillez saisir une adresse email valide.");
+        return; // Arrêter la fonction si l'email n'est pas valide
     }
 
     // Valide le formulaire avant de passer à la section suivante
