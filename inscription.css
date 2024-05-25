@@ -183,6 +183,12 @@ input[type="date"] {
     border-radius: 5px; /* Ajout de courbure aux coins */
     border: 1px solid #ccc; /* Bordure légère */
 }
+input[type="email"] {
+    width: 100%; /* Remplissage complet du contenant */
+    padding: 8px; /* Espacement interne */
+    border-radius: 5px; /* Ajout de courbure aux coins */
+    border: 1px solid #ccc; /* Bordure légère */
+}
 
 button {
     width: 100%; /* Remplissage complet du contenant */
