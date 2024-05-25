@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Utilisateur</title>
+    <link rel="stylesheet" href="autreprofil.css">
+</head>
+<body>
+    <div id="sidebar">
+        <div class="logo">
+            <a href="../acceuilapresconnecte.html"><img src="../logobao.png" alt="Logo du site"></a>
+        </div>
+        <nav class="categorie">
+            <ul>
+                <li><a href="../acceuilapresconnecte.html">Accueil</a></li>
+                <li><a href="#">Recherche</a></li>
+                <li><a href="#">Produit</a></li>
+                <li><a href="#">Messagerie</a></li>
+                <li><a href="#">Profil</a></li>
+            </ul>
+        </nav>
+
+        <div class="connexion">
+            <a href="../logout.php">Déconnexion</a>
+        </div>
+    </div>
+
+
+    
+    <div id="profil">
+        <h1>Profil de <span id="pseudo"></span></h1>
+        <img id="image" src="" alt="Photo de profil">
+        <p>Age : <span id="age"></span></p>
+        <p>Sexe : <span id="sexe"></span></p>
+        <p>Date de naissance : <span id="dateNaissance"></span></p>
+        <p>Pays : <span id="pays"></span></p>
+        <p>Description de la situation : <span id="description"></span></p>
+        <p>Taille : <span id="taille"></span></p>
+        <p>Poids : <span id="poids"></span></p>
+        <p>Intérêt 1 : <span id="interet1"></span></p>
+        <p>Sport : <span id="sport"></span></p>
+        <p>Couleur des cheveux : <span id="couleurCheveux"></span></p>
+        <p>Couleur des yeux : <span id="couleurYeux"></span></p>
+
+        <div id="Prive">
+            <h2>Informations privées</h2>
+            <p>Nom complet : <span id="nomComplet"></span></p>
+            <p>Adresse : <span id="adresse"></span></p>
+        </div>
+        
+    </div>
+    <footer>
+        &copy; 2024 Site de Rencontre. Tous droits réservés.
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupérer les données de l'utilisateur du sessionStorage
+            var userProfile = sessionStorage.getItem('userProfile');
+
+            if (userProfile) {
+                var user = JSON.parse(userProfile);
+
+                // Remplir les informations du profil
+                document.getElementById('pseudo').innerText = user.pseudo;
+                document.getElementById('image').src = '../' + user.imagePath;
+                document.getElementById('image').alt = "Photo de profil de " + user.pseudo;
+                document.getElementById('age').innerText = user.age;
+                document.getElementById('sexe').innerText = user.sexe;
+                document.getElementById('dateNaissance').innerText = user.dateNaissance;
+                document.getElementById('pays').innerText = user.pays;
+                document.getElementById('description').innerText = user.description;
+                document.getElementById('taille').innerText = user.taille;
+                document.getElementById('poids').innerText = user.poids;
+                document.getElementById('interet1').innerText = user.interet1;
+                document.getElementById('sport').innerText = user.sport;
+                document.getElementById('couleurCheveux').innerText = user.couleurCheveux;
+                document.getElementById('couleurYeux').innerText = user.couleurYeux;
+
+                // Effectuer une autre requête AJAX pour obtenir le rôle de l'utilisateur actuel
+                var roleXhr = new XMLHttpRequest();
+                roleXhr.open('GET', 'roleactuel.php', true);
+
+                roleXhr.onload = function() {
+                    if (roleXhr.status === 200) {
+                        var userRole = roleXhr.responseText;
+
+                        // Afficher le rôle actuel de l'utilisateur dans la console
+                        console.log('Rôle actuel de l\'utilisateur:', userRole);
+
+                        // Si le rôle de l'utilisateur est 'premium' ou 'admin', afficher la partie privée
+                        if (userRole === 'premium' || userRole === 'admin') {
+                            document.getElementById('nomComplet').innerText = user.nom;
+                            document.getElementById('adresse').innerText = user.adresse;
+                            document.getElementById('Prive').style.display = 'block'; // Afficher la section privée
+                        } else {
+                            document.getElementById('Prive').style.display = 'none'; // Cacher la section privée
+                        }
+                    } else {
+                        console.error('Erreur de chargement du rôle utilisateur:', roleXhr.statusText);
+                    }
+                };
+
+                roleXhr.onerror = function() {
+                    console.error('Erreur de requête AJAX pour obtenir le rôle utilisateur');
+                };
+
+                roleXhr.send();
+            } else {
+                window.location.href = '../acceuilapresconnecte.html';
+            }
+        });
+
+    </script>
+    
+</body>
+</html>
