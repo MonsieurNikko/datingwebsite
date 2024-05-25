@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site de Rencontre</title>
     <link rel="stylesheet" href="acceuilapresconnecte.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
@@ -20,27 +21,21 @@
             <ul>
                 <li><a href="accueilapresconnecte.html">Accueil</a></li>
                 <li><a href="#">Recherche</a></li>
-                <li><a href="#">Produit</a></li>
-                <li><a href="interfacemessage.html">Messagerie</a></li>
-                <li><a href="#" id="profile-container" onclick="loadProfile();">Profil</a></li>
+                <li><a href="abo.html">Produit</a></li>
+                <li><a href="#">Messagerie</a></li>
+                <li><a href="#" id="profile-link">Profil</a></li>
             </ul>
         </nav>
-
 
         <div class="connexion">
             <a href="logout.php">Déconnexion</a>
         </div>
-        
     </div>
     <div id="main-content">
-        <div id="publicite">
-            <p>Publicité pour produit</p>
-        </div>
-
+        <div id="publicite"></div>
         <div id="tete">
             <h3 id="welcome-message">Bienvenue</h3>
         </div>
-
         <div id="container">
             <div id="container2">
                 <div>
@@ -51,94 +46,35 @@
                 </div>
                 <section id="intro">
                     <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="imagevisiteur.png" alt="Visiteur 1" />
-                                <div class="interaction-buttons">
-                                    <button class="like-button">Smash</button>
-                                    <button class="dislike-button">Pass</button>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="imagevisiteur2.png" alt="Visiteur 2" />
-                                <div class="interaction-buttons">
-                                    <button class="like-button">Smash</button>
-                                    <button class="dislike-button">Pass</button>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="imagevisiteur3.png" alt="Visiteur 3" />
-                                <div class="interaction-buttons">
-                                    <button class="like-button">Smash</button>
-                                    <button class="dislike-button">Pass</button>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="imagevisiteur4.png" alt="Visiteur 4" />
-                                <div class="interaction-buttons">
-                                    <button class="like-button">Smash</button>
-                                    <button class="dislike-button">Pass</button>
-                                </div>
-                            </div>
+                        <div class="swiper-wrapper" id="swiper-wrapper">
                         </div>
                         <div id="fleche">
                             <div class="swiper-button-next" role="button" aria-label="Next"></div>
                             <div class="swiper-button-prev" role="button" aria-label="Previous"></div>
                         </div>
-                        <div class="swiper-pagination" role="navigation" aria-label="Pagination"></div>
                     </div>
                 </section>
             </div>
-            
         </div>
         <footer>
             &copy; 2024 Site de Rencontre. Tous droits réservés.
         </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-        var swiper = new Swiper(".mySwiper", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: "auto",
-            loop: true,
-            coverflowEffect: {
-                rotate: 50,
-                stretch: 0,
-                depth: 10,
-                modifier: 1,
-                slideShadows: true,
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-        });
 
-        
         // Fonction pour récupérer le pseudonyme depuis le serveur PHP via AJAX
         function getPseudonyme() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
-                console.log("Ready state:", this.readyState); // Message de débogage
-                console.log("Status:", this.status); // Message de débogage
                 if (this.readyState == 4 && this.status == 200) {
                     var pseudonyme = this.responseText;
-                    console.log("Pseudonyme reçu:", pseudonyme); // Message de débogage
                     document.getElementById("welcome-message").innerText = 'Bienvenue ' + pseudonyme;
                 }
             };
             xhttp.open("GET", "connexion.php", true);
             xhttp.send();
         }
-
-        // Appel de la fonction pour récupérer le pseudonyme au chargement de la page
-        window.onload = getPseudonyme;
 
         // Fonction pour charger le contenu de profil.html dans le conteneur
         function loadProfile() {
@@ -152,6 +88,124 @@
             xhttp.send();
         }
 
-    </script>   
+        function chargerContenu() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'verifie_role.php', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    var publicite = document.getElementById('publicite');
+                    if (response.role === 'basic') {
+                        publicite.innerHTML = '<p>Envie de bénéficiez de tous les avantages du Premium ?<a href="abo.html" id="abonner">S\'abonner</a></p>';
+                    } else if (response.role === 'premium') {
+                        publicite.innerHTML = '<p>Vous avez tous les avantages de Premium !</p>';
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        function generateProfileCard(pseudo, firstName, age, hobbies, sports, imagePath) {
+            // Assurez-vous que hobbies et sports sont des tableaux
+            hobbies = Array.isArray(hobbies) ? hobbies : [];
+            sports = Array.isArray(sports) ? sports : [];
+
+            var hobbiesHtml = hobbies.map(hobby => `<button>${hobby}</button>`).join('');
+            var sportsHtml = sports.map(sport => `<button>${sport}</button>`).join('');
+            
+            var profileCardHtml = `
+            <div class="swiper-slide profile-card" data-pseudo="${pseudo}">
+                <img src="${imagePath}" alt="Profile Picture">
+                <h2>${pseudo}, ${age} <img src="heart.png" id="heart-icon" data-pseudo="${pseudo}"></h2>
+                <p>Ready to meet my match.</p>
+                <div class="card">
+                    ${hobbiesHtml}
+                    ${sportsHtml}
+                </div>
+            </div>`;
+            
+            return profileCardHtml;
+        }
+
+        function setupHeartClickEvent() {
+            document.querySelectorAll('#heart-icon').forEach(function(heart) {
+                heart.addEventListener('click', function(event) {
+                    var userPseudo = event.target.getAttribute('data-pseudo');
+                    console.log('Pseudo:', userPseudo); // Vérifier le pseudo extrait
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'autreprofil/autreprofil.php', true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                    // Ajout de messages de débogage pour suivre le processus de la requête
+                    xhr.onreadystatechange = function() {
+                        console.log('ReadyState:', xhr.readyState); // État de la requête
+                        console.log('Status:', xhr.status); // Statut de la requête
+                        if (xhr.readyState === 4) {
+                            console.log('Response:', xhr.responseText); // Afficher la réponse du serveur
+                            if (xhr.status === 200) {
+                                var userData = JSON.parse(xhr.responseText);
+                                console.log('User Data:', userData); // Afficher les données de l'utilisateur
+                                sessionStorage.setItem('userProfile', JSON.stringify(userData));
+                                window.location.href = 'autreprofil/autreprofil.html';
+                            } else {
+                                console.error('Error:', xhr.statusText); // Afficher l'erreur en cas de statut différent de 200
+                            }
+                        }
+                    };
+
+                    // Vérifier les données envoyées dans la requête
+                    var requestData = 'pseudo=' + encodeURIComponent(userPseudo);
+                    console.log('Request Data:', requestData);
+
+                    xhr.send(requestData);
+                });
+            });
+        }
+
+
+
+
+        function fetchData() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var userData = JSON.parse(xhr.responseText);
+                        var profileCardsHtml = userData.map(user => generateProfileCard(user.pseudo, user.firstName, user.age, user.hobbies, user.sports, user.imagePath)).join('');
+                        document.getElementById('swiper-wrapper').innerHTML = profileCardsHtml;
+                        setupHeartClickEvent(); // Configurer les événements de clic sur les icônes de cœur
+                    } else {
+                        console.error('Error:', xhr.statusText);
+                    }
+                }
+            };
+            xhr.open('GET', 'acceuilapresconnecte.php', true);
+            xhr.send();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            getPseudonyme();
+            chargerContenu();
+            fetchData();
+
+            var swiper = new Swiper('.mySwiper', {
+                slidesPerView: 'auto',
+                spaceBetween: 10,
+                loop: true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+        });
+
+
+        document.getElementById('profile-link').addEventListener('click', loadProfile);
+    </script>
 </body>
 </html>
