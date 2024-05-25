@@ -1,7 +1,7 @@
 $(document).ready(function() {
     function updateUsername() {
         $.ajax({
-            url: 'check_login.php',
+            url: '../PHP/check_login.php',
             method: 'GET',
             dataType: 'json',
             success: function(response) {
@@ -43,7 +43,7 @@ async function chargerUtilisateursInscrits() {
     console.log("Chargement des utilisateurs inscrits");
 
     try {
-        const response = await fetch('csv/user.csv');
+        const response = await fetch('../csv/user.csv');
         const data = await response.text();
         const lignes = data.split('\n').map(ligne => ligne.split(',').map(item => item.trim()));
         utilisateurs = lignes.map(ligne => ligne[0]); // Mettre à jour la variable utilisateurs avec les données récupérées
