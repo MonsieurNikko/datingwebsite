@@ -1,6 +1,6 @@
 // Fonction pour récupérer le nom d'utilisateur connecté via AJAX
 function getLoggedInUser() {
-    $.get('../PHP/get_logged_in_user.php', function(data) {
+    $.get('../PHP/check_login.php', function(data) {
         $('#loggedInUser').text('Connecté en tant que : ' + data.username);
     });
 }
