@@ -8,7 +8,8 @@ $response = array();
 if (isset($_SESSION['pseudo'])) {
     $response['status'] = 'success';
     $response['username'] = $_SESSION['pseudo'];
-} else {
+} 
+else {
     $response['status'] = 'error';
     $response['message'] = 'User not logged in';
 }
