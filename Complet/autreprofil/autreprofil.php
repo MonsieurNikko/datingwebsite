@@ -48,15 +48,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pseudo'])) {
         // Envoyer les données de profil au format JSON
         header('Content-Type: application/json');
         echo json_encode($userData);
-    } else {
+    } 
+    else {
         // Envoyer une réponse 404 si l'utilisateur n'est pas trouvé
         http_response_code(404);
         echo json_encode(['message' => 'User not found']);
     }
-} else {
+} 
+else {
     // Envoyer une réponse 400 si la requête est incorrecte ou si le pseudo est manquant
     http_response_code(400);
     echo json_encode(['message' => 'Invalid request']);
 }
 ?>
-
