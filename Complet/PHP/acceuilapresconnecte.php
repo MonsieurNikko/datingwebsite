@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$csvFile = 'csv/user.csv';
+$csvFile = '../csv/user.csv';
 $users = [];
 
 if (($fichier = fopen($csvFile, 'r')) !== false) {
