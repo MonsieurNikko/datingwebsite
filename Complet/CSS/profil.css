@@ -342,8 +342,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin-right: 20vh;
-    
+
 }
 
 .footer-section {
@@ -369,3 +368,4 @@ footer {
 .footer-section img {
     border: none;
 }
+
