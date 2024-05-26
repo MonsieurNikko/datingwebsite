@@ -53,7 +53,8 @@ function detectAndFilterProfanity($input) {
 $message = "Salut, tu es un idiot!";
 if (detectAndFilterProfanity($message)) {
     echo "Le message contient des mots injurieux. Veuillez le modifier.";
-} else {
+} 
+else {
     echo "Le message est sûr.";
 }
 
@@ -78,6 +79,3 @@ function AskReason() {
     $reason = readline(); // Lecture de l'entrée utilisateur depuis la console
     return $reason;
 }
-
-
-
