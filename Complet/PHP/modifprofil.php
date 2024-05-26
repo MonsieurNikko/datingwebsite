@@ -17,7 +17,8 @@ function updateCsv($filename, $pseudo, $newData) {
                 $line[$i] = $newData[$i];
             }
             $updatedContent[] = $line;
-        } else {
+        } 
+        else {
             $updatedContent[] = $line;
         }
 
@@ -84,7 +85,8 @@ if (isset($_SESSION['pseudo'])) {
 
             if (move_uploaded_file($_FILES['photos']['tmp_name'], $uploadFile)) {
                 $newData[12] = $uploadFile;
-            } else {
+            } 
+            else {
                 echo json_encode(['error' => 'Une erreur s\'est produite lors du téléchargement de l\'image.']);
                 exit;
             }
@@ -97,11 +99,13 @@ if (isset($_SESSION['pseudo'])) {
 
     if (isset($result['error'])) {
         echo json_encode(['error' => $result['error']]);
-    } else {
+    } 
+    else {
         $_SESSION['pseudo'] = $_POST['pseudonyme'];
         echo json_encode(['success' => $result['success']]);
     }
-} else {
+} 
+else {
     echo json_encode(['error' => 'Utilisateur non connecté']);
 }
 ?>
