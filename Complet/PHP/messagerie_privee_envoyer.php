@@ -18,10 +18,10 @@ if (empty($message)) {
     exit();
 }
 
-// Formatte l'heure et la date actuelles
+// Formate l'heure et la date actuelles
 $time = date('H:i:s d-m-Y');
 
-// Formatte le message avec l'heure, l'expéditeur et le contenu
+// Formate le message avec l'heure, l'expéditeur et le contenu
 $formattedMessage = $time . '|' . $sender . '|' . $message . PHP_EOL;
 
 // Stocke le message dans un fichier
@@ -32,5 +32,3 @@ file_put_contents($filePath, $formattedMessage, FILE_APPEND | LOCK_EX);
 
 echo json_encode(['success' => true]);
 ?>
-
-
