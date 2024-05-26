@@ -20,7 +20,7 @@ header {
     flex-wrap: nowrap;
     position: fixed;
     width: 100%; /* Assure que le header prend toute la largeur de la fenêtre */
-    top: 0; /* Positionne le header en haut de la fenêtre */
+    top: 0; 
 }
 
 .hidden {
@@ -32,8 +32,8 @@ header {
 /* Styles pour les éléments du header */
 .categorie,
 .connexion {
-    display: flex; /* Utilisez flexbox pour les éléments */
-    align-items: center; /* Aligne les éléments verticalement */
+    display: flex; 
+    align-items: center; 
 }
 
 header > div {
@@ -45,8 +45,8 @@ header > div {
 
 /* Configuration de la section catégorie */
 .categorie {
-    display: flex; /* Utilise Flexbox pour aligner les éléments */
-    align-items: center; /* Aligne les éléments verticalement */
+    display: flex; 
+    align-items: center; 
     flex: 1; /* Permet à la section de s'étendre si nécessaire */
 }
 
@@ -65,21 +65,21 @@ header > div {
     text-decoration: none;
     color: #333;
     height: 50px; /* Hauteur de l'élément égale à 100% de la hauteur du parent (header) */
-    display: flex; /* Utilisez flex pour aligner le texte et la bordure */
+    display: flex; 
     align-items: center; /* Aligne le texte verticalement au centre */
-    padding: 0 10px; /* Ajustez les marges intérieures */
+    padding: 0 10px; 
 }
 
 .categorie ul li a:hover {
-    background-color: #e5d8f0; /* Changez la couleur de fond du rectangle sur hover */
-    color: #333; /* Couleur de texte sur hover */
+    background-color: #e5d8f0; 
+    color: #333; 
     border: none; /* Vous pouvez changer la couleur de la bordure sur hover */
 }
 
 
 .logo img {
     width: 100%; /* La largeur de l'image s'ajuste à la taille de l'écran */
-    max-width: 130px; /* Largeur maximale de l'image */
+    max-width: 130px; 
     height: auto; /* Maintient les proportions de l'image */
     position: absolute;
     left: 47%; /* Positionne le logo au milieu de l'en-tête */
@@ -99,9 +99,9 @@ header > div {
 }
 
 .connexion {
-    display: flex; /* Utilise Flexbox pour aligner les éléments */
-    align-items: center; /* Aligne les éléments verticalement */
-    flex: 1; /* Permet à la section de s'étendre si nécessaire */
+    display: flex; 
+    align-items: center;
+    flex: 1; 
     justify-content: flex-end; /* Place les éléments à droite */
 }
 
@@ -115,8 +115,8 @@ header > div {
 }
 
 .connexion a:hover {
-    background-color: #e5d8f0; /* Changez la couleur de fond sur hover */
-    color: #333; /* Changez la couleur du texte sur hover */
+    background-color: #e5d8f0; 
+    color: #333; 
     border-color: #666; /* Changez la couleur de la bordure sur hover */
 }
 
@@ -143,9 +143,9 @@ h1{
     background-size: cover;
     background-position: center;
     min-height: 100vh;
-    display: flex; /* Ajoutez cette ligne */
-    justify-content: center; /* Ajoutez cette ligne */
-    align-items: center; /* Ajoutez cette ligne */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
 }
 
 
@@ -155,12 +155,12 @@ h1{
 }
 
 .form {
-    padding: 20px; /* Internal padding */
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Slight shadow */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
     text-align: center;
-    margin: auto; /* Center the form within the container */
+    margin: auto; 
     
 }
 
@@ -170,7 +170,7 @@ h1{
 }
 
 label {
-    display: block; /* Affichage en bloc pour les labels */
+    display: block; 
     margin-bottom: 5px; /* Espacement inférieur pour les labels */
 }
 
@@ -179,29 +179,29 @@ input[type="number"],
 select,
 input[type="date"] {
     width: 100%; /* Remplissage complet du contenant */
-    padding: 8px; /* Espacement interne */
-    border-radius: 5px; /* Ajout de courbure aux coins */
+    padding: 8px; 
+    border-radius: 5px; 
     border: 1px solid #ccc; /* Bordure légère */
 }
 input[type="email"] {
-    width: 100%; /* Remplissage complet du contenant */
-    padding: 8px; /* Espacement interne */
+    width: 100%; 
+    padding: 8px; 
     border-radius: 5px; /* Ajout de courbure aux coins */
-    border: 1px solid #ccc; /* Bordure légère */
+    border: 1px solid #ccc; 
 }
 
 button {
-    width: 100%; /* Remplissage complet du contenant */
-    padding: 10px; /* Espacement interne */
+    width: 100%; 
+    padding: 10px;
     background-color: #333; /* Couleur de fond */
-    color: #fff; /* Couleur du texte */
+    color: #fff; 
     border: none; /* Suppression de la bordure */
-    border-radius: 5px; /* Ajout de courbure aux coins */
+    border-radius: 5px; 
     cursor: pointer; /* Curseur adapté */
 }
 
 button:hover {
-    background-color: #555; /* Changement de couleur de fond au survol */
+    background-color: #555;
 }
 
 .partie {
@@ -230,23 +230,21 @@ button:hover {
     font-size: 12px;
 }
 
-/* Dans votre fichier CSS (inscription.css) */
-
 .selected-photo {
     max-width: 100%; /* Pour que les images ne dépassent pas la largeur du cadre */
     max-height: 100px; /* Définir la hauteur maximale des images */
-    margin-bottom: 10px; /* Ajouter un espacement entre les images */
+    margin-bottom: 10px;
 }
 
 
 input[type="text"],
 input[type="password"] {
-    padding: 10px; /* Espacement interne */
-    font-size: 16px; /* Taille de la police */
+    padding: 10px; 
+    font-size: 16px;
     border: 1px solid #ccc; /* Bordure grise */
-    border-radius: 5px; /* Coins arrondis */
+    border-radius: 5px; 
     box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
-    width: 100%; /* Largeur de 100% du conteneur parent */
+    width: 100%; 
     margin-bottom: 10px; /* Espacement entre les champs de saisie */
 }
 
