@@ -29,13 +29,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Répondre avec succès
         echo json_encode(['success' => true]);
-    } else {
+    } 
+    else {
         // Répondre avec erreur si des données sont manquantes
         echo json_encode(['success' => false, 'error' => 'Tous les champs sont obligatoires.']);
     }
-} else {
+} 
+else {
     // Répondre avec erreur si la méthode de requête est incorrecte
     echo json_encode(['success' => false, 'error' => 'Méthode de requête non autorisée.']);
 }
 ?>
-
