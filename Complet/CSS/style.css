@@ -32,7 +32,7 @@ header {
 /* Styles pour les éléments du header */
 .categorie,
 .connexion {
-    display: flex; /* Utilisez flexbox pour les éléments */
+    display: flex; 
     align-items: center; /* Aligne les éléments verticalement */
 }
 
@@ -45,8 +45,8 @@ header > div {
 
 /* Configuration de la section catégorie */
 .categorie {
-    display: flex; /* Utilise Flexbox pour aligner les éléments */
-    align-items: center; /* Aligne les éléments verticalement */
+    display: flex; 
+    align-items: center; 
     flex: 1; /* Permet à la section de s'étendre si nécessaire */
 }
 
@@ -65,21 +65,20 @@ header > div {
     text-decoration: none;
     color: #333;
     height: 50px; /* Hauteur de l'élément égale à 100% de la hauteur du parent (header) */
-    display: flex; /* Utilisez flex pour aligner le texte et la bordure */
+    display: flex; 
     align-items: center; /* Aligne le texte verticalement au centre */
-    padding: 0 10px; /* Ajustez les marges intérieures */
+    padding: 0 10px;
 }
 
 .categorie ul li a:hover {
-    background-color: #e5d8f0; /* Changez la couleur de fond du rectangle sur hover */
+    background-color: #e5d8f0; 
     color: #333; /* Couleur de texte sur hover */
-    border: none; /* Vous pouvez changer la couleur de la bordure sur hover */
+    border: none; 
 }
-
 
 .logo img {
     width: 100%; /* La largeur de l'image s'ajuste à la taille de l'écran */
-    max-width: 130px; /* Largeur maximale de l'image */
+    max-width: 130px; 
     height: auto; /* Maintient les proportions de l'image */
     position: absolute;
     left: 46%; /* Positionne le logo au milieu de l'en-tête */
@@ -87,6 +86,7 @@ header > div {
     top: -15px;
     filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
 }
+
 .logo img {
 	-webkit-transform: scale(1);
 	transform: scale(1);
@@ -110,12 +110,11 @@ footer {
 }
 
 .connexion {
-    display: flex; /* Utilise Flexbox pour aligner les éléments */
-    align-items: center; /* Aligne les éléments verticalement */
+    display: flex; 
+    align-items: center; 
     flex: 1; /* Permet à la section de s'étendre si nécessaire */
     justify-content: flex-end; /* Place les éléments à droite */
 }
-
 
 .connexion a {
     text-decoration: none;
@@ -126,30 +125,25 @@ footer {
 }
 
 .connexion a:hover {
-    background-color: #e5d8f0; /* Changez la couleur de fond sur hover */
-    color: #333; /* Changez la couleur du texte sur hover */
-    border-color: #666; /* Changez la couleur de la bordure sur hover */
+    background-color: #e5d8f0; 
+    color: #333; 
+    border-color: #666; 
 }
-
 
 .backgr {
     background-image: url('../images/Backgroundraw.png');
     background-size: cover; /* Ajuste l'image pour couvrir l'ensemble de l'écran */
     margin: 0; /* Retire les marges par défaut */
 }
-
-
   
-
 /* Configuration de la section d'accueil */
 #accueil {
-    display: flex; /* Active flexbox pour la section */
+    display: flex; 
     justify-content: center; /* Centre horizontalement le contenu */
-    align-items: center; /* Centre verticalement le contenu */
-    text-align: center; /* Centre le texte */
+    align-items: center; 
+    text-align: center;
     height: 100vh; /* Utilise toute la hauteur de la fenêtre pour l'accueil */
 }
-
 
 .title-word {
     animation: color-animation 4s linear infinite;
@@ -189,8 +183,6 @@ footer {
     100%  {color: var(--color-1)}
   }
   
-  /* Here are just some visual styles. 🖌 */
-  
   .container {
     display: grid;
     place-items: center;  
@@ -203,7 +195,6 @@ footer {
     font-size: 40px;
     text-transform: uppercase;
   }
-
 
 #accueil h2{
     text-shadow: 0.1em 0.1em 0.2em rgb(71, 68, 68);
@@ -226,7 +217,6 @@ footer {
     transition: background-color 0.3s;
 
 }
-
 
 .cta-button:hover {
     background-color: #e74c3c;
@@ -274,21 +264,16 @@ section{
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-
 #boutons {
     display: inline-flex;
     gap: 3px;
 }
-
-
-
 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
-
 
 h2 {
     margin-top: 0;
@@ -383,14 +368,13 @@ footer {
     margin-right: 10px;
 }
 
-
 .form {
-    padding: 20px; /* Internal padding */
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Slight shadow */
+    padding: 20px; 
+    background-color: rgba(255, 255, 255, 0.9); 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
     text-align: center;
-    margin: auto; /* Center the form within the container */
+    margin: auto; 
     
 }
 
@@ -408,18 +392,18 @@ input[type="number"],
 select,
 input[type="date"] {
     width: 100%; /* Remplissage complet du contenant */
-    padding: 8px; /* Espacement interne */
-    border-radius: 5px; /* Ajout de courbure aux coins */
+    padding: 8px; 
+    border-radius: 5px; 
     border: 1px solid #ccc; /* Bordure légère */
 }
 
 button[type="submit"] {
-    width: 100%; /* Remplissage complet du contenant */
+    width: 100%; 
     padding: 10px; /* Espacement interne */
     background-color: #333; /* Couleur de fond */
-    color: #fff; /* Couleur du texte */
+    color: #fff; 
     border: none; /* Suppression de la bordure */
-    border-radius: 5px; /* Ajout de courbure aux coins */
+    border-radius: 5px; 
     cursor: pointer; /* Curseur adapté */
 }
 
@@ -453,26 +437,22 @@ button[type="submit"]:hover {
     font-size: 12px;
 }
 
-/* Dans votre fichier CSS (inscription.css) */
-
 .selected-photo {
     max-width: 100%; /* Pour que les images ne dépassent pas la largeur du cadre */
     max-height: 100px; /* Définir la hauteur maximale des images */
-    margin-bottom: 10px; /* Ajouter un espacement entre les images */
+    margin-bottom: 10px; 
 }
-
 
 input[type="text"],
 input[type="password"] {
-    padding: 10px; /* Espacement interne */
+    padding: 10px; 
     font-size: 16px; /* Taille de la police */
-    border: 1px solid #ccc; /* Bordure grise */
-    border-radius: 5px; /* Coins arrondis */
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
     box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
     width: 100%; /* Largeur de 100% du conteneur parent */
     margin-bottom: 10px; /* Espacement entre les champs de saisie */
 }
-
 
 .overlay-active {
     overflow: hidden; /* Empêche le défilement de la page */
@@ -505,7 +485,6 @@ input[type="password"] {
 .partie textarea::placeholder {
     color: #999; /* Couleur du texte de l'indication de saisie */
 }
-
 
 #connexionform {
     position: fixed;
