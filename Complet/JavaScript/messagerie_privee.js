@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('recipient-display').textContent = `Messagerie avec : ${recipient}`;
 });
 
+
         document.addEventListener('DOMContentLoaded', () => {
             // Récupérer le paramètre 'recipient' de l'URL
             const params = new URLSearchParams(window.location.search);
@@ -119,8 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             messageCount++;
                             localStorage.setItem('messageCount', messageCount);
                         }
-                    } 
-                    else {
+                    } else {
                         alert('Erreur lors de l\'envoi du message. Veuillez réessayer.');
                     }
                 },
@@ -130,3 +130,4 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+
