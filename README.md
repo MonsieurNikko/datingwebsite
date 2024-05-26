@@ -54,6 +54,15 @@ Le site propose plusieurs types d'utilisateurs avec des accès différenciés : 
   - **Réponses JSON** : Les scripts PHP envoient des réponses au format JSON pour une intégration facile avec les appels AJAX.
   - **Manipulation de fichiers** : Utilisation de `fputcsv()` et `fgetcsv()` pour gérer les fichiers CSV et `file_get_contents()` et `file_put_contents()` pour les fichiers TXT.
 
+## Partie administrateur
+Pour avoir accès au compte admin, accédez à ces 4 comptes : 
+- admin
+- admin2
+- admin3
+- admin4
+Mot de passe commun :
+Azerty12345!
+
 ## Dépôt GitHub
 Le projet est hébergé sur un dépôt GitHub où des commits réguliers sont effectués pour suivre l'évolution du développement. Les commits incluent des modifications de code, des ajouts de fonctionnalités et des corrections de bugs, garantissant une trace complète du développement.
 
