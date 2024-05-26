@@ -43,3 +43,41 @@ body {
     color: red;
     margin-top: 10px;
 }
+
+footer {
+    background-color: #000;
+    color: white;
+    margin-top: auto;
+    margin-left: 200px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+.footer-section {
+    flex: 1;
+    padding: 10px;
+}
+
+.footer-section h4 {
+    color: white;
+}
+
+.footer-section p, .footer-section a {
+    margin: 5px 0;
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer-section img {
+    border: none;
+}
