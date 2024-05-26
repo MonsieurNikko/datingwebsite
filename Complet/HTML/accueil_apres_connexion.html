@@ -128,7 +128,8 @@
                     var publicite = document.getElementById('publicite');
                     if (response.role === 'basic') {
                         publicite.innerHTML = '<p>Envie de bénéficiez de tous les avantages du Premium ?<a href="abo.html" id="abonner">S\'abonner</a></p>';
-                    } else if (response.role === 'premium') {
+                    } 
+                    else if (response.role === 'premium') {
                         publicite.innerHTML = '<p>Vous avez tous les avantages de Premium !</p>';
                     }
                 }
@@ -137,13 +138,12 @@
         }
 
         function generateProfileCard(pseudo, firstName, age, hobbies, sports, imagePath) {
-            // Assurez-vous que hobbies et sports sont des tableaux
             hobbies = Array.isArray(hobbies) ? hobbies : [];
             sports = Array.isArray(sports) ? sports : [];
 
             var hobbiesHtml = hobbies.map(hobby => `<button>${hobby}</button>`).join('');
             var sportsHtml = sports.map(sport => `<button>${sport}</button>`).join('');
-            
+    
             var profileCardHtml = `
             <div class="swiper-slide profile-card" data-pseudo="${pseudo}">
                 <img src="${imagePath}" alt="Profile Picture">
@@ -162,24 +162,19 @@
             document.querySelectorAll('#heart-icon').forEach(function(heart) {
                 heart.addEventListener('click', function(event) {
                     var userPseudo = event.target.getAttribute('data-pseudo');
-                    console.log('Pseudo:', userPseudo); // Vérifier le pseudo extrait
-
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', '../autreprofil/autreprofil.php', true);
                     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
                     // Ajout de messages de débogage pour suivre le processus de la requête
                     xhr.onreadystatechange = function() {
-                        console.log('ReadyState:', xhr.readyState); // État de la requête
-                        console.log('Status:', xhr.status); // Statut de la requête
                         if (xhr.readyState === 4) {
-                            console.log('Response:', xhr.responseText); // Afficher la réponse du serveur
                             if (xhr.status === 200) {
                                 var userData = JSON.parse(xhr.responseText);
-                                console.log('User Data:', userData); // Afficher les données de l'utilisateur
                                 sessionStorage.setItem('userProfile', JSON.stringify(userData));
                                 window.location.href = '../autreprofil/autreprofil.html';
-                            } else {
+                            } 
+                            else {
                                 console.error('Error:', xhr.statusText); // Afficher l'erreur en cas de statut différent de 200
                             }
                         }
@@ -194,9 +189,6 @@
             });
         }
 
-
-
-
         function fetchData() {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
@@ -206,7 +198,8 @@
                         var profileCardsHtml = userData.map(user => generateProfileCard(user.pseudo, user.firstName, user.age, user.hobbies, user.sports, user.imagePath)).join('');
                         document.getElementById('swiper-wrapper').innerHTML = profileCardsHtml;
                         setupHeartClickEvent(); // Configurer les événements de clic sur les icônes de cœur
-                    } else {
+                    } 
+                    else {
                         console.error('Error:', xhr.statusText);
                     }
                 }
@@ -234,7 +227,6 @@
                 },
             });
         });
-
 
         document.getElementById('profile-link').addEventListener('click', loadProfile);
     </script>
