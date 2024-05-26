@@ -1,13 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Le DOM est chargé.');
     // Charger les utilisateurs
     fetch('get_users.php')
     .then(response => response.json())
     .then(data => {
-        console.log('Données des utilisateurs reçues :', data);
         if (data.error) {
             console.error('Erreur lors du chargement des utilisateurs :', data.error);
-        } else {
+        } 
+        else {
             const userTable = document.getElementById('userTable').getElementsByTagName('tbody')[0];
             
             data.forEach(user => {
@@ -20,10 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         img.alt = 'Photo de profil';
                         img.width = 50; // Ajuster la taille de l'image selon les besoins
                         cell.appendChild(img);
-                        console.log('Clé:', key);
-                    } else {
+                    } 
+                    else {
                         cell.textContent = user[key];
-                        console.log('Clé:', key);
                     }
                 }
                 
@@ -38,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const banButton = document.createElement('button');
                 banButton.textContent = 'Bannir';
                 banButton.addEventListener('click', () => {
-                    console.log('Bouton "Bannir" cliqué pour l\'utilisateur', user.pseudo);
                     adminAction(user.pseudo, 'ban_user');
                 });
                 actionCell.appendChild(banButton);
@@ -46,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Supprimer';
                 deleteButton.addEventListener('click', () => {
-                    console.log('Bouton "Supprimer" cliqué pour l\'utilisateur', user.pseudo);
                     adminAction(user.pseudo, 'delete_user');
                 });
                 actionCell.appendChild(deleteButton);
@@ -61,8 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.getElementById('closeForm').addEventListener('click', hideEditForm);
 
-
-    
     function openEditForm(user) {
         // Remplir les champs du formulaire avec les données de l'utilisateur
         document.getElementById('pseudonymeID').value = user.pseudo;
@@ -85,8 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('modifierProfilModal').style.display = 'block';
     }
     
-    
-
     function adminAction(pseudo, action) {
         var xhr = new XMLHttpRequest();
         var url = 'admin_action.php';
@@ -99,8 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (xhr.status === 200) {
                     // Traitement de la réponse
                     var response = JSON.parse(xhr.responseText);
-                    console.log(response);
-                } else {
+                } 
+                else {
                     console.error('Erreur de requête :', xhr.status);
                 }
             }
@@ -112,38 +104,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById("modifierProfilForm").onsubmit = function(event) {
         event.preventDefault();
-        console.log("Formulaire de modification soumis"); // Message de débogage
 
         var formData = new FormData(event.target);
-        console.log("Données du formulaire :", formData); // Message de débogage
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "../PHP/modifprofil.php", true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                console.log("Réponse du serveur reçue"); // Message de débogage
-
                 if (xhr.status === 200) {
-                    console.log("Statut de la requête : 200 OK"); // Message de débogage
-
                     var response;
                     try {
                         response = JSON.parse(xhr.responseText);
-                    } catch (e) {
+                    } 
+                    catch (e) {
                         console.error("Erreur lors de l'analyse de la réponse JSON :", e);
                         return;
                     }
-
-                    console.log("Réponse du serveur :", response); // Message de débogage
-
                     document.getElementById("erreurMessage").innerText = response.success ? response.success : response.error;
                     if (response.success) {
-                        console.log("Modification du profil réussie"); // Message de débogage
-
                         modal.style.display = "none";
                         loadProfileData(); // Recharger les données du profil après modification
                     }
-                } else {
+                } 
+                else {
                     console.error("Erreur de modification du profil."); // Message d'erreur
                     document.getElementById("erreurMessage").innerText = "Erreur de modification du profil.";
                 }
@@ -151,5 +134,4 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         xhr.send(formData);
     };
-
 });
