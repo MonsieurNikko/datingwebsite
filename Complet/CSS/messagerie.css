@@ -1,0 +1,12 @@
+.images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Assure que l'élément prend toute la hauteur de la fenêtre */
+    text-align: center; /* Centre le texte à l'intérieur de la div */
+}
+
+.images p {
+    margin-bottom: 20px; /* Ajoute un espace entre le texte et l'image */
+}
