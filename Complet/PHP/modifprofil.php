@@ -1,7 +1,9 @@
 <?php
 session_start();
 
+// Fonction pour mettre à jour le fichier CSV
 function updateCsv($filename, $pseudo, $newData) {
+    // Ouverture du fichier en mode lecture/écriture
     $file = fopen($filename, 'r+');
 
     if (!$file) {
@@ -11,7 +13,9 @@ function updateCsv($filename, $pseudo, $newData) {
     $updatedContent = [];
     $pseudoExists = false;
 
+    // Lecture du fichier ligne par ligne
     while (!feof($file) && ($line = fgetcsv($file)) !== false) {
+        // Si le pseudo correspond, on met à jour la ligne avec les nouvelles données
         if (trim($line[0]) === trim($pseudo)) {
             for ($i = 0; $i < count($newData); $i++) {
                 $line[$i] = $newData[$i];
@@ -22,18 +26,21 @@ function updateCsv($filename, $pseudo, $newData) {
             $updatedContent[] = $line;
         }
 
+        // Vérification si le nouveau pseudo existe déjà pour un autre utilisateur
         if (trim($line[0]) === trim($newData[0]) && trim($line[0]) !== trim($pseudo)) {
             $pseudoExists = true;
         }
     }
-
+    // Si le pseudo existe déjà, on retourne une erreur
     if ($pseudoExists) {
         fclose($file);
         return ['error' => 'Le pseudo existe déjà.'];
     }
 
+    // Remettre le pointeur de fichier au début
     rewind($file);
 
+    // Réécrire le fichier CSV avec les nouvelles données
     foreach ($updatedContent as $line) {
         fputcsv($file, $line);
     }
@@ -45,12 +52,15 @@ function updateCsv($filename, $pseudo, $newData) {
 
 header('Content-Type: application/json');
 
+// Vérification si l'utilisateur est connecté
 if (isset($_SESSION['pseudo'])) {
     $pseudo = $_SESSION['pseudo'];
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Initialisation d'un tableau de nouvelles données
         $newData = array_fill(0, 15, null);
 
+        // Remplir les nouvelles données avec les valeurs du formulaire
         $newData[0] = $_POST['pseudonyme'];
         $newData[1] = $_POST['age'];
         $newData[2] = $_POST['sexe'];
@@ -67,7 +77,9 @@ if (isset($_SESSION['pseudo'])) {
         $newData[14] = $_POST['adresse'];
         $newData[15] = password_hash($_POST['mot_de_passe'], PASSWORD_BCRYPT);
 
+        // Gestion de l'upload de la photo de profil
         if (isset($_FILES['photos']) && $_FILES['photos']['error'] === UPLOAD_ERR_OK) {
+            // Supprimer l'ancienne photo de profil si elle existe
             if (!empty($_SESSION['data'][12]) && file_exists($_SESSION['data'][12])) {
                 unlink($_SESSION['data'][12]);
             }
@@ -93,14 +105,17 @@ if (isset($_SESSION['pseudo'])) {
         }
     }
 
+    // Mettre à jour les données de session avec les nouvelles données
     $_SESSION['data'] = $newData;
 
+    // Appel de la fonction pour mettre à jour le fichier CSV
     $result = updateCsv('../csv/user.csv', $pseudo, $newData);
 
     if (isset($result['error'])) {
         echo json_encode(['error' => $result['error']]);
     } 
     else {
+        // Mise à jour du pseudo dans la session si le pseudo a changé
         $_SESSION['pseudo'] = $_POST['pseudonyme'];
         echo json_encode(['success' => $result['success']]);
     }
