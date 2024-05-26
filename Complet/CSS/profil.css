@@ -177,12 +177,12 @@ footer {
 }
 
 .form {
-    padding: 20px; /* Internal padding */
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Slight shadow */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
     text-align: center;
-    margin: auto; /* Center the form within the container */
+    margin: auto; 
     
 }
 
@@ -192,7 +192,7 @@ footer {
 }
 
 label {
-    display: block; /* Affichage en bloc pour les labels */
+    display: block; 
     margin-bottom: 5px; /* Espacement inférieur pour les labels */
 }
 
@@ -206,19 +206,19 @@ input[type="date"] {
     border: 1px solid #ccc; /* Bordure légère */
 }
 input[type="email"] {
-    width: 100%; /* Remplissage complet du contenant */
-    padding: 8px; /* Espacement interne */
-    border-radius: 5px; /* Ajout de courbure aux coins */
-    border: 1px solid #ccc; /* Bordure légère */
+    width: 100%; 
+    padding: 8px; 
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
 }
 
 button {
-    width: 100%; /* Remplissage complet du contenant */
-    padding: 10px; /* Espacement interne */
+    width: 100%; 
+    padding: 10px;
     background-color: #333; /* Couleur de fond */
-    color: #fff; /* Couleur du texte */
+    color: #fff; 
     border: none; /* Suppression de la bordure */
-    border-radius: 5px; /* Ajout de courbure aux coins */
+    border-radius: 5px;
     cursor: pointer; /* Curseur adapté */
 }
 
@@ -252,24 +252,22 @@ button:hover {
     font-size: 12px;
 }
 
-/* Dans votre fichier CSS (inscription.css) */
-
 .selected-photo {
-    max-width: 100%; /* Pour que les images ne dépassent pas la largeur du cadre */
-    max-height: 100px; /* Définir la hauteur maximale des images */
-    margin-bottom: 10px; /* Ajouter un espacement entre les images */
+    max-width: 100%; 
+    max-height: 100px; 
+    margin-bottom: 10px; 
 }
 
 
 input[type="text"],
 input[type="password"] {
     padding: 10px; /* Espacement interne */
-    font-size: 16px; /* Taille de la police */
+    font-size: 16px; 
     border: 1px solid #ccc; /* Bordure grise */
-    border-radius: 5px; /* Coins arrondis */
-    box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
+    border-radius: 5px; 
+    box-sizing: border-box; 
     width: 100%; /* Largeur de 100% du conteneur parent */
-    margin-bottom: 10px; /* Espacement entre les champs de saisie */
+    margin-bottom: 10px; 
 }
 
 
@@ -294,7 +292,7 @@ input[type="password"] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1000; /* Assure que le formulaire est au-dessus de l'overlay */
+    z-index: 1000;
 }
 
 #section4 {
@@ -309,7 +307,7 @@ input[type="password"] {
 /* Bouton "Modifier Profil" */
 #modifierProfilBtn {
     padding: 6px 10px; /* Réduit le rembourrage */
-    font-size: 12px; /* Réduit la taille de la police */
+    font-size: 12px; 
     border-radius: 5px;
     max-width: 250px; /* Limite la largeur maximale */
     overflow: hidden; /* Cache le contenu dépassant de la largeur */
@@ -317,7 +315,6 @@ input[type="password"] {
     white-space: nowrap; /* Empêche le renvoi à la ligne du texte */
 }
 
-/* Conteneur du profil */
 #profil {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -326,14 +323,12 @@ input[type="password"] {
     max-width: 600px;
 }
 
-/* Titre du profil */
 #profil h1 {
     font-size: 28px;
     margin-bottom: 20px;
     text-align: center;
 }
 
-/* Image de profil */
 #profil img {
     display: block;
     margin: 0 auto 20px;
@@ -341,7 +336,6 @@ input[type="password"] {
     max-width: 200px;
 }
 
-/* Informations du profil */
 #profil p {
     font-size: 18px;
     margin-bottom: 10px;
