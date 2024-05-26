@@ -51,7 +51,8 @@
             const data = await response.text();
             const lignes = data.split('\n').map(ligne => ligne.split(',').map(item => item.trim()));
             utilisateurs = lignes.map(ligne => ligne[0]);
-        } catch (error) {
+        } 
+        catch (error) {
             console.error('Erreur lors du chargement des utilisateurs inscrits :', error);
         }
     }
@@ -86,7 +87,8 @@
             if (recipient !== '') {
                 if (!isRecipientValid) {
                     afficherMessage("Profil introuvable parmi les utilisateurs inscrits.");
-                } else {
+                } 
+                else {
                     const formData = new FormData();
                     formData.append('pseudo', recipient);
 
@@ -102,12 +104,14 @@
                         localStorage.setItem('userProfile', JSON.stringify(userData));
 
                         window.location.href = '../autreprofil/autreprofil.html';
-                    } else {
+                    } 
+                    else {
                         const errorData = await response.json();
                         afficherMessage(errorData.message || "Erreur lors de la récupération du profil.");
                     }
                 }
-            } else {
+            } 
+            else {
                 afficherMessage('Veuillez saisir un profil à rechercher.');
             }
         }
@@ -143,18 +147,19 @@ function afficherSuggestionsUtilisateurs(utilisateurs) {
                     localStorage.setItem('userProfile', JSON.stringify(userData));
 
                     window.location.href = '../HTML/autreprofil.html';
-                } else {
+                } 
+                else {
                     const errorData = await response.json();
                     throw new Error(errorData.message || "Erreur lors de la récupération du profil.");
                 }
-            } catch (error) {
+            } 
+            catch (error) {
                 afficherMessage(error.message || "Erreur lors de la récupération du profil.");
             }
         });
         suggestions.appendChild(div);
     });
 }
-
 
     function afficherMessage(message) {
         const messageDiv = document.getElementById('message');
