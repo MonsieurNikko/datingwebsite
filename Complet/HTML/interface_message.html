@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Site de Rencontre</title>
-        <link rel="stylesheet" href="../CSS/messagerie.css">
+        <link rel="stylesheet" href="../CSS/accueil_apres_connexion.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,9 +23,10 @@
                 <li><a href="#">Recherche</a></li>
                 <li><a href="#">Produit</a></li>
                 <li><a href="interface_message.html">Messagerie</a></li>
-                <li><a href="#" id="profile-container" onclick="loadProfile();">Profil</a></li>
+                <li><a href="profil.html">Profil</a></li>
             </ul>
         </nav>
+
 
         <div class="connexion">
             <a href="../PHP/logout.php">Déconnexion</a>
@@ -43,69 +44,12 @@
             <label for="recipient">Destinataire :</label>
             <input type="text" id="recipient" name="recipient" placeholder="Rechercher un utilisateur...">
             <div id="suggestions" class="suggestions"></div>
-            
-            <!-- Champ de message masqué par défaut -->
-            <label for="message" id="messageLabel" style="display: none;">Message :</label>
-            <textarea id="message" name="message" placeholder="Entrez votre message ici..." style="display: none;"></textarea>
-            
-            <button type="submit" id="sendMessageButton" style="display: none;" disabled>Envoyer le message</button>
-
-            <p id="subscriptionMessage" style="display: none;">Souscrivez à un abonnement pour pouvoir envoyer des messages.</p>
         </form>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../JavaScript/messagerie.js"></script>
 
-    <div class="images">
-        <p>chercher des nouveaux partenaires</p>
-        <img id="userImage" src="../images/imagevisiteur.png" alt="Image d'utilisateur" width="250px" height="auto">
-    </div>
-        
-    <script>
-        const header = document.querySelector('header');
 
-        let prevscroll = window.scrollY;
-
-        window.addEventListener('scroll', () => {
-            const currentscroll = window.scrollY;
-
-            if (currentscroll > prevscroll){
-                header.classList.add('hidden');
-            } 
-            else {
-                header.classList.remove('hidden');
-            }
-
-            prevscroll = currentscroll;
-        });
-
-
-
-
-        let image = document.getElementById('userImage');
-        let images = ['../images/imagevisiteur.png', '../images/imagevisiteur2.png', '../images/imagevisiteur3.png', '../images/imagevisiteur4.png'];
-        let currentIndex = 0;
-
-        function changeImage() {
-            // Réduit l'opacité de l'image à zéro pour l'effet de transition sortant
-            image.style.opacity = 0;
-
-            // Utilise setTimeout pour changer l'image et remonter l'opacité après un court délai
-            setTimeout(() => {
-                // Change l'image source
-                image.src = images[currentIndex];
-                
-                // Remonte l'opacité à 1 pour l'effet de transition entrant
-                image.style.opacity = 1;
-
-                // Met à jour l'index pour la prochaine image
-                currentIndex = (currentIndex + 1) % images.length;
-            }, 500); // Délai égal à la durée de la transition d'opacité
-        }
-
-        // Appelle changeImage toutes les 1600 ms
-        setInterval(changeImage, 3000);
-</script>
 </body>
 </html>
