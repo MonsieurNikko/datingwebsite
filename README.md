@@ -4,7 +4,9 @@ Projet Site de Rencontre fin de semestre 2 Pré-ing 2 MI 4
 
 ## Description
 
-Ce projet est un site de rencontre permettant aux utilisateurs de faire connaissance en fonction de différents critères et d'échanger entre eux via une messagerie privée. Le site propose plusieurs types d'utilisateurs avec des accès différenciés : Visiteur, Utilisateur, Abonné, et Administrateur.
+Cyan Love est un site de rencontre en ligne, conçu pour permettre aux utilisateurs de faire connaissance en fonction de différents critères et d'échanger entre eux via une messagerie privée. Le thème du site est centré sur des couleurs bleu et rose, évoquant l'univers romantique de Cupidon. Les visiteurs peuvent utiliser la fonctionnalité "Ask Cupid" pour explorer le site et s'inscrire.
+
+Le site propose plusieurs types d'utilisateurs avec des accès différenciés : Visiteur, Utilisateur, Abonné, et Administrateur. Chaque type d'utilisateur dispose de fonctionnalités spécifiques pour améliorer l'expérience de rencontre en ligne.
 
 ## Fonctionnalités
 
