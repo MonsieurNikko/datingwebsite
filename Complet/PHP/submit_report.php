@@ -30,17 +30,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Rediriger vers la page d'accueil
             header("Location: ../HTML/index.html");
             exit();
-        } else {
+        } 
+        else {
             // Sinon, afficher un message d'erreur
             echo "<script>alert('Nom d'utilisateur invalide.'); window.history.back();</script>";
             exit();
         }
-    } else {
+    } 
+    else {
         // Si un champ est vide, afficher un message d'erreur
         echo "<script>alert('Veuillez remplir tous les champs.'); window.history.back();</script>";
         exit();
     }
-} else {
+} 
+else {
     // Si le formulaire n'a pas été soumis via POST, rediriger vers la page d'accueil
     header("Location: ../HTML/index.html");
     exit();
