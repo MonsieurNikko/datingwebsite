@@ -19,7 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (move_uploaded_file($_FILES['photos']['tmp_name'], $uploadFile)) {
         echo "Le fichier est valide et a été téléchargé avec succès.\n";
-    } else {
+    } 
+    else {
         echo "Une erreur s'est produite lors du téléchargement du fichier.\n";
     }
 
