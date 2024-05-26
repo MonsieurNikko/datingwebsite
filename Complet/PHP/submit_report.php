@@ -7,7 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérifier si les champs ne sont pas vides
     if (!empty($username) && !empty($message)) {
-        // Lire le fichier CSV des utilisateurs
         $users = array_map('str_getcsv', file('../csv/user.csv'));
 
         // Vérifier si l'utilisateur existe dans la base de données
@@ -21,13 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Si l'utilisateur existe, rediriger vers la page d'accueil et enregistrer dans rapport.csv
         if ($userExists) {
-            // Enregistrer les informations dans le fichier rapport.csv
             $data = array($username, date('Y-m-d H:i:s'), $message);
             $handle = fopen('../csv/rapport.csv', 'a');
             fputcsv($handle, $data);
             fclose($handle);
 
-            // Rediriger vers la page d'accueil
             header("Location: ../HTML/index.html");
             exit();
         } 
