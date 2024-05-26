@@ -39,5 +39,4 @@ function toggleConfirmPasswordVisibility() {
         confirmPasswordInput1.type = "password";
         confirmPasswordInput2.type = "password";
     }
-
 }
