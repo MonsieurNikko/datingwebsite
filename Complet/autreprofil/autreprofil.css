@@ -72,12 +72,11 @@ body {
 }
 
 .connexion {
-    display: flex; /* Utilise Flexbox pour aligner les éléments */
-    align-items: center; /* Aligne les éléments verticalement */
+    display: flex; 
+    align-items: center; 
     flex: 1; /* Permet à la section de s'étendre si nécessaire */
     justify-content: flex-end; /* Place les éléments à droite */
 }
-
 
 .connexion a {
     text-decoration: none;
@@ -88,14 +87,13 @@ body {
 }
 
 .connexion a:hover {
-    background-color: #e5d8f0; /* Changez la couleur de fond sur hover */
-    color: #333; /* Changez la couleur du texte sur hover */
-    border-color: #666; /* Changez la couleur de la bordure sur hover */
+    background-color: #e5d8f0;
+    color: #333;
+    border-color: #666; 
 }
 
-
 #main-content {
-    margin-left: 200px; /* Adjust to the width of the sidebar */
+    margin-left: 200px; 
     flex-grow: 1;
     position: relative;
 }
@@ -107,7 +105,6 @@ body {
     align-items: center; /* Centrer verticalement le contenu */
     justify-content: center;
 }
-
 
 footer {
     background-color: #333;
