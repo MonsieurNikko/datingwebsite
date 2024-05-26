@@ -1,17 +1,24 @@
 <?php
-session_start();
+// En supposant que le fichier CSV contient les données des utilisateurs avec le nom d'utilisateur en première colonne
 
-header('Content-Type: application/json');
-
+// Vérifier si la méthode de la requête est POST et si le pseudo est présent dans les données POST
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pseudo'])) {
     $pseudo = $_POST['pseudo'];
 
-    $file = fopen("../csv/user.csv", "r");
+    // Chemin vers le fichier CSV
+    $csvFile = "../csv/user.csv";
+
+    // Ouvrir le fichier CSV en lecture
+    $file = fopen($csvFile, "r");
+
+    // Tableau pour stocker les données de profil de l'utilisateur
     $userData = null;
 
+    // Parcourir le fichier CSV pour rechercher l'utilisateur
     while (($row = fgetcsv($file)) !== FALSE) {
         // Supposons que le pseudonyme est dans la première colonne (indice 0)
         if ($row[0] == $pseudo) {
+            // Stocker les données de profil dans un tableau associatif
             $userData = [
                 'pseudo' => $row[0],
                 'age' => $row[1],
@@ -29,22 +36,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pseudo'])) {
                 'nom' => $row[13],
                 'adresse' => $row[14],
             ];
-            break;
+            break; // Arrêtez la recherche une fois que l'utilisateur est trouvé
         }
     }
 
+    // Fermer le fichier CSV
     fclose($file);
 
+    // Vérifier si les données de profil ont été trouvées
     if ($userData) {
+        // Envoyer les données de profil au format JSON
+        header('Content-Type: application/json');
         echo json_encode($userData);
     } else {
+        // Envoyer une réponse 404 si l'utilisateur n'est pas trouvé
         http_response_code(404);
         echo json_encode(['message' => 'User not found']);
     }
 } else {
+    // Envoyer une réponse 400 si la requête est incorrecte ou si le pseudo est manquant
     http_response_code(400);
     echo json_encode(['message' => 'Invalid request']);
 }
-
-
 ?>
+
