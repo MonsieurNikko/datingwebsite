@@ -30,7 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         fclose($fichier);
-    } else {
+    } 
+    else {
         $erreur = "Erreur: Impossible d'ouvrir le fichier CSV.";
         echo $erreur;
         exit;
@@ -41,11 +42,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         http_response_code(401); // Définit le code de statut HTTP à 401 (non autorisé)
         echo "Identifiant ou mot de passe incorrect.";
     }
-} else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+} 
+else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Si une session est déjà en cours et que le pseudo est stocké, renvoie le pseudo
     if (isset($_SESSION['pseudo'])) {
         echo $_SESSION['pseudo'];
-    } else {
+    }
+    else {
         echo "Aucun pseudonyme trouvé.";
     }
 }
