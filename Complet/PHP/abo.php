@@ -3,7 +3,7 @@ session_start();
 
 header('Content-Type: application/json');
 
-// Vérifiez si la requête provient du bouton "J'en veux plus !"
+// Vérifier si la requête provient du bouton "J'en veux plus !"
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $response = array('debug' => 'La requête provient du bouton "J\'en veux plus !"');
     
@@ -42,7 +42,7 @@ else {
     $response = array('debug' => 'La requête ne provient pas du bouton "J\'en veux plus !"');
     // Si la requête ne provient pas du bouton "J'en veux plus !", renvoyer les données de session actuelles
     if (isset($_SESSION['pseudo']) && isset($_SESSION['role'])) {
-        // Récupérez les données de l'utilisateur
+        // Récupérer les données de l'utilisateur
         $response['pseudo'] = $_SESSION['pseudo'];
         $response['role'] = $_SESSION['role'];
     } 
