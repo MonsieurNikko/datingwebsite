@@ -1,65 +1,35 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recherche d'utilisateurs</title>
-    <style>
-        .suggestion-item {
-            cursor: pointer;
-            padding: 5px;
-            border-bottom: 1px solid #ccc;
-        }
-        .suggestion-item:hover {
-            background-color: #f0f0f0;
-        }
-        #message {
-            display: none;
-            color: red;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div>
-        <h1>Recherche d'utilisateurs</h1>
-        <input type="text" id="search" placeholder="Rechercher un utilisateur">
-        <div id="suggestions"></div>
-        <div id="message"></div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-
-    function debounce(func, wait) {
-        let timeout;
-        return function(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
+function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+        const later = () => {
             clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
+            func(...args);
         };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+let utilisateurs = [];
+const utilisateursInterdits = ["admin", "admin2", "admin3", "admin4"];
+
+async function chargerUtilisateursInscrits() {
+    try {
+        const response = await fetch('../csv/user.csv');
+        const data = await response.text();
+        const lignes = data.split('\n').map(ligne => ligne.split(',').map(item => item.trim()));
+        utilisateurs = lignes.map(ligne => ligne[0]).filter(utilisateur => !utilisateursInterdits.includes(utilisateur));
+
+        // Ajoutez cette ligne pour afficher les utilisateurs chargés
+        console.log('Utilisateurs chargés :', utilisateurs);
+    } catch (error) {
+        console.error('Erreur lors du chargement des utilisateurs inscrits :', error);
     }
+}
 
-    let utilisateurs = [];
+document.addEventListener('DOMContentLoaded', async () => {
+    await chargerUtilisateursInscrits();
 
-    async function chargerUtilisateursInscrits() {
-        try {
-            const response = await fetch('../csv/user.csv');
-            const data = await response.text();
-            const lignes = data.split('\n').map(ligne => ligne.split(',').map(item => item.trim()));
-            utilisateurs = lignes.map(ligne => ligne[0]);
-        } 
-        catch (error) {
-            console.error('Erreur lors du chargement des utilisateurs inscrits :', error);
-        }
-    }
-
-    chargerUtilisateursInscrits();
-
-    document.addEventListener('DOMContentLoaded', async () => {
     const searchInput = document.getElementById('search');
     const suggestions = document.getElementById('suggestions');
 
@@ -87,8 +57,7 @@
             if (recipient !== '') {
                 if (!isRecipientValid) {
                     afficherMessage("Profil introuvable parmi les utilisateurs inscrits.");
-                } 
-                else {
+                } else {
                     const formData = new FormData();
                     formData.append('pseudo', recipient);
 
@@ -104,14 +73,12 @@
                         localStorage.setItem('userProfile', JSON.stringify(userData));
 
                         window.location.href = '../autreprofil/autreprofil.html';
-                    } 
-                    else {
+                    } else {
                         const errorData = await response.json();
                         afficherMessage(errorData.message || "Erreur lors de la récupération du profil.");
                     }
                 }
-            } 
-            else {
+            } else {
                 afficherMessage('Veuillez saisir un profil à rechercher.');
             }
         }
@@ -146,14 +113,12 @@ function afficherSuggestionsUtilisateurs(utilisateurs) {
 
                     localStorage.setItem('userProfile', JSON.stringify(userData));
 
-                    window.location.href = '../HTML/autreprofil.html';
-                } 
-                else {
+                    window.location.href = '../autreprofil/autreprofil.html';
+                } else {
                     const errorData = await response.json();
                     throw new Error(errorData.message || "Erreur lors de la récupération du profil.");
                 }
-            } 
-            catch (error) {
+            } catch (error) {
                 afficherMessage(error.message || "Erreur lors de la récupération du profil.");
             }
         });
@@ -161,12 +126,8 @@ function afficherSuggestionsUtilisateurs(utilisateurs) {
     });
 }
 
-    function afficherMessage(message) {
-        const messageDiv = document.getElementById('message');
-        messageDiv.textContent = message;
-        messageDiv.style.display = 'block';
-    }
-
-    </script>
-</body>
-</html>
+function afficherMessage(message) {
+    const messageDiv = document.getElementById('message');
+    messageDiv.textContent = message;
+    messageDiv.style.display = 'block';
+}
