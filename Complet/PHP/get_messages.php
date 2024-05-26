@@ -7,10 +7,12 @@ if ($recipient !== '') {
     $conversationFile = "messages/" . $recipient . ".txt";
     if (file_exists($conversationFile)) {
         echo file_get_contents($conversationFile);
-    } else {
+    } 
+    else {
         echo "Demarrez la conversation avec $recipient !";
     }
-} else {
+} 
+else {
     echo "Destinataire non spécifié.";
 }
 ?>
