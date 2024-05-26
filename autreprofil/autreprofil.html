@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Utilisateur</title>
+    <link rel="stylesheet" href="autreprofil.css">
+</head>
+<body>
+    <div id="sidebar">
+        <div class="logo">
+            <a href="../HTML/accueil_apres_connexion.html"><img src="../Images/logobao.png" alt="Logo du site"></a>
+        </div>
+        <nav class="categorie">
+            <ul>
+                <li><a href="../HTML/accueil_apres_connexion.html">Accueil</a></li>
+                <li><a href="#">Recherche</a></li>
+                <li><a href="#">Produit</a></li>
+                <li><a href="#">Messagerie</a></li>
+                <li><a href="#">Profil</a></li>
+            </ul>
+        </nav>
+        <div class="connexion">
+            <a href="../PHP/logout.php">Déconnexion</a>
+        </div>
+    </div>
+    <div class="connexion" id="message"><a href="#">Message</a></div>
+    <div id="profil">
+        <h1>Profil de <span id="pseudo"></span></h1>
+        <img id="image" src="" alt="Photo de profil">
+        <p>Age : <span id="age"></span></p>
+        <p>Sexe : <span id="sexe"></span></p>
+        <p>Date de naissance : <span id="dateNaissance"></span></p>
+        <p>Pays : <span id="pays"></span></p>
+        <p>Description de la situation : <span id="description"></span></p>
+        <p>Taille : <span id="taille"></span></p>
+        <p>Poids : <span id="poids"></span></p>
+        <p>Intérêt 1 : <span id="interet1"></span></p>
+        <p>Sport : <span id="sport"></span></p>
+        <p>Couleur des cheveux : <span id="couleurCheveux"></span></p>
+        <p>Couleur des yeux : <span id="couleurYeux"></span></p>
+        <div id="Prive">
+            <h2>Informations privées</h2>
+            <p>Nom complet : <span id="nomComplet"></span></p>
+            <p>Adresse : <span id="adresse"></span></p>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Mentions Légales</h4>
+                <p>Coeurpide Inc<br>Avenue du Parc, 95000 Cergy</p>
+                <a href="../termsofuse.pdf">Lire les conditions d'utilisation</a>
+            </div>
+            <div class="footer-section">
+                <h4>Rédigez un Rapport</h4>
+                <a href="rapport.html">Lien vers une nouvelle page</a>
+            </div>
+            <div class="footer-section">
+                <h4>Signalement</h4>
+                <a href="signalement.html">Lien vers une nouvelle page</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM entièrement chargé et analysé');
+            var userProfile = localStorage.getItem('userProfile');
+            if (userProfile) {
+                console.log('Profil utilisateur trouvé dans le localStorage');
+                try {
+                    var user = JSON.parse(userProfile);
+                    console.log('Données utilisateur parsées avec succès:', user);
+
+                    document.getElementById('pseudo').innerText = user.pseudo;
+                    console.log('Pseudo mis à jour:', user.pseudo);
+                    document.getElementById('image').src = user.imagePath;
+                    document.getElementById('image').alt = "Photo de profil de " + user.pseudo;
+                    console.log('Image mise à jour:', user.imagePath);
+                    document.getElementById('age').innerText = user.age;
+                    console.log('Âge mis à jour:', user.age);
+                    document.getElementById('sexe').innerText = user.sexe;
+                    console.log('Sexe mis à jour:', user.sexe);
+                    document.getElementById('dateNaissance').innerText = user.dateNaissance;
+                    console.log('Date de naissance mise à jour:', user.dateNaissance);
+                    document.getElementById('pays').innerText = user.pays;
+                    console.log('Pays mis à jour:', user.pays);
+                    document.getElementById('description').innerText = user.description;
+                    console.log('Description mise à jour:', user.description);
+                    document.getElementById('taille').innerText = user.taille;
+                    console.log('Taille mise à jour:', user.taille);
+                    document.getElementById('poids').innerText = user.poids;
+                    console.log('Poids mis à jour:', user.poids);
+                    document.getElementById('interet1').innerText = user.interet1;
+                    console.log('Intérêt 1 mis à jour:', user.interet1);
+                    document.getElementById('sport').innerText = user.sport;
+                    console.log('Sport mis à jour:', user.sport);
+                    document.getElementById('couleurCheveux').innerText = user.couleurCheveux;
+                    console.log('Couleur des cheveux mise à jour:', user.couleurCheveux);
+                    document.getElementById('couleurYeux').innerText = user.couleurYeux;
+                    console.log('Couleur des yeux mise à jour:', user.couleurYeux);
+
+                    var roleXhr = new XMLHttpRequest();
+                    roleXhr.open('GET', 'roleactuel.php', true);
+                    roleXhr.onload = function() {
+                        if (roleXhr.status === 200) {
+                            var userRole = roleXhr.responseText;
+                            console.log('Rôle actuel de l\'utilisateur:', userRole);
+                            if (userRole === 'premium' || userRole === 'admin') {
+                                document.getElementById('nomComplet').innerText = user.nom;
+                                document.getElementById('adresse').innerText = user.adresse;
+                                document.getElementById('Prive').style.display = 'block';
+                                console.log('Informations privées affichées pour le rôle:', userRole);
+                            } else {
+                                document.getElementById('Prive').style.display = 'none';
+                                console.log('Informations privées masquées pour le rôle:', userRole);
+                            }
+                        } else {
+                            console.error('Erreur de chargement du rôle utilisateur:', roleXhr.statusText);
+                        }
+                    };
+                    roleXhr.onerror = function() {
+                        console.error('Erreur de requête AJAX pour obtenir le rôle utilisateur');
+                    };
+                    roleXhr.send();
+                } catch (error) {
+                    console.error('Erreur lors du parsing du profil utilisateur:', error);
+                }
+            } else {
+                console.warn('Aucun profil utilisateur trouvé dans le localStorage');
+            }
+
+            // Ajoutez l'écouteur d'événement pour le bouton de message ici
+            var messageButton = document.getElementById('message');
+            if (messageButton) {
+                messageButton.addEventListener('click', function() {
+                    var recipient = document.getElementById('pseudo').innerText;
+                    console.log('Recipient:', recipient);
+                    window.location.href = `../HTML/messagerie_privee.html?recipient=${encodeURIComponent(recipient)}`;
+                });
+            } else {
+                console.error('Le bouton de message n\'a pas été trouvé.');
+            }
+        });
+
+
+    </script>
+</body>
+</html>

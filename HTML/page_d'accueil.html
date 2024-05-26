@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Rencontre</title>
+
+    <link rel="stylesheet" href="../CSS/style.css">
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- En-tête -->
+    <header>
+        <div class="categorie">
+            <ul>
+                <li><a href="page_d'accueil.html">Accueil</a></li>
+                <li><a href="profil.html">Profil</a></li>
+                <li><a href="Demo.html">Demo</a></li>
+            </ul>
+        </div>
+        
+        <div class="logo">
+            <a href="page_d'accueil.html"><img src="../images/logobao.png" alt="Logo du site"></a>
+        </div>
+
+        <div class="connexion">
+            <a href="#" id="connexionlink">Se connecter</a>
+            <a href="inscription.html">S'inscrire</a>
+        </div>
+    </header>
+
+    <div class="connexion" id="connexionform" style="display: none;">
+        <div class="form">
+            <h1>Connexion</h1>
+            <form id="connexionForm"> 
+                <div class="partie">
+                    <input type="text" id="username" name="username" placeholder="Identifiant" required><br>  
+                    <input type="password" id="password" name="password" placeholder="Mot de passe" required><br>
+                </div>
+                <p id="erreurMessage"></p>
+                <button type="submit" name="boutonconnect">Se connecter</button>
+            </form>
+        </div>
+      </div>
+
+    <div id="container">
+        <section id="accueil" class="backgr">
+            <div class="hero">
+                <div class="container">
+                    <h2 class="title">
+                      <span class="title-word title-word-1">Cyan</span>
+                      <span class="title-word title-word-2">Love</span>
+                    </h2>
+                  </div>
+                <p>Laissez le destin vous guider</p>
+                <a href="inscription.html" class="cta-button">Ask Cupid</a>
+            </div>
+        </section>
+
+
+        <section id="intro">
+            <div class="content">
+                <div class="features">
+                    <h2>Welcome to Cyan Love !</h2>
+                    <p>Découvrez notre communauté dynamique et trouvez votre match parfait.</p>
+                    <p>✔️ Correspondance intelligente basée sur vos préférences.</p>
+                    <p>✔️ Événements virtuels pour rencontrer de nouvelles personnes.</p>
+                    <p>✔️ Confidentialité et sécurité assurées.</p><br>
+
+                    <div id="boutons">
+                        <a href="inscription.html" class="cta-button">Inscrivez-vous</a>
+                        <a href="connexion.html" class="cta-button">Connectez-vous</a>
+                    </div>
+                    
+                </div>
+
+                <div class="images">
+                    <img id="userImage" src="../images/imagevisiteur.png" alt="Image d'utilisateur" width="250px" height="auto">
+                </div>
+            </div>
+        </section>
+        
+    </div>
+<footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Mentions Légales</h4>
+                <p>Cyan Love Inc<br>Avenue du Parc, 95000 Cergy</p>
+                <a href="../termsofuse.pdf">Lire les conditions d'utilisation</a>
+            </div>
+            <div class="footer-section">
+                <h4>Suivez-Nous</h4>
+                <div class="social-icons">
+                    <a href="https://www.snapchat.com" target="_blank"><img src="../images/snapchat-logo.png" alt="Snapchat"></a>
+                    <a href="https://www.instagram.com" target="_blank"><img src="../images/instagram-logo.png" alt="Instagram"></a>
+                    <a href="https://www.youtube.com" target="_blank"><img src="../images/youtube-logo.png" alt="YouTube"></a>
+                    <a href="https://www.facebook.com" target="_blank"><img src="../images/facebook-logo.png" alt="Facebook"></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Signalement</h4>
+                <a href="rapport.html">Lien vers une nouvelle page</a>
+            </div>
+            <div class="footer-section">
+                <h4>Installez notre app !</h4>
+                <div class="app-icons">
+                    <a href="https://play.google.com/store" target="_blank"><img src="../images/google-play-logo.png" alt="Google Play"></a>
+                    <a href="https://www.apple.com/app-store/" target="_blank"><img src="../images/app-store-logo.png" alt="App Store"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../JavaScript/script.js"></script>
+</body>
+
+<script>
+        const header = document.querySelector('header');
+
+        let prevscroll = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentscroll = window.scrollY;
+
+            if (currentscroll > prevscroll){
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+
+            prevscroll = currentscroll;
+        });
+
+        let image = document.getElementById('userImage');
+        let images = ['../images/imagevisiteur.png', '../images/imagevisiteur2.png', '../images/imagevisiteur3.png', '../images/imagevisiteur4.png'];
+        let currentIndex = 0;
+
+        function changeImage() {
+        
+            image.style.opacity = 0;
+
+        
+            setTimeout(() => {
+               
+                image.src = images[currentIndex];
+                
+            
+                image.style.opacity = 1;
+
+                
+                currentIndex = (currentIndex + 1) % images.length;
+            }, 500); 
+        }
+
+  
+        setInterval(changeImage, 3000);
+</script>
+</html>

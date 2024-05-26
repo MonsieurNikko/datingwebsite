@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Rencontre</title>
+    <link rel="stylesheet" href="../CSS/notification.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="sidebar">
+        <div class="logo">
+            <a href="accueil_apres_connexion.html"><img src="../images/logobao.png" alt="Logo du site"></a>
+        </div>
+        <nav class="categorie">
+            <ul>
+                <li><a href="accueil_apres_connexion.html">Accueil</a></li>
+                <li><a href="recherche.html">Recherche</a></li>
+                <li><a href="abo.html">Produit</a></li>
+                <li><a href="interface_message.html">Messagerie</a></li>
+                <li><a href="profil.html"">Profil</a></li>
+                <li><a href="notifications.php">Notifications</a></li>
+            </ul>
+        </nav>
+
+
+        <div class="connexion">
+            <a href="../PHP/logout.php">Déconnexion</a>
+        </div>
+
+    </div>
+
+    <div id="notif">
+        <h3>Notifications</h3>
+        <ul>
+        </ul>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Mentions Légales</h4>
+                <p>Coeurpide Inc<br>Avenue du Parc, 95000 Cergy</p>
+                <a href="../termsofuse.pdf">Lire les conditions d'utilisation</a>
+            </div>
+            <div class="footer-section">
+                <h4>Rédigez un Rapport</h4>
+                <a href="rapport.html">Lien vers une nouvelle page</a>
+            </div>
+            <div class="footer-section">
+                <h4>Signalement</h4>
+                <a href="signalement.html">Lien vers une nouvelle page</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        fetch('../reports/reports.txt')
+            .then(response => response.text())
+            .then(data => {
+                const reports = data.split('\n\n');
+                const lastReport = reports[reports.length - 2];
+
+                if (lastReport) {
+                    const [dateTime, username, message] = lastReport.split('\n');
+                    const notificationList = document.getElementById('notif');
+                    
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${dateTime} : ${username}, ${message}`;
+                    notificationList.appendChild(listItem);
+                }
+            })
+            .catch(error => console.error('Erreur lors de la récupération des nouveaux rapports :', error));
+
+    </script>
+
+</body>
+</html>

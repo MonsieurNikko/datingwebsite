@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Rencontre</title>
+
+    <link rel="stylesheet" href="../CSS/Demo.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="../JavaScript/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- En-tête -->
+    <header>
+        <div class="categorie">
+            <ul>
+                <li><a href="page_d'accueil.html">Accueil</a></li>
+                <li><a href="profil.html">Profil</a></li>
+                <li><a href="Demo.html">Demo</a></li>
+            </ul>
+        </div>
+        
+        <div class="logo">
+            <a href="page_d'accueil.html"><img src="../images/logobao.png" alt="Logo du site"></a>
+        </div>
+
+        <div class="connexion">
+            <a href="#" id="connexionlink">Se connecter</a>
+            <a href="inscription.html">S'inscrire</a>
+        </div>
+    </header>
+
+    <div class="connexion" id="connexionform" style="display: none;">
+        <div class="form">
+            <h1>Connexion</h1>
+            <form id="connexionForm">
+                <div class="partie">
+                    <input type="text" id="username" name="username" placeholder="Identifiant" required><br>  
+                    <input type="password" id="password" name="password" placeholder="Mot de passe" required><br>
+                </div>
+                <p id="erreurMessage"></p>
+                <button type="submit" name="boutonconnect">Se connecter</button>
+            </form>
+        </div>
+      </div>
+
+      <div id="container">
+        <section id="intro">
+            <div class="content">
+                <div class="description">
+                    <p>Vous voulez une nouvelle aventure, Cyan Love est fait pour vous.</p>
+    
+                    <div id="boutons">
+                        <a href="inscription.html" class="cta-button">Rencontrer Les</a>
+                    </div>
+                </div>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="../images/imagevisiteur.png" />
+                            <div class="interaction-buttons">
+                                <button class="like-button">Smash</button>
+                                <button class="dislike-button">Pass</button>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../images/imagevisiteur2.png" />
+                            <div class="interaction-buttons">
+                                <button class="like-button">Smash</button>
+                                <button class="dislike-button">Pass</button>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../images/imagevisiteur3.png" />
+                            <div class="interaction-buttons">
+                                <button class="like-button">Smash</button>
+                                <button class="dislike-button">Pass</button>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="../images/imagevisiteur4.png" />
+                            <div class="interaction-buttons">
+                                <button class="like-button">Smash</button>
+                                <button class="dislike-button">Pass</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="fleche">
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <<footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Mentions Légales</h4>
+                <p>Coeurpide Inc<br>Avenue du Parc, 95000 Cergy</p>
+                <a href="../termsofuse.pdf">Lire les conditions d'utilisation</a>
+            </div>
+            <div class="footer-section">
+                <h4>Suivez-Nous</h4>
+                <div class="social-icons">
+                    <a href="https://www.snapchat.com" target="_blank"><img src="snapchat-logo.png" alt="Snapchat"></a>
+                    <a href="https://www.instagram.com" target="_blank"><img src="instagram-logo.png" alt="Instagram"></a>
+                    <a href="https://www.youtube.com" target="_blank"><img src="youtube-logo.png" alt="YouTube"></a>
+                    <a href="https://www.facebook.com" target="_blank"><img src="facebook-logo.png" alt="Facebook"></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Rédigez un Rapport</h4>
+                <a href="rapport.html">Lien vers une nouvelle page</a>
+            </div>
+            <div class="footer-section">
+                <h4>Signalement</h4>
+                <a href="signalement.html">Lien vers une nouvelle page</a>
+            </div>
+            <div class="footer-section">
+                <h4>Installez notre app !</h4>
+                <div class="app-icons">
+                    <a href="https://play.google.com/store" target="_blank"><img src="google-play-logo.png" alt="Google Play"></a>
+                    <a href="https://www.apple.com/app-store/" target="_blank"><img src="app-store-logo.png" alt="App Store"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+        
+    <script>
+    var swiper = new Swiper(".mySwiper", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      loop: true,
+      coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 10,
+        modifier: 1,
+        slideShadows: true,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+    </script>
+</body>
+
+</html>

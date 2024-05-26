@@ -1,0 +1,355 @@
+/* Reset des styles par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-image: url('../images/Backgroundraw.png');
+    background-size: cover;
+    margin: 0;
+}
+
+#sidebar {
+    width: 200px;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#sidebar .logo {
+    margin-bottom: 20px;
+}
+
+#sidebar .logo img {
+    width: 100%;
+    max-width: 130px;
+    height: auto;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+    transition: transform .3s ease-in-out;
+}
+
+#sidebar .logo img:hover {
+    transform: scale(1.3);
+}
+
+#sidebar .categorie {
+    width: 100%;
+}
+
+#sidebar .categorie ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar .categorie ul li {
+    margin-bottom: 10px;
+}
+
+#sidebar .categorie ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#sidebar .categorie ul li a:hover {
+    background-color: #e5d8f0;
+    color: #333;
+}
+
+.connexion {
+    display: flex; 
+    align-items: center; /* Aligne les éléments verticalement */
+    flex: 1; 
+    justify-content: flex-end; /* Place les éléments à droite */
+}
+
+
+.connexion a {
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+.connexion a:hover {
+    background-color: #e5d8f0; /* Changez la couleur de fond sur hover */
+    color: #333; 
+    border-color: #666; 
+}
+
+
+
+#main-content {
+    margin-left: 200px; 
+    flex-grow: 1;
+    position: relative;
+}
+
+#publicite {
+    background-color: #f0f0f0;
+    height: 50px;
+    display: flex; /* Ajout de la propriété pour utiliser flexbox */
+    align-items: center; /* Centrer verticalement le contenu */
+    justify-content: center;
+}
+
+
+
+#tete{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#intro {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 80px;
+}
+
+#swiper-wrapper {
+    border-radius: 60px;
+    text-align: center;
+    width: 250px; /* Largeur de la carte */
+    height: 420px; /* Hauteur de la carte */
+}
+
+.swiper-slide {
+    background-color: #fff;
+    width: 250px;
+    height: 100%;
+}
+
+.swiper-slide img {
+    width: 250px;
+    height: 230px;
+}
+
+.swiper-slide h2 {
+    margin: 10px 0;
+    color: #a34b97;
+    font-size: 24px;
+}
+
+.swiper-slide p {
+    color: #333;
+    padding: 0 20px;
+    font-size: 16px;
+}
+
+.card {
+    background-color: #c7d7ee;
+    padding: 10px;
+}
+
+.card button {
+    background-color: #fff5cc;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background-color: #fff0b3;
+}
+#fleche{
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff;
+}
+
+.interaction-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.like-button,
+.dislike-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+}
+
+#container {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    height: 75vh; /* Utilise toute la hauteur de la fenêtre */
+}
+
+#container2 {
+    width: 800px;
+    height: 450px;
+    border: 5px solid white; /* Une bordure solide de 5px avec une couleur verte */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 3px 3px 10px rgba(0.3, 0.3, 0.3, 0.3); /* Ombre pour un effet de profondeur */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pixelify-sans-varil {
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3));
+    width: 250px;
+    animation: typing 4s steps(30), reset-width 0s linear 4s infinite;
+    animation-delay: 0s, 3s; 
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@keyframes typing {
+    0% {
+      width: 0;
+    }
+    90% {
+      width: 250px;
+    }
+    100% {
+      width: 250px; 
+    }
+}
+
+@keyframes reset-width {
+    0% {
+        width: 250px;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+
+
+#cupid{
+    height: auto;
+    width: 300px;
+    position: relative;
+    right: 40px;
+    top: 130px;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3));
+}
+
+.speech-bubble {
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3));
+    border-color: #333;
+    position: relative;
+    background: white;
+    border-radius: .4em;
+    padding: 10px 20px;
+    max-width: 300px;
+    bottom: 150px;
+    left: 100px;
+    
+}
+
+.speech-bubble p{
+    text-align: center;
+    font-size: 18px;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top-color: white;
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -10px;
+    margin-bottom: -20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    opacity: 0.9;
+    z-index: 1000;
+}
+
+
+footer {
+    background-color: #000;
+    color: white;
+    margin-top: auto;
+    margin-left: 200px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-right: 20vh;
+    
+}
+
+.footer-section {
+    flex: 1;
+    padding: 10px;
+}
+
+.footer-section h4 {
+    color: white;
+}
+
+.footer-section p, .footer-section a {
+    margin: 5px 0;
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer-section img {
+    border: none;
+}
+
+
+#heart-icon{
+    width: 25px;
+    height: auto;
+}

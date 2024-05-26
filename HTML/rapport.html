@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/rapport.css">
+</head>
+
+<body>
+    <header>
+        <div class="categorie">
+            <ul>
+                <li><a href="accueil_apres_connexion.html">Accueil</a></li>
+                <li><a href="recherche.html">Recherche</a></li>
+                <li><a href="abo.html">Produit</a></li>
+                <li><a href="interface_message.html">Messagerie</a></li>
+                <li><a href="profil.html">Profil</a></li>
+            </ul>
+        </div>
+        
+        <div class="logo">
+            <a href="page_d'accueil.html"><img src="../images/logobao.png" alt="Logo du site"></a>
+        </div>
+
+        <div class="connexion">
+            <a href="#" id="connexionlink">Se connecter</a>
+            <a href="inscription.html">S'inscrire</a>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Signalement</h2>
+        <div class="error-message">
+        </div>
+        <form id="report-form" action="../PHP/submit_report.php" method="post">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur :</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message :</label>
+                <textarea id="message" name="message" required maxlength="200"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Soumettre</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Mentions Légales</h4>
+                <p>Coeurpide Inc<br>Avenue du Parc, 95000 Cergy</p>
+                <a href="../termsofuse.pdf">Lire les conditions d'utilisation</a>
+            </div>
+            <div class="footer-section">
+                <h4>Rédigez un Rapport</h4>
+                <a href="../HTML/rediger-rapport.html">Lien vers une nouvelle page</a>
+            </div>
+            <div class="footer-section">
+                <h4>Signalement</h4>
+                <a href="../HTML/signalement.html">Lien vers une nouvelle page</a>
+            </div>
+            <div class="footer-section">
+                <h4>Installez notre app !</h4>
+                <div class="app-icons">
+                    <a href="https://play.google.com/store" target="_blank"><img src="google-play-logo.png" alt="Google Play"></a>
+                    <a href="https://www.apple.com/app-store/" target="_blank"><img src="app-store-logo.png" alt="App Store"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.getElementById('report-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '../PHP/submit_report.php', true);
+
+            xhr.onload = function() {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    console.log(xhr.responseText);
+                } else {
+                    console.error('La requête a échoué avec un statut ' + xhr.status);
+                }
+            };
+
+            xhr.onerror = function() {
+                console.error('La requête a échoué');
+            };
+
+            xhr.send(formData);
+        });
+    </script>
+</body>
+</html>

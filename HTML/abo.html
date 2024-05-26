@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abonnement</title>
+    <link rel="stylesheet" href="../CSS/abo.css">
+</head>
+<body>
+    <header id="introduction">
+        <h1>Découvrez nos formules d'abonnement</h1>
+        <p>Bienvenue sur notre site de rencontre ! Nous offrons plusieurs options d'abonnement pour répondre à vos besoins. Que vous souhaitiez simplement explorer et découvrir de nouveaux profils, ou que vous soyez prêt à vous engager davantage et à profiter de toutes les fonctionnalités que nous proposons, nous avons une formule pour vous.</p>
+        <p>Choisissez l'abonnement qui vous convient le mieux et commencez dès aujourd'hui à faire des rencontres significatives.</p>
+        <p>Utilisateur : <span id="pseudo"></span></p>
+        <p>Votre rôle actuel : <span id="role"></span></p>
+    </header>
+
+    <div id="sidebar">
+        <div class="logo">
+            <a href="accueil_apres_connexion.html"><img src="../images/logobao.png" alt="Logo du site"></a>
+        </div>
+        <nav class="categorie">
+            <ul>
+                <li><a href="accueil_apres_connexion.html">Accueil</a></li>
+                <li><a href="recherche.html">Recherche</a></li>
+                <li><a href="abo.html">Produit</a></li>
+                <li><a href="interface_message.html">Messagerie</a></li>
+                <li><a href="profil.html">Profil</a></li>
+            </ul>
+        </nav>
+
+        <div class="connexion">
+            <a href="../PHP/logout.php">Déconnexion</a>
+        </div>
+    </div>
+
+    <main id="formules">
+        <div class="formule">
+            <h2>Formule Basic - Gratuit</h2>
+            <ul>
+                <li>Création de profil</li>
+                <li>Recherche de membres</li>
+                <li>Consultation des profils</li>
+            </ul>
+            <button class="cta-button">La version basic me suffit</button>
+        </div>
+        <div class="formule">
+            <h2>Formule Premium - 9,99€ par mois</h2>
+            <ul>
+                <li>Toutes les fonctionnalités de la formule de base</li>
+                <li>Envoi de messages illimité</li>
+                <li>Savoir qui a visité votre profil</li>
+            </ul>
+            <button class="cta-button" id="abonner">J'en veux plus !</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Mentions Légales</h4>
+                <p>Cyan Love Inc<br>Avenue du Parc, 95000 Cergy</p>
+                <a href="../termsofuse.pdf">Lire les conditions d'utilisation</a>
+            </div>
+            <div class="footer-section">
+                <h4>Signalement</h4>
+                <a href="rapport.html">Veuillez signaler ici</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Fonction pour charger les données de session via AJAX
+        function chargerDonneesSession() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '../PHP/abo.php', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.error) {
+                        console.error(response.error);
+                    } 
+                    else {
+                        document.getElementById('pseudo').textContent = response.pseudo;
+                        document.getElementById('role').textContent = response.role;
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        // Appeler la fonction pour charger les données de session lorsque la page est chargée
+        window.onload = function() {
+            chargerDonneesSession();
+        };
+
+
+        function abonnement() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '../PHP/abo.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.error) {
+                        console.error(response.error);
+                    } 
+                    else {
+                        document.getElementById('role').textContent = response.role;
+                    }
+                }
+            };
+            xhr.send(); // Envoyer la requête
+        }
+        document.getElementById('abonner').addEventListener('click', abonnement);
+    </script>
+</body>
+</html>

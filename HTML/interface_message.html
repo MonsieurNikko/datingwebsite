@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Nouvelle Conversation</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Site de Rencontre</title>
+        <link rel="stylesheet" href="../CSS/accueil_apres_connexion.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="sidebar">
+        <div class="logo">
+            <a href="accueil_apres_connexion.html"><img src="../images/logobao.png" alt="Logo du site"></a>
+        </div>
+        <nav class="categorie">
+            <ul>
+                <li><a href="accueil_apres_connexion.html">Accueil</a></li>
+                <li><a href="recherche.html">Recherche</a></li>
+                <li><a href="abo.html">Produit</a></li>
+                <li><a href="interface_message.html">Messagerie</a></li>
+                <li><a href="profil.html" id="profile-container" onclick="loadProfile();">Profil</a></li>
+            </ul>
+        </nav>
+
+
+        <div class="connexion">
+            <a href="../PHP/logout.php">Déconnexion</a>
+        </div>
+        
+    </div>
+    <div id="main-content">
+    <div class="container">
+        <h1>Nouvelle Conversation</h1>
+        
+        <form id="newConversationForm">
+            <label for="recipient">Destinataire :</label>
+            <input type="text" id="recipient" name="recipient" placeholder="Rechercher un utilisateur...">
+            <div id="suggestions" class="suggestions"></div>
+            
+            <!-- Champ de message masqué par défaut -->
+            <label for="message" id="messageLabel" style="display: none;">Message :</label>
+            <textarea id="message" name="message" placeholder="Entrez votre message ici..." style="display: none;"></textarea>
+            
+            <button type="submit" id="sendMessageButton" style="display: none;" disabled>Envoyer le message</button>
+
+            <p id="subscriptionMessage" style="display: none;">Souscrivez à un abonnement pour pouvoir envoyer des messages.</p>
+        </form>
+    </div>
+
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Mentions Légales</h4>
+                <p>Cyan Love Inc<br>Avenue du Parc, 95000 Cergy</p>
+                <a href="../termsofuse.pdf">Lire les conditions d'utilisation</a>
+            </div>
+            <div class="footer-section">
+                <h4>Signalement</h4>
+                <a href="rapport.html">Veuillez signaler ici</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../JavaScript/messagerie.js"></script>
+</body>
+</html>
