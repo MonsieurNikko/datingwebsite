@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh; /* Assure que l'élément prend toute la hauteur de la fenêtre */
-    text-align: center; /* Centre le texte à l'intérieur de la div */
+    text-align: center; 
 }
 
 .images p {
