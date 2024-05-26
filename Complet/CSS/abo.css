@@ -8,10 +8,35 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-image: url('Backgroundraw.png');
+    background-image: url('../images/Backgroundraw.png');
     background-size: cover;
     margin: 0;
 }
+/* Styles pour le header */
+#introduction {
+    margin-left: 200px;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 20vh;
+}
+
+#introduction h1 {
+    font-size: 30px; /* Réduire la taille de la police du titre */
+    margin-bottom: 10px; /* Réduire l'espace en bas du titre */
+}
+
+#introduction p {
+    font-size: 14px; /* Réduire la taille de la police des paragraphes */
+    margin-bottom: 5px; /* Réduire l'espace en bas des paragraphes */
+}
+
+#introduction span {
+    font-weight: bold; /* Rendre le texte des spans en gras pour le distinguer */
+}
+
 
 #sidebar {
     width: 200px;
@@ -93,17 +118,7 @@ body {
 }
 
 
-/* Configuration du footer */
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    opacity: 0.9; /* Augmentation de l'opacité */
-}
+
 h1{
     margin-bottom: 20px;
 }
@@ -191,45 +206,30 @@ footer {
     z-index: 1000;
 }
 
-/* Styles pour le header */
-#introduction {
-    margin-left: 200px;
-    position: fixed;
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-#introduction h1 {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
-#introduction p {
-    font-size: 1.1em;
-    color: #333;
-}
+
+
 
 footer {
     background-color: #000;
-    padding: 20px;
     color: white;
     margin-top: auto;
+    margin-left: 200px;
 }
 
 .footer-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin-right: 20vh;
+    
 }
 
 .footer-section {
     flex: 1;
-    min-width: 200px;
     padding: 10px;
 }
 
 .footer-section h4 {
-    margin-bottom: 10px;
     color: white;
 }
 
