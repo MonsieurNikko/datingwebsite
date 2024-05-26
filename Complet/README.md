@@ -57,5 +57,15 @@ Le site propose plusieurs types d'utilisateurs avec des accès différenciés : 
 ## Dépôt GitHub
 Le projet est hébergé sur un dépôt GitHub où des commits réguliers sont effectués pour suivre l'évolution du développement. Les commits incluent des modifications de code, des ajouts de fonctionnalités et des corrections de bugs, garantissant une trace complète du développement.
 
+## Partie administrateur
+Pour avoir accès au compte admin, accédez à ces 4 comptes : 
+- admin
+- admin2
+- admin3
+- admin4
+
+Mot de passe commun :
+Azerty1234
+
 ## Contact
 Pour toute question ou suggestion, veuillez contacter l'équipe de développement à [aissaouiah@cy-tech.fr](mailto:aissaouiah@cy-tech.fr)
