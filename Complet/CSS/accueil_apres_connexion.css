@@ -72,9 +72,9 @@ body {
 }
 
 .connexion {
-    display: flex; /* Utilise Flexbox pour aligner les éléments */
+    display: flex; 
     align-items: center; /* Aligne les éléments verticalement */
-    flex: 1; /* Permet à la section de s'étendre si nécessaire */
+    flex: 1; 
     justify-content: flex-end; /* Place les éléments à droite */
 }
 
@@ -89,14 +89,14 @@ body {
 
 .connexion a:hover {
     background-color: #e5d8f0; /* Changez la couleur de fond sur hover */
-    color: #333; /* Changez la couleur du texte sur hover */
-    border-color: #666; /* Changez la couleur de la bordure sur hover */
+    color: #333; 
+    border-color: #666; 
 }
 
 
 
 #main-content {
-    margin-left: 200px; /* Adjust to the width of the sidebar */
+    margin-left: 200px; 
     flex-grow: 1;
     position: relative;
 }
@@ -130,7 +130,7 @@ footer {
 }
 
 #intro {
-    height: calc(100vh - 60px); /* Adjusted for footer height */
+    height: calc(100vh - 60px); 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -177,8 +177,8 @@ footer {
 
 #container {
     display: flex;
-    align-items: center; /* Centre verticalement les enfants */
-    justify-content: center; /* Centre horizontalement les enfants */
+    align-items: center; 
+    justify-content: center; 
     height: 75vh; /* Utilise toute la hauteur de la fenêtre */
 }
 
@@ -186,8 +186,8 @@ footer {
     width: 800px;
     height: 450px;
     border: 5px solid white; /* Une bordure solide de 5px avec une couleur verte */
-    border-radius: 15px; /* Angles arrondis */
-    padding: 20px; /* Espacement intérieur */
+    border-radius: 15px;
+    padding: 20px;
     box-shadow: 3px 3px 10px rgba(0.3, 0.3, 0.3, 0.3); /* Ombre pour un effet de profondeur */
     display: flex;
     align-items: center;
