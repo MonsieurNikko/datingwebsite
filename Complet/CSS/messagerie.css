@@ -1,28 +1,138 @@
-.images {
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    background-image: url('Backgroundraw.png');
+    background-size: cover;
+}
+
+/* Sidebar styles */
+#sidebar {
+    width: 200px;
+    background-color: rgba(255, 255, 255, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh; /* Assure que l'élément prend toute la hauteur de la fenêtre */
-    text-align: center; 
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.images p {
-    margin-bottom: 20px; /* Ajoute un espace entre le texte et l'image */
+#sidebar .logo {
+    margin-bottom: 20px;
 }
 
-html, body {
-    height: 100%; /* Assurez que le HTML et le body prennent toute la hauteur */
-    margin: 0;
+#sidebar .logo img {
+    width: 100%;
+    max-width: 130px;
+    height: auto;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+    transition: transform .3s ease-in-out;
+}
+
+#sidebar .logo img:hover {
+    transform: scale(1.3);
+}
+
+#sidebar .categorie {
+    width: 100%;
+}
+
+#sidebar .categorie ul {
+    list-style: none;
     padding: 0;
 }
 
-body {
-    display: flex;
-    justify-content: center; /* Centre horizontalement */
-    align-items: center; /* Centre verticalement */
+#sidebar .categorie ul li {
+    margin-bottom: 10px;
 }
 
-#ut {
+#sidebar .categorie ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
     text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
 }
+
+#sidebar .categorie ul li a:hover {
+    background-color: #e5d8f0;
+    color: #333;
+}
+
+.connexion {
+    display: flex; 
+    align-items: center; 
+    flex: 1; /* Permet à la section de s'étendre si nécessaire */
+    justify-content: flex-end; /* Place les éléments à droite */
+}
+
+.connexion a {
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+.connexion a:hover {
+    background-color: #e5d8f0; 
+    color: #333;
+    border-color: #666; /* Changez la couleur de la bordure sur hover */
+}
+
+/* Styles pour #ut */
+#ut {
+    width: 80%;
+    max-width: 600px; /* Ajustez cette valeur pour agrandir l'élément */
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 220px; /* Compte pour la largeur de la barre latérale */
+}
+
+#ut h1 {
+    margin-bottom: 20px;
+}
+
+#ut textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+
+#ut button {
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#ut button:hover {
+    background-color: #e74c3c;
+    transform: scale(1.05);
+}
+
