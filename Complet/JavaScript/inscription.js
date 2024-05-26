@@ -5,7 +5,7 @@ function countCharacters(event) {
     caracteresElement.textContent = currentLength + '/' + maxLength + ' caractères';
     
     if (currentLength > maxLength) {
-        caracteresElement.style.color = 'red'; // Optionnel: changer la couleur du texte lorsque la limite est atteinte
+        caracteresElement.style.color = 'red'; // Optionnel : changer la couleur du texte lorsque la limite est atteinte
     } 
     else {
         caracteresElement.style.color = '#888'; // Réinitialiser la couleur si le nombre de caractères est inférieur à la limite
@@ -41,7 +41,7 @@ document.getElementById('email').addEventListener('input', function() {
 
 function displaySelectedPhotos() {
     var selectedPhotosDiv = document.getElementById('selected-photos');
-    selectedPhotosDiv.innerHTML = ''; // Clear previous selected photos
+    selectedPhotosDiv.innerHTML = ''; 
 
     var files = document.getElementById('photos').files;
     for (var i = 0; i < files.length; i++) {
@@ -49,7 +49,7 @@ function displaySelectedPhotos() {
         var imageType = /^image\//;
 
         if (!imageType.test(file.type)) {
-            continue; // Skip non-image files
+            continue; 
         }
 
         var img = document.createElement('img');
@@ -66,7 +66,6 @@ function displaySelectedPhotos() {
         reader.readAsDataURL(file);
     }
 }
-
 
 function validatePassword() {
     var password = document.getElementById("mot_de_passe").value.trim();
@@ -204,11 +203,10 @@ function nextSection() {
 
 function prevSection() {
     if (currentSection === 1) return; // Arrête la fonction si nous sommes déjà à la première section
-    sections[currentSection - 1].style.display = 'none'; // Masque la section actuelle
-    currentSection--; // Décrémente la section actuelle
+    sections[currentSection - 1].style.display = 'none';
+    currentSection--; 
     sections[currentSection - 1].style.display = 'block'; // Affiche la section précédente
 }
-
 
 document.addEventListener('DOMContentLoaded', function() {
     const connexionLink = document.getElementById('connexionlink');
@@ -218,17 +216,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Lorsque le formulaire de connexion est affiché
     connexionLink.addEventListener('click', function(event) {
         event.preventDefault();
-        connexionForm.style.display = 'block'; // Affiche le formulaire de connexion
-        body.classList.add('overlay-active'); // Ajoute la classe pour assombrir l'arrière-plan
+        connexionForm.style.display = 'block'; 
+        body.classList.add('overlay-active'); 
         document.getElementById('inscription').style.display = 'none'; // Masque la zone d'inscription
     });
 });
 
-
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("connexionForm").addEventListener("submit", function(event) {
         event.preventDefault(); // Empêche l'envoi du formulaire par défaut
-        console.log("Formulaire soumis"); // Message de débogage
 
         var formData = new FormData(this); // Récupère les données du formulaire
 
@@ -237,27 +233,20 @@ document.addEventListener("DOMContentLoaded", function() {
         xhr.open("POST", "../PHP/connexion.php", true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                console.log("Réponse reçue du serveur"); // Message de débogage
-
                 // Vérifiez si le statut HTTP est 200 (OK)
                 if (xhr.status === 200) {
-                    console.log("Statut HTTP 200"); // Message de débogage
-
                     // Vérifie si la réponse du serveur contient une redirection
                     if (xhr.responseText.trim() === "Mot de passe incorrect." || xhr.responseText.trim() === "Identifiant non trouvé." || xhr.responseText.trim() === "Erreur: La ligne ne contient pas suffisamment de colonnes." || xhr.responseText.trim() === "Erreur: Impossible d'ouvrir le fichier CSV.") {
-                        console.log("Affichage de la réponse du serveur dans le div erreurMessage"); // Message de débogage
-
                         // Affiche la réponse du serveur dans le div d'erreurMessage
                         document.getElementById("erreurMessage").innerHTML = xhr.responseText;
-                    } else {
-                        console.log("Redirection vers la page d'accueil"); // Message de débogage
-
+                    } 
+                    else {
                         // Redirige vers la page d'accueil après connexion réussie
                         window.location.href = "acceuilapresconnecte.html";
                     }
-                } else {
+                } 
+                else {
                     // Affiche une erreur générique si le statut HTTP n'est pas 200
-                    console.log("Erreur HTTP: " + xhr.status); // Message de débogage
                     document.getElementById("erreurMessage").innerHTML = "Une erreur s'est produite.";
                 }
             }
@@ -265,10 +254,6 @@ document.addEventListener("DOMContentLoaded", function() {
         xhr.send(formData);
     });
 });
-
-
-
-
 
 function toggleConfirmPasswordVisibility() {
     var confirmPasswordInput1 = document.getElementById("mot_de_passe");
@@ -286,7 +271,6 @@ function toggleConfirmPasswordVisibility() {
 
 }
 
-
 var pseudonymeInput = document.getElementById("pseudonyme");
 
 function verifierPseudonyme() {
@@ -305,7 +289,6 @@ function verifierPseudonyme() {
                     return; // Arrêter la vérification
                 }
             }
-            
             // Si le pseudonyme n'existe pas encore, effacer le message d'erreur
             document.getElementById('messagePseudonyme').innerText = "";
         })
@@ -317,7 +300,6 @@ function verifierPseudonyme() {
 
 pseudonymeInput.addEventListener('blur', verifierPseudonyme);
 
-
 var pseudonymeInput = document.getElementById("pseudonyme");
 
 function verifierPseudonyme() {
@@ -336,7 +318,6 @@ function verifierPseudonyme() {
                     return; // Arrêter la vérification
                 }
             }
-            
             // Si le pseudonyme n'existe pas encore, effacer le message d'erreur
             document.getElementById('messagePseudonyme').innerText = "";
         })
