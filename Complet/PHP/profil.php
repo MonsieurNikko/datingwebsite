@@ -9,8 +9,8 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['data']) && isset($_SESSION['r
     $data = $_SESSION['data'];
     $role = $_SESSION['role']; // Ajout du rôle de l'utilisateur
     echo json_encode(array('pseudo' => $pseudo, 'data' => $data, 'role' => $role));
-} else {
+} 
+else {
     echo json_encode(array('error' => 'Utilisateur non connecté'));
 }
 ?>
-
