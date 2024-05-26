@@ -11,54 +11,18 @@
     margin-bottom: 20px; /* Ajoute un espace entre le texte et l'image */
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    opacity: 0.9;
-    z-index: 1000;
+html, body {
+    height: 100%; /* Assurez que le HTML et le body prennent toute la hauteur */
+    margin: 0;
+    padding: 0;
 }
 
-
-footer {
-    background-color: #000;
-    color: white;
-    margin-top: auto;
-    margin-left: 200px;
-}
-
-.footer-container {
+body {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-right: 20vh;
-    
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
 }
 
-.footer-section {
-    flex: 1;
-    padding: 10px;
-}
-
-.footer-section h4 {
-    color: white;
-}
-
-.footer-section p, .footer-section a {
-    margin: 5px 0;
-    color: #ccc;
-    text-decoration: none;
-}
-
-.footer-section a:hover {
-    color: white;
-    text-decoration: underline;
-}
-
-.footer-section img {
-    border: none;
+#ut {
+    text-align: center;
 }
