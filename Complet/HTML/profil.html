@@ -27,7 +27,6 @@
             <a href="../PHP/logout.php">Déconnexion</a>
         </div>
     </div>
-
     
     <div id="profil">
         <h1>Profil de <span id="pseudo"></span></h1>
@@ -97,8 +96,6 @@
                     <input type="text" id="pseudonymeID" name="pseudonyme" required maxlength="26" placeholder="Pseudonyme">
                     <div id="messagePseudonyme"></div>
                   </div>
-                  
-                  
                   
                   <div class="partie">
                     <input type="number" id="ageInput" name="age" min="18" max="100" placeholder="Âge" required>
@@ -479,8 +476,6 @@
                     </div>
                 </div>
                 
-                
-          
                   <!-- Quatrième étape --> 
                   <div class="section" id="section4">
                     <h1>Sécurité</h1>
@@ -524,7 +519,6 @@
             })
             .catch(error => console.error('Erreur:', error));
 
-
     document.addEventListener("DOMContentLoaded", function() {
         function loadProfileData() {
             var xhr = new XMLHttpRequest();
@@ -536,7 +530,8 @@
                             var response = JSON.parse(xhr.responseText);
                             if (response.error) {
                                 document.getElementById("erreurMessage").innerText = response.error;
-                            } else {
+                            } 
+                            else {
                                 document.getElementById("pseudo").innerText = response.pseudo;
 
                                 var data = response.data;
@@ -573,10 +568,12 @@
                                 document.getElementById("nomCompletInput").value = data[13];
                                 document.getElementById("adresseInput").value = data[14];
                             }
-                        } catch (e) {
+                        } 
+                        catch (e) {
                             document.getElementById("erreurMessage").innerText = "Erreur de traitement des données.";
                         }
-                    } else {
+                    } 
+                    else {
                         document.getElementById("erreurMessage").innerText = "Erreur de chargement des données.";
                     }
                 }
@@ -584,7 +581,6 @@
             xhr.send();
         }
         
-
         var modal = document.getElementById("modifierProfilModal");
         var btn = document.getElementById("modifierProfilBtn");
         var span = document.getElementsByClassName("close")[0];
@@ -602,40 +598,32 @@
                 modal.style.display = "none";
             }
         };
+        
         document.getElementById("modifierProfilForm").onsubmit = function(event) {
                 event.preventDefault();
-                console.log("Formulaire de modification soumis"); // Message de débogage
-
+            
                 var formData = new FormData(event.target);
-                console.log("Données du formulaire :", formData); // Message de débogage
-
                 var xhr = new XMLHttpRequest();
+            
                 xhr.open("POST", "../PHP/modifprofil.php", true);
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
-                        console.log("Réponse du serveur reçue"); // Message de débogage
-
                         if (xhr.status === 200) {
-                            console.log("Statut de la requête : 200 OK"); // Message de débogage
-
                             var response;
                             try {
                                 response = JSON.parse(xhr.responseText);
-                            } catch (e) {
+                            } 
+                            catch (e) {
                                 console.error("Erreur lors de l'analyse de la réponse JSON :", e);
                                 return;
                             }
-
-                            console.log("Réponse du serveur :", response); // Message de débogage
-
                             document.getElementById("erreurMessage").innerText = response.success ? response.success : response.error;
                             if (response.success) {
-                                console.log("Modification du profil réussie"); // Message de débogage
-
                                 modal.style.display = "none";
                                 loadProfileData(); // Recharger les données du profil après modification
                             }
-                        } else {
+                        } 
+                        else {
                             console.error("Erreur de modification du profil."); // Message d'erreur
                             document.getElementById("erreurMessage").innerText = "Erreur de modification du profil.";
                         }
@@ -644,8 +632,7 @@
                 xhr.send(formData);
             };
             loadProfileData();
-});
-
+    });
     </script>
 </body>
 </html>
