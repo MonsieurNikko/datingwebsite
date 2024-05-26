@@ -71,8 +71,8 @@ body {
 }
 
 .connexion {
-    display: flex; /* Utilise Flexbox pour aligner les éléments */
-    align-items: center; /* Aligne les éléments verticalement */
+    display: flex; 
+    align-items: center; 
     flex: 1; /* Permet à la section de s'étendre si nécessaire */
     justify-content: flex-end; /* Place les éléments à droite */
 }
@@ -87,8 +87,8 @@ body {
 }
 
 .connexion a:hover {
-    background-color: #e5d8f0; /* Changez la couleur de fond sur hover */
-    color: #333; /* Changez la couleur du texte sur hover */
+    background-color: #e5d8f0; 
+    color: #333;
     border-color: #666; /* Changez la couleur de la bordure sur hover */
 }
 
@@ -135,7 +135,7 @@ h1{
 }
 
 .formule:hover {
-    transform: translateY(-10px); /* Légère translation vers le haut au survol */
+    transform: translateY(-10px); 
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Augmentation de l'ombre au survol */
 }
 
@@ -154,13 +154,13 @@ h1{
 .formule ul li {
     margin-bottom: 10px;
     padding-left: 15px; /* Ajout de padding pour aligner le texte */
-    position: relative; /* Pour le pseudo-élément */
+    position: relative;
 }
 
 .formule ul li::before {
     content: "•"; /* Utilisation d'un point pour la liste */
-    color: #ff6b6b; /* Couleur du point */
-    position: absolute; /* Positionnement absolu du point */
+    color: #ff6b6b; 
+    position: absolute; 
     left: 0; /* Aligner le point à gauche */
 }
 
