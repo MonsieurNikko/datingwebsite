@@ -100,7 +100,8 @@
                     var response = JSON.parse(xhr.responseText);
                     if (response.error) {
                         console.error(response.error);
-                    } else {
+                    } 
+                    else {
                         document.getElementById('pseudo').textContent = response.pseudo;
                         document.getElementById('role').textContent = response.role;
                     }
@@ -120,21 +121,18 @@
             xhr.open('POST', '../PHP/abo.php', true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onreadystatechange = function () {
-                console.log('Ready state: ' + xhr.readyState); // Afficher l'état prêt de la requête
-                console.log('Status: ' + xhr.status); // Afficher le statut de la requête
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    console.log('Response: ' + xhr.responseText); // Afficher la réponse de la requête
                     var response = JSON.parse(xhr.responseText);
                     if (response.error) {
                         console.error(response.error);
-                    } else {
+                    } 
+                    else {
                         document.getElementById('role').textContent = response.role;
                     }
                 }
             };
             xhr.send(); // Envoyer la requête
         }
-
         document.getElementById('abonner').addEventListener('click', abonnement);
     </script>
 </body>
