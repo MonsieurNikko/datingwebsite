@@ -1,0 +1,15 @@
+.suggestion-item {
+    cursor: pointer;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+#message {
+    display: none;
+    color: red;
+    margin-top: 10px;
+}
