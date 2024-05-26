@@ -32,18 +32,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Renvoyer les données mises à jour
         $response['pseudo'] = $_SESSION['pseudo'];
         $response['role'] = $_SESSION['role'];
-    } else {
+    } 
+    else {
         $response['error'] = 'Utilisateur non connecté';
     }
     echo json_encode($response);
-} else {
+} 
+else {
     $response = array('debug' => 'La requête ne provient pas du bouton "J\'en veux plus !"');
     // Si la requête ne provient pas du bouton "J'en veux plus !", renvoyer les données de session actuelles
     if (isset($_SESSION['pseudo']) && isset($_SESSION['role'])) {
         // Récupérez les données de l'utilisateur
         $response['pseudo'] = $_SESSION['pseudo'];
         $response['role'] = $_SESSION['role'];
-    } else {
+    } 
+    else {
         $response['error'] = 'Utilisateur non connecté';
     }
     echo json_encode($response);
