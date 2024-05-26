@@ -43,7 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Si c'est l'utilisateur à modifier, effectuer les modifications nécessaires
             if ($action === 'ban_user') {
                 $row[17] = 'banned'; // Marquer comme banni
-            } elseif ($action === 'delete_user') {
+            } 
+            elseif ($action === 'delete_user') {
                 // Ne rien faire pour marquer pour suppression
                 continue; // Passe à la prochaine itération sans ajouter cette ligne au nouveau tableau
             }
@@ -62,7 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     fclose($handle);
 
     echo json_encode(array('message' => "L'action '$action' a été effectuée sur l'utilisateur '$pseudo'.", 'success' => true));
-} else {
+} 
+else {
     // Si la requête n'est pas une requête POST, renvoyer une erreur
     http_response_code(405); // Méthode non autorisée
     echo json_encode(array('error' => 'Seules les requêtes POST sont autorisées.'));
