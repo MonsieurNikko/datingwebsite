@@ -73,15 +73,16 @@
                 roleXhr.onload = function() {
                     if (roleXhr.status === 200) {
                         var userRole = roleXhr.responseText;
-                        console.log('Rôle actuel de l\'utilisateur:', userRole);
                         if (userRole === 'premium' || userRole === 'admin') {
                             document.getElementById('nomComplet').innerText = user.nom;
                             document.getElementById('adresse').innerText = user.adresse;
                             document.getElementById('Prive').style.display = 'block';
-                        } else {
+                        } 
+                        else {
                             document.getElementById('Prive').style.display = 'none';
                         }
-                    } else {
+                    } 
+                    else {
                         console.error('Erreur de chargement du rôle utilisateur:', roleXhr.statusText);
                     }
                 };
@@ -89,7 +90,8 @@
                     console.error('Erreur de requête AJAX pour obtenir le rôle utilisateur');
                 };
                 roleXhr.send();
-            } else {
+            } 
+            else {
                 window.location.href = "../HTML/accueil_apres_connexion.html";
             }
         });
